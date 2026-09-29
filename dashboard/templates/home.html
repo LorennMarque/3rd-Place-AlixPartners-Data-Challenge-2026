@@ -1,0 +1,769 @@
+{% extends "base.html" %}
+
+{% block title %}Home — Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<style>
+  .compare-section-block {
+    margin-top: 3rem;
+  }
+
+  .compare-section-block--inner {
+    margin-top: 3.5rem;
+  }
+
+  .compare-surface-bare,
+  .compare-surface-bare .dashboard-chart-bare {
+    background: transparent !important;
+  }
+
+  .compare-section-title {
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #f5f5f5;
+  }
+
+  .compare-plant-table th,
+  .compare-plant-table td {
+    border-color: var(--dash-border);
+  }
+
+  .compare-plant-table tbody tr + tr {
+    border-top: 1px solid var(--dash-border);
+  }
+
+  .compare-plant-table th:first-child,
+  .compare-plant-table td:first-child {
+    padding-left: 0;
+    text-align: left;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'home' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 flex flex-wrap items-start justify-between gap-3 sm:mb-8">
+        <div class="min-w-0">
+          <h1 class="text-2xl font-medium">Home</h1>
+          <p class="mt-1 text-sm text-neutral-400">
+            {% if selected_solution %}
+            Solucion activa: {{ selected_solution }}
+            {% else %}
+            Todavia no hay una solucion seleccionada.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <div class="skel-host is-ready" data-skel-host="home-metrics">
+        <div class="skel-content">
+      <section class="dash-metrics-grid">
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Costo total</p>
+          <p class="mt-3 text-2xl font-medium">
+            {% if metrics %}${{ "{:,.2f}".format(metrics.costo_total) }}{% else %}-{% endif %}
+          </p>
+        </article>
+
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Costo envio</p>
+          <p class="mt-3 text-2xl font-medium">
+            {% if metrics %}${{ "{:,.2f}".format(metrics.costo_envio) }}{% else %}-{% endif %}
+          </p>
+        </article>
+
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Costo packaging</p>
+          <p class="mt-3 text-2xl font-medium">
+            {% if metrics %}${{ "{:,.2f}".format(metrics.costo_packaging) }}{% else %}-{% endif %}
+          </p>
+        </article>
+
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Cajas unicas</p>
+          <p class="mt-3 text-2xl font-medium">
+            {% if metrics %}{{ metrics.cajas_unicas }}{% else %}-{% endif %}
+          </p>
+        </article>
+
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Ahorro vs baseline</p>
+          <p class="mt-3 text-2xl font-medium {% if metrics and metrics.ahorro_pct >= 0 %}text-brand{% elif metrics %}text-red-400{% endif %}">
+            {% if metrics %}{{ "{:+.2f}".format(metrics.ahorro_pct) }}%{% else %}-{% endif %}
+          </p>
+        </article>
+      </section>
+        </div>
+      </div>
+
+      {% if snapshot %}
+      {% set host = "home-charts" %}
+      {% include "_skel_chart_start.html" %}
+
+      <section class="compare-surface-bare compare-section-block space-y-4">
+        <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+          <article class="dashboard-chart-bare min-w-0">
+            <h2 class="text-sm font-medium text-neutral-100">Analisis de Costo total</h2>
+            {% set quota_gap_pct = snapshot.diff_cpsat_pct | abs %}
+            <p class="mt-1 flex items-center gap-1.5 text-xs {% if quota_gap_pct < 1 %}text-brand{% elif quota_gap_pct < 5 %}text-amber-400{% elif snapshot.diff_cpsat > 0 %}text-red-400{% else %}text-brand{% endif %}">
+              {% if quota_gap_pct >= 5 and snapshot.diff_cpsat > 0 %}
+              <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              {% endif %}
+              <span>Distribucion actual a un {{ "{:.2f}".format(quota_gap_pct) }}% de la cota teorica</span>
+            </p>
+            <div class="relative mt-4 min-h-[360px] w-full overflow-visible">
+              <div id="cost-analysis-chart" class="relative h-[320px] w-full overflow-visible"></div>
+            </div>
+          </article>
+
+          <article class="dashboard-chart-bare min-w-0">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <h3 id="plant-metric-title" class="text-sm font-medium text-neutral-100">Costo por planta</h3>
+                <p id="plant-metric-subtitle" class="mt-1 text-xs text-neutral-400">
+                  Costo total según la solución activa.
+                </p>
+              </div>
+              <label class="sr-only" for="plant-metric-select">Métrica del gráfico</label>
+              <select
+                id="plant-metric-select"
+                class="shrink-0 border border-surface-border bg-black px-2.5 py-1.5 text-xs text-neutral-200 focus:border-brand focus:outline-none"
+              >
+                <option value="demanda">Demanda</option>
+                <option value="costo" selected>Costo</option>
+              </select>
+            </div>
+            <div id="plant-metric-chart" class="mt-4 min-h-[320px] w-full"></div>
+          </article>
+        </div>
+
+        <div class="compare-section-block--inner overflow-x-auto">
+          <table class="compare-plant-table min-w-full text-sm">
+            <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-4 py-3 font-medium">Planta</th>
+                <th class="px-4 py-3 font-medium text-right">Costo total</th>
+                <th class="px-4 py-3 font-medium text-right">Costo envio</th>
+                <th class="px-4 py-3 font-medium text-right">Costo cajas</th>
+                <th class="px-4 py-3 font-medium text-right">Util. pallet (media)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for card in plant_cards %}
+              <tr>
+                <td class="px-4 py-4 font-medium text-neutral-100">
+                  {{ card.label }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium text-neutral-100">
+                  ${{ "{:,.2f}".format(card.costo_total) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium text-neutral-100">
+                  ${{ "{:,.2f}".format(card.costo_envio) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium text-neutral-100">
+                  ${{ "{:,.2f}".format(card.costo_packaging) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium text-neutral-100">
+                  {{ "{:.1f}".format(card.util_mean_pct) }}%
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      {% include "_skel_chart_end.html" %}
+      {% else %}
+      <div class="mt-6 border border-surface-border bg-surface-card px-4 py-8 text-center text-sm text-neutral-500">
+        Seleccioná una solucion para ver el analisis.
+      </div>
+      {% endif %}
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+<div
+  id="upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium text-neutral-100">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-400">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-upload-modal"
+        class="text-neutral-400 hover:text-neutral-100"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-surface-border bg-black px-3 py-2 text-sm text-neutral-200"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-upload-modal"
+          class="border border-surface-border px-4 py-2 text-sm text-neutral-300 hover:bg-white/5"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-brand bg-brand px-4 py-2 text-sm text-black"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script id="home-data" type="application/json">
+{
+  "snapshot": {{ snapshot | tojson }},
+  "plant_cards": {{ plant_cards | tojson }},
+  "solution_name": {{ selected_solution | tojson }}
+}
+</script>
+
+<script>
+  (function () {
+    const modal = document.getElementById("upload-modal");
+    const closeButton = document.getElementById("close-upload-modal");
+    const cancelButton = document.getElementById("cancel-upload-modal");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    window.addEventListener("dashboard:open-upload", openModal);
+    if (closeButton) closeButton.addEventListener("click", closeModal);
+    if (cancelButton) cancelButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+  })();
+
+  window.dashboardCharts = window.dashboardCharts || [];
+  window.dashboardDestroyCharts =
+    window.dashboardDestroyCharts ||
+    function dashboardDestroyCharts() {
+      window.dashboardCharts.forEach((chart) => chart?.destroy?.());
+      window.dashboardCharts = [];
+    };
+
+  window.dashboardPageInit = async function dashboardPageInit() {
+    window.dashboardDestroyCharts();
+
+    const dataNode = document.getElementById("home-data");
+    if (!dataNode || !window.ApexCharts) {
+      window.dashboardRevealHost?.("home-charts");
+      return;
+    }
+
+    const payload = JSON.parse(dataNode.textContent || "{}");
+    const snap = payload.snapshot;
+    if (!snap) {
+      window.dashboardRevealHost?.("home-charts");
+      return;
+    }
+
+    const chartRenders = [];
+
+    const theme = window.DASHBOARD_THEME;
+    const dark = theme.dark;
+    const colors = {
+      primary: theme.primary,
+      secondary: theme.secondary,
+      cpsat: theme.secondary,
+    };
+
+    const formatCurrency = (value) => {
+      const amount = Number(value);
+      if (!Number.isFinite(amount)) {
+        return "—";
+      }
+      return new Intl.NumberFormat("es-AR", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
+    };
+
+    const chartFont = "Noto Sans, sans-serif";
+    const baseChartOptions = {
+      chart: {
+        fontFamily: chartFont,
+        toolbar: { show: false },
+        background: "transparent",
+      },
+      grid: {
+        borderColor: dark.chartGrid,
+        strokeDashArray: 4,
+      },
+      legend: {
+        show: true,
+        position: "top",
+        horizontalAlign: "left",
+        fontFamily: chartFont,
+        fontSize: "12px",
+        labels: { colors: dark.chartLabel },
+        markers: { width: 10, height: 10, radius: 0 },
+      },
+      tooltip: {
+        theme: "dark",
+      },
+    };
+
+    const axisStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartLabel,
+    };
+
+    const categoryStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartCategory,
+    };
+
+    const formatAxisMillions = (value) => {
+      const amount = Number(value);
+      if (!Number.isFinite(amount) || amount === 0) return "0";
+      return `${Math.round(amount / 1_000_000)}M`;
+    };
+
+    const envio = Number(snap.costo_envio) || 0;
+    const cajas = Number(snap.costo_packaging) || 0;
+    const total = Number(snap.costo_total) || 0;
+    const cpsatQuota = Number(snap.cpsat_quota) || 0;
+    const costCategories = ["Total", "Envío", "Cajas"];
+    const costLabelAmounts = [total, envio, cajas];
+    const costBarTops = [total, envio, cajas];
+    const costValues = [envio, cajas, total, cpsatQuota];
+    const costMin = Math.min(0, ...costValues);
+    const costMax = Math.max(...costValues);
+    const costPadding = Math.max((costMax - costMin) * 0.12, costMax * 0.03);
+    const labelHeadroom = Math.max(costMax * 0.06, costPadding * 0.75);
+    const yAxisMax = costMax + costPadding + labelHeadroom;
+    const costChartEl = document.querySelector("#cost-analysis-chart");
+
+    const quotaGapPct = Math.abs(Number(snap.diff_cpsat_pct) || 0);
+    const diffCpsat = Number(snap.diff_cpsat) || 0;
+    let totalBarColor = colors.primary;
+    if (quotaGapPct >= 5 && diffCpsat > 0) {
+      totalBarColor = theme.negative || "#b91c1c";
+    } else if (quotaGapPct >= 1) {
+      totalBarColor = "#f59e0b";
+    }
+
+    const syncCostBarValueLabels = (chart) => {
+      if (!chart?.el) return;
+
+      const layerClass = "cost-bar-value-labels";
+      let layer = chart.el.querySelector(`.${layerClass}`);
+      if (!layer) {
+        layer = document.createElement("div");
+        layer.className = layerClass;
+        layer.style.cssText =
+          "position:absolute;inset:0;z-index:4;pointer-events:none;overflow:visible;";
+        chart.el.appendChild(layer);
+      }
+      layer.replaceChildren();
+
+      const chartRect = chart.el.getBoundingClientRect();
+      const seriesGroup = chart.el.querySelector(".apexcharts-bar-series");
+      const paths = seriesGroup
+        ? seriesGroup.querySelectorAll("path, rect")
+        : chart.el.querySelectorAll(
+            ".apexcharts-series .apexcharts-bar-area, .apexcharts-series .apexcharts-rangebar-area"
+          );
+
+      if (paths.length) {
+        paths.forEach((path, index) => {
+          if (index >= costLabelAmounts.length) return;
+
+          let box;
+          try {
+            box = path.getBBox();
+          } catch (_error) {
+            return;
+          }
+
+          const ctm = path.getScreenCTM();
+          if (!ctm) return;
+
+          const centerX = box.x + box.width / 2;
+          const topY = box.y;
+          const screenX = centerX * ctm.a + topY * ctm.c + ctm.e;
+          const screenY = centerX * ctm.b + topY * ctm.d + ctm.f;
+
+          const label = document.createElement("span");
+          label.style.cssText =
+            "position:absolute;transform:translate(-50%,calc(-100% - 6px));white-space:nowrap;font:500 11px/1 'Noto Sans',sans-serif;color:#f5f5f5;";
+          label.style.left = `${screenX - chartRect.left}px`;
+          label.style.top = `${screenY - chartRect.top}px`;
+          label.textContent = formatCurrency(costLabelAmounts[index]);
+          layer.appendChild(label);
+        });
+        return;
+      }
+
+      const globals = chart.w?.globals;
+      if (!globals) return;
+
+      const ySpan = yAxisMax - costMin;
+      if (!ySpan) return;
+
+      costLabelAmounts.forEach((amount, index) => {
+        const barTop = costBarTops[index];
+        const xLeft = globals.seriesX?.[0]?.[index];
+        let x;
+        if (xLeft != null) {
+          x = xLeft + globals.barWidth / 2;
+        } else {
+          const slot = globals.gridWidth / costLabelAmounts.length;
+          x = globals.translateX + slot * index + slot / 2;
+        }
+
+        const y = globals.translateY + ((yAxisMax - barTop) / ySpan) * globals.gridHeight;
+
+        const label = document.createElement("span");
+        label.style.cssText =
+          "position:absolute;transform:translate(-50%,calc(-100% - 6px));white-space:nowrap;font:500 11px/1 'Noto Sans',sans-serif;color:#f5f5f5;";
+        label.style.left = `${x}px`;
+        label.style.top = `${y}px`;
+        label.textContent = formatCurrency(amount);
+        layer.appendChild(label);
+      });
+    };
+
+    const costChart = new ApexCharts(costChartEl, {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "rangeBar",
+        height: 320,
+        width: "100%",
+        events: {
+          mounted(chartContext) {
+            requestAnimationFrame(() => syncCostBarValueLabels(chartContext));
+          },
+          updated(chartContext) {
+            requestAnimationFrame(() => syncCostBarValueLabels(chartContext));
+          },
+        },
+      },
+      colors: [totalBarColor, colors.secondary, colors.secondary],
+      legend: { show: false },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "62%",
+          distributed: true,
+          rangeBarGroupRows: false,
+        },
+      },
+      dataLabels: { enabled: false },
+      xaxis: {
+        categories: costCategories,
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        show: true,
+        min: costMin,
+        max: yAxisMax,
+        forceNiceScale: true,
+        tickAmount: 5,
+        labels: {
+          formatter: (value) => formatAxisMillions(value),
+          style: axisStyle,
+        },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+      },
+      grid: {
+        ...baseChartOptions.grid,
+        padding: { top: 28, left: 12, right: 12 },
+        xaxis: { lines: { show: false } },
+        yaxis: { lines: { show: true } },
+      },
+      annotations: {
+        yaxis: [
+          {
+            y: cpsatQuota,
+            borderColor: colors.cpsat,
+            strokeDashArray: 6,
+            label: {
+              borderColor: "transparent",
+              text: `Cota: ${formatCurrency(cpsatQuota)}`,
+              position: "right",
+              offsetX: -4,
+              offsetY: -6,
+              style: {
+                color: colors.cpsat,
+                background: dark.card,
+                fontFamily: chartFont,
+                fontSize: "11px",
+                fontWeight: 500,
+                padding: {
+                  left: 6,
+                  right: 6,
+                  top: 2,
+                  bottom: 2,
+                },
+              },
+            },
+          },
+        ],
+      },
+      tooltip: {
+        theme: "dark",
+        custom: ({ dataPointIndex }) => {
+          const label = costCategories[dataPointIndex];
+          const value = costLabelAmounts[dataPointIndex] ?? 0;
+          return (
+            '<div class="apexcharts-tooltip-title" style="font-family:' +
+            chartFont +
+            '">' +
+            label +
+            '</div><div class="apexcharts-tooltip-series-group active" style="display:flex;padding:4px 10px 6px">' +
+            '<span class="apexcharts-tooltip-text" style="font-family:' +
+            chartFont +
+            '">' +
+            formatCurrency(value) +
+            "</span></div>"
+          );
+        },
+      },
+      series: [
+        {
+          name: "Costo",
+          data: [
+            { x: costCategories[0], y: [0, total] },
+            { x: costCategories[1], y: [0, envio] },
+            { x: costCategories[2], y: [0, cajas] },
+          ],
+        },
+      ],
+    });
+
+    if (costChartEl) {
+      window.dashboardCharts.push(costChart);
+      chartRenders.push(
+        costChart.render().then(() => {
+          syncCostBarValueLabels(costChart);
+          requestAnimationFrame(() => syncCostBarValueLabels(costChart));
+          window.setTimeout(() => syncCostBarValueLabels(costChart), 120);
+        })
+      );
+      window.addEventListener("resize", () => {
+        requestAnimationFrame(() => syncCostBarValueLabels(costChart));
+      });
+    }
+
+    const plantCards = payload.plant_cards || [];
+
+    const formatVolume = (value) =>
+      new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(value);
+
+    const plantMetricTitle = document.getElementById("plant-metric-title");
+    const plantMetricSubtitle = document.getElementById("plant-metric-subtitle");
+    const plantMetricSelect = document.getElementById("plant-metric-select");
+    const plantMetricEl = document.querySelector("#plant-metric-chart");
+    let plantMetricChart = null;
+
+    const plantMetricModes = {
+      demanda: {
+        title: "Demanda por planta",
+        subtitle: "Volumen anual por planta.",
+        options: {
+          ...baseChartOptions,
+          chart: {
+            ...baseChartOptions.chart,
+            type: "bar",
+            height: 320,
+            width: "100%",
+          },
+          colors: [colors.primary],
+          legend: { show: false },
+          plotOptions: {
+            bar: {
+              horizontal: true,
+              borderRadius: 0,
+              barHeight: "58%",
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            offsetX: 24,
+            style: {
+              fontFamily: chartFont,
+              fontWeight: 500,
+              colors: [dark.dataLabel],
+            },
+            formatter: (value) => formatVolume(value),
+          },
+          xaxis: {
+            labels: {
+              formatter: (value) => formatVolume(value),
+              style: axisStyle,
+            },
+          },
+          yaxis: {
+            labels: {
+              style: categoryStyle,
+            },
+          },
+          tooltip: {
+            theme: "dark",
+            y: {
+              formatter: (value, { dataPointIndex }) => {
+                const plant = plantCards[dataPointIndex];
+                const pct = plant ? Number(plant.volumen_pct) || 0 : 0;
+                return `${formatVolume(value)} uds/año (${pct.toFixed(1)}%)`;
+              },
+            },
+          },
+          series: [
+            {
+              name: "Volumen",
+              data: plantCards.map((card) => ({
+                x: card.label,
+                y: card.volumen,
+              })),
+            },
+          ],
+        },
+      },
+      costo: {
+        title: "Costo por planta",
+        subtitle: "Costo total según la solución activa.",
+        options: {
+          ...baseChartOptions,
+          chart: {
+            ...baseChartOptions.chart,
+            type: "bar",
+            height: 320,
+            width: "100%",
+          },
+          colors: [colors.primary],
+          legend: { show: false },
+          plotOptions: {
+            bar: {
+              horizontal: true,
+              borderRadius: 0,
+              barHeight: "58%",
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            offsetX: 24,
+            style: {
+              fontFamily: chartFont,
+              fontWeight: 500,
+              colors: [dark.dataLabel],
+            },
+            formatter: (value) => formatCurrency(value),
+          },
+          xaxis: {
+            labels: {
+              formatter: (value) => formatAxisMillions(value),
+              style: axisStyle,
+            },
+          },
+          yaxis: {
+            labels: {
+              style: categoryStyle,
+            },
+          },
+          tooltip: {
+            theme: "dark",
+            y: { formatter: (value) => formatCurrency(value) },
+          },
+          series: [
+            {
+              name: "Costo total",
+              data: plantCards.map((card) => ({
+                x: card.label,
+                y: card.costo_total,
+              })),
+            },
+          ],
+        },
+      },
+    };
+
+    async function renderPlantMetricChart(mode) {
+      const config = plantMetricModes[mode] || plantMetricModes.demanda;
+      if (plantMetricTitle) plantMetricTitle.textContent = config.title;
+      if (plantMetricSubtitle) plantMetricSubtitle.textContent = config.subtitle;
+      if (!plantMetricEl) return;
+
+      if (plantMetricChart) {
+        const idx = window.dashboardCharts.indexOf(plantMetricChart);
+        if (idx >= 0) window.dashboardCharts.splice(idx, 1);
+        plantMetricChart.destroy();
+        plantMetricChart = null;
+      }
+
+      plantMetricChart = new ApexCharts(plantMetricEl, config.options);
+      window.dashboardCharts.push(plantMetricChart);
+      await plantMetricChart.render();
+    }
+
+    if (plantMetricSelect) {
+      plantMetricSelect.addEventListener("change", () => {
+        renderPlantMetricChart(plantMetricSelect.value);
+      });
+    }
+    chartRenders.push(renderPlantMetricChart(plantMetricSelect?.value || "costo"));
+
+    await Promise.all(chartRenders);
+    window.dashboardRevealHost?.("home-charts");
+  };
+
+  window.dashboardPageInit();
+</script>
+{% endblock %}

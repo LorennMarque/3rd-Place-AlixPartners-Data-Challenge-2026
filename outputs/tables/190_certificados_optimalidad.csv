@@ -1,0 +1,5 @@
+solucion,estado,metrica,objetivo,cota,gap_pct,tiempo_s,score,costo_kaggle,n_tipos
+"Distribución Óptima
+(Mark 16 - 3mm)",FEASIBLE,USD (CP-SAT),187580381.28,187859010.08,0.1485,901.5,10.110975793604956,188079384.24,53
+"Distribución Independiente
+(Mark 17 - 3mm)",OPTIMAL,Surrogate demand-free,2402349.858,2402349.858,0.0,28.6,9.576378571438793,189197949.24,41

@@ -1,0 +1,442 @@
+{% extends "base.html" %}
+
+{% block title %}Asignación — Dashboard{% endblock %}
+
+{% block head %}
+<style>
+  .asig-input {
+    width: 100%;
+    border: 1px solid var(--dash-border);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--dash-text);
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .asig-input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 1px rgba(85, 173, 60, 0.35);
+  }
+  .asig-input:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .asig-result {
+    border: 1px solid var(--dash-border);
+    background: var(--dash-card);
+  }
+  .asig-result.is-reuse {
+    border-color: rgba(85, 173, 60, 0.45);
+    background:
+      radial-gradient(ellipse 90% 70% at 100% 0%, rgba(85, 173, 60, 0.14), transparent 55%),
+      var(--dash-card);
+  }
+  .asig-result.is-new {
+    border-color: rgba(232, 165, 152, 0.45);
+    background:
+      radial-gradient(ellipse 90% 70% at 100% 0%, rgba(232, 165, 152, 0.12), transparent 55%),
+      var(--dash-card);
+  }
+
+  .asig-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .asig-badge--reuse {
+    background: rgba(85, 173, 60, 0.18);
+    color: #cfe9c2;
+  }
+  .asig-badge--new {
+    background: rgba(232, 165, 152, 0.18);
+    color: #f3cfc7;
+  }
+  .asig-badge--rec {
+    background: rgba(85, 173, 60, 0.12);
+    color: var(--brand-primary);
+    border: 1px solid rgba(85, 173, 60, 0.35);
+  }
+
+  .asig-compat-row.is-selected td {
+    background: rgba(85, 173, 60, 0.08);
+  }
+
+  .asig-empty {
+    border: 1px dashed var(--dash-border);
+    background: rgba(0, 0, 0, 0.15);
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'asignacion' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 flex flex-wrap items-start justify-between gap-3 sm:mb-8">
+        <div class="min-w-0">
+          <h1 class="text-2xl font-medium">Asignación</h1>
+          <p class="mt-1 text-sm text-neutral-400">
+            Protocolo de lanzamientos: reutilizar la mejor caja compatible o crear una tipología mínima.
+            {% if selected_solution %}
+            · Solución: {{ selected_solution }}
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      {% if not asignacion.has_solution %}
+      <section class="asig-empty p-8 text-sm text-neutral-400">
+        Seleccioná una solución en el sidebar para evaluar un producto nuevo contra su catálogo de cajas.
+      </section>
+      {% else %}
+
+      <section class="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Tipos de caja</p>
+          <p class="mt-3 text-2xl font-medium tabular-nums">{{ asignacion.n_tipos }}</p>
+        </article>
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">SKUs en solución</p>
+          <p class="mt-3 text-2xl font-medium tabular-nums">{{ asignacion.n_productos }}</p>
+        </article>
+        <article class="dashboard-card p-5 col-span-2">
+          <p class="text-sm text-neutral-400">Regla recomendada</p>
+          <p class="mt-3 text-lg font-medium text-brand">Pallet-aware</p>
+          <p class="mt-1 text-xs text-neutral-500">
+            Maximiza cajas/pallet; si no hay compatible, crea caja mínima.
+          </p>
+        </article>
+      </section>
+
+      <section class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
+        <form id="asig-form" class="dashboard-card p-5 space-y-4">
+          <div>
+            <h2 class="text-sm font-medium text-neutral-100">Nuevo producto</h2>
+            <p class="mt-1 text-xs text-neutral-500">
+              Dimensiones internas del producto (mm) y peso neto de la caja (kg).
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <label class="block text-xs text-neutral-400">
+              Largo (mm)
+              <input
+                class="asig-input mt-1.5"
+                type="number"
+                name="largo"
+                id="asig-largo"
+                min="1"
+                step="0.1"
+                placeholder="p. ej. 280"
+                required
+              />
+            </label>
+            <label class="block text-xs text-neutral-400">
+              Ancho (mm)
+              <input
+                class="asig-input mt-1.5"
+                type="number"
+                name="ancho"
+                id="asig-ancho"
+                min="1"
+                step="0.1"
+                placeholder="p. ej. 200"
+                required
+              />
+            </label>
+            <label class="block text-xs text-neutral-400">
+              Alto (mm)
+              <input
+                class="asig-input mt-1.5"
+                type="number"
+                name="alto"
+                id="asig-alto"
+                min="1"
+                step="0.1"
+                placeholder="p. ej. 150"
+                required
+              />
+            </label>
+            <label class="block text-xs text-neutral-400">
+              Peso neto (kg)
+              <input
+                class="asig-input mt-1.5"
+                type="number"
+                name="peso_neto_caja"
+                id="asig-peso"
+                min="0.001"
+                step="0.001"
+                placeholder="p. ej. 4.5"
+                required
+              />
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            id="asig-submit"
+            class="w-full bg-brand px-4 py-2.5 text-sm font-medium text-black transition hover:bg-brand-dark"
+          >
+            Asignar
+          </button>
+
+          <p id="asig-error" class="hidden text-xs text-red-400"></p>
+          <p class="text-[11px] leading-relaxed text-neutral-500">
+            Se evalúan ambas políticas del protocolo (Pallet-aware y M1) sobre el catálogo
+            actual, sin reoptimizar.
+          </p>
+        </form>
+
+        <div id="asig-results" class="space-y-4">
+          <div class="asig-empty flex min-h-[16rem] items-center justify-center p-8 text-center text-sm text-neutral-500">
+            Ingresá las dimensiones del producto para ver si reutiliza una caja del catálogo
+            o crea una tipología nueva.
+          </div>
+        </div>
+      </section>
+
+      {% endif %}
+
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+{% if asignacion.has_solution %}
+<script>
+  (function () {
+    const form = document.getElementById("asig-form");
+    const resultsEl = document.getElementById("asig-results");
+    const errorEl = document.getElementById("asig-error");
+    const submitBtn = document.getElementById("asig-submit");
+
+    function fmtNum(value, digits) {
+      if (value == null || Number.isNaN(Number(value))) return "—";
+      return Number(value).toLocaleString("es-AR", {
+        maximumFractionDigits: digits,
+        minimumFractionDigits: 0,
+      });
+    }
+
+    function fmtPct(value) {
+      if (value == null || Number.isNaN(Number(value))) return "—";
+      return `${Number(value).toFixed(1)}%`;
+    }
+
+    function fmtVol(mm3) {
+      if (mm3 == null) return "—";
+      const liters = Number(mm3) / 1e6;
+      if (liters >= 1) return `${fmtNum(liters, 2)} L`;
+      return `${fmtNum(Number(mm3), 0)} mm³`;
+    }
+
+    function showError(msg) {
+      errorEl.textContent = msg || "";
+      errorEl.classList.toggle("hidden", !msg);
+    }
+
+    function renderCompatTable(compatibles) {
+      if (!compatibles || !compatibles.length) {
+        return `<p class="mt-3 text-xs text-neutral-500">Sin cajas compatibles en el catálogo.</p>`;
+      }
+      const rows = compatibles
+        .map((c) => {
+          const selected = c.seleccionada
+            ? `<span class="asig-badge asig-badge--reuse">Elegida</span>`
+            : "";
+          return `
+            <tr class="asig-compat-row ${c.seleccionada ? "is-selected" : ""}">
+              <td class="px-3 py-2 text-neutral-200">
+                ${c.caja_tipo_id || "—"}
+                ${selected}
+              </td>
+              <td class="px-3 py-2 tabular-nums text-neutral-300">
+                ${fmtNum(c.caja_exterior_largo, 0)} × ${fmtNum(c.caja_exterior_ancho, 0)} × ${fmtNum(c.caja_exterior_alto, 0)}
+              </td>
+              <td class="px-3 py-2 text-right tabular-nums text-neutral-300">${fmtNum(c.caja_grosor_mm, 1)}</td>
+              <td class="px-3 py-2 text-right tabular-nums text-neutral-300">${fmtNum(c.cajas_por_pallet, 0)}</td>
+              <td class="px-3 py-2 text-right tabular-nums text-neutral-300">${fmtVol(c.volumen_externo)}</td>
+              <td class="px-3 py-2 text-right tabular-nums text-neutral-300">${fmtNum(c.n_skus, 0)}</td>
+            </tr>`;
+        })
+        .join("");
+
+      return `
+        <div class="mt-4 overflow-x-auto border border-surface-border">
+          <table class="min-w-full text-xs">
+            <thead class="bg-black/40 text-left uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-3 py-2 font-medium">Caja</th>
+                <th class="px-3 py-2 font-medium">Exterior (mm)</th>
+                <th class="px-3 py-2 font-medium text-right">Grosor</th>
+                <th class="px-3 py-2 font-medium text-right">Cajas/pallet</th>
+                <th class="px-3 py-2 font-medium text-right">Vol. ext.</th>
+                <th class="px-3 py-2 font-medium text-right">SKUs</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-surface-border">${rows}</tbody>
+          </table>
+        </div>`;
+    }
+
+    function renderResult(result) {
+      const isNew = result.es_caja_nueva;
+      const badge = isNew
+        ? `<span class="asig-badge asig-badge--new">Caja nueva</span>`
+        : `<span class="asig-badge asig-badge--reuse">Reutiliza</span>`;
+      const rec = result.recommended
+        ? `<span class="asig-badge asig-badge--rec">Recomendada</span>`
+        : "";
+      const skus =
+        !isNew && result.skus_ejemplo && result.skus_ejemplo.length
+          ? `<p class="mt-3 text-xs text-neutral-500">
+              Ya usan esta tipología (${fmtNum(result.n_skus_en_caja, 0)} SKUs):
+              <span class="text-neutral-300">${result.skus_ejemplo.join(", ")}${
+                result.n_skus_en_caja > result.skus_ejemplo.length ? "…" : ""
+              }</span>
+            </p>`
+          : "";
+
+      return `
+        <article class="asig-result p-5 ${isNew ? "is-new" : "is-reuse"}">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-sm font-medium text-neutral-100">${result.policy_label}</h3>
+                ${rec}
+                ${badge}
+              </div>
+              <p class="mt-1 text-xs text-neutral-500">${result.policy_description}</p>
+            </div>
+            <p class="text-xs text-neutral-500">
+              ${fmtNum(result.n_compatibles, 0)} compatibles · catálogo ${fmtNum(result.n_tipos_catalogo, 0)}
+            </p>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div>
+              <p class="text-[11px] uppercase tracking-wide text-neutral-500">Destino</p>
+              <p class="mt-1 text-sm font-medium text-neutral-100">${result.destino}</p>
+            </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-wide text-neutral-500">ID</p>
+              <p class="mt-1 text-sm font-medium tabular-nums text-neutral-100">
+                ${result.caja_tipo_id || result.box_id}
+              </p>
+            </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-wide text-neutral-500">Exterior</p>
+              <p class="mt-1 text-sm font-medium tabular-nums text-neutral-100">${result.caja.label}</p>
+            </div>
+            <div>
+              <p class="text-[11px] uppercase tracking-wide text-neutral-500">Grosor</p>
+              <p class="mt-1 text-sm font-medium tabular-nums text-neutral-100">
+                ${fmtNum(result.caja.grosor_mm, 1)} mm
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="border border-surface-border bg-black/20 p-3">
+              <p class="text-[11px] text-neutral-500">Cajas / pallet</p>
+              <p class="mt-1 text-lg font-medium tabular-nums">${fmtNum(result.caja.cajas_por_pallet, 0)}</p>
+            </div>
+            <div class="border border-surface-border bg-black/20 p-3">
+              <p class="text-[11px] text-neutral-500">Util. pallet</p>
+              <p class="mt-1 text-lg font-medium tabular-nums">${fmtPct(result.caja.utilizacion_pallet_pct)}</p>
+            </div>
+            <div class="border border-surface-border bg-black/20 p-3">
+              <p class="text-[11px] text-neutral-500">Ocupación caja</p>
+              <p class="mt-1 text-lg font-medium tabular-nums">${fmtPct(result.caja.ocupacion_caja_pct)}</p>
+            </div>
+            <div class="border border-surface-border bg-black/20 p-3">
+              <p class="text-[11px] text-neutral-500">Vol. externo</p>
+              <p class="mt-1 text-lg font-medium tabular-nums">${fmtVol(result.caja.volumen_externo)}</p>
+            </div>
+          </div>
+
+          ${skus}
+          ${
+            isNew
+              ? `<p class="mt-3 text-xs text-neutral-400">
+                  No hay tipología compatible: se crea la caja mínima factible
+                  (exterior = producto + 2 × grosor).
+                </p>`
+              : renderCompatTable(result.compatibles)
+          }
+        </article>`;
+    }
+
+    function renderPayload(data) {
+      const sameNote = data.same_decision
+        ? `<p class="text-xs text-neutral-500">Ambas políticas eligen la misma tipología.</p>`
+        : `<p class="text-xs text-amber-200/80">Las políticas eligen tipologías distintas.</p>`;
+
+      resultsEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-sm text-neutral-300">
+            Producto <span class="font-medium text-neutral-100">${data.producto.label}</span>
+            · ${fmtNum(data.producto.peso_neto_caja, 3)} kg
+          </p>
+          ${sameNote}
+        </div>
+        ${renderResult(data.results.pallet)}
+        ${renderResult(data.results.m1)}
+      `;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      showError("");
+
+      const body = {
+        largo: document.getElementById("asig-largo").value,
+        ancho: document.getElementById("asig-ancho").value,
+        alto: document.getElementById("asig-alto").value,
+        peso_neto_caja: document.getElementById("asig-peso").value,
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Asignando…";
+      resultsEl.innerHTML = `
+        <div class="asig-empty flex min-h-[12rem] items-center justify-center p-8 text-sm text-neutral-500">
+          Evaluando contra el catálogo…
+        </div>`;
+
+      try {
+        const res = await fetch("{{ url_for('api_asignacion') }}", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          throw new Error(data.error || "No se pudo asignar.");
+        }
+        renderPayload(data);
+      } catch (err) {
+        showError(err.message || "Error inesperado.");
+        resultsEl.innerHTML = `
+          <div class="asig-empty flex min-h-[12rem] items-center justify-center p-8 text-sm text-neutral-500">
+            No hay resultado para mostrar.
+          </div>`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Asignar";
+      }
+    });
+  })();
+</script>
+{% endif %}
+{% endblock %}

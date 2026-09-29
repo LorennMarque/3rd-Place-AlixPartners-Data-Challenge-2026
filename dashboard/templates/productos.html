@@ -1,0 +1,478 @@
+{% extends "base.html" %}
+
+{% block title %}Productos — Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'productos' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 flex flex-wrap items-start justify-between gap-3 sm:mb-8 sm:gap-6">
+        <div class="min-w-0">
+          <h1 class="text-2xl font-medium">Productos</h1>
+          <p class="mt-1 text-sm text-neutral-500">
+            Catalogo completo de SKUs con demanda anual por planta
+          </p>
+        </div>
+      </div>
+
+      <section class="grid grid-cols-2 gap-3 md:gap-4">
+        <article class="border border-neutral-200 bg-white p-5">
+          <p class="text-sm text-neutral-500">Total SKU</p>
+          <p class="mt-3 text-2xl font-medium">{{ productos.total_skus }}</p>
+        </article>
+
+        <article class="border border-neutral-200 bg-white p-5">
+          <p class="text-sm text-neutral-500">Cajas disponibles</p>
+          <p class="mt-3 text-2xl font-medium">{{ productos.cajas_disponibles }}</p>
+        </article>
+      </section>
+
+      {% set host = "productos-charts" %}
+      {% include "_skel_chart_start.html" %}
+      <section class="mt-6 dashboard-chart-bare">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h2 class="text-sm font-medium text-neutral-900">Productos por categoria</h2>
+            <p class="mt-1 text-xs text-neutral-500" id="chart-subtitle">
+              Cantidad de SKUs agrupados por categoria
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <label class="flex items-center gap-2 text-xs text-neutral-500">
+              Planta
+              <select
+                id="filter-planta"
+                class="border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-700 focus:border-neutral-900 focus:outline-none"
+              >
+                <option value="">Todas</option>
+                {% for plant in productos.plants %}
+                <option value="{{ plant.id }}">{{ plant.label }}</option>
+                {% endfor %}
+              </select>
+            </label>
+
+            <label class="flex items-center gap-2 text-xs text-neutral-500">
+              Categoria
+              <select
+                id="filter-categoria"
+                class="border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-700 focus:border-neutral-900 focus:outline-none"
+              >
+                <option value="">Todas</option>
+                {% for category in productos.categories %}
+                <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div id="category-chart" class="mt-4 min-h-[320px] w-full"></div>
+      </section>
+      {% include "_skel_chart_end.html" %}
+
+      <section class="mt-6 border border-neutral-200 bg-white p-5">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h2 class="text-sm font-medium text-neutral-900">Listado de productos</h2>
+            <p class="mt-1 text-xs text-neutral-500" id="table-subtitle">
+              Mostrando {{ productos.total_skus }} productos
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <input
+              type="search"
+              id="search-producto"
+              placeholder="Buscar SKU o descripcion..."
+              class="border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-700 focus:border-neutral-900 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div class="mt-4 overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-neutral-50 text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-4 py-3 font-medium">SKU</th>
+                <th class="px-4 py-3 font-medium">Descripcion</th>
+                <th class="px-4 py-3 font-medium">Categoria</th>
+                <th class="px-4 py-3 font-medium">Subcategoria</th>
+                <th class="px-4 py-3 font-medium text-right">Demanda total</th>
+                {% for plant in productos.plants %}
+                <th class="px-4 py-3 font-medium text-right">{{ plant.label }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody id="products-table-body" class="divide-y divide-neutral-100"></tbody>
+          </table>
+        </div>
+      </section>
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+{% if productos %}
+<script id="productos-data" type="application/json">{{ productos | tojson }}</script>
+{% endif %}
+
+{% include '_product_drawer.html' %}
+
+{% if packaging %}
+<script id="packaging-products-data" type="application/json">{{ packaging.products | tojson }}</script>
+<script id="packaging-pallet-data" type="application/json">{{ packaging.pallet | tojson }}</script>
+{% endif %}
+
+<div
+  id="upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/20 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-500">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-upload-modal"
+        class="text-neutral-500 hover:text-neutral-900"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-neutral-300 px-3 py-2 text-sm text-neutral-700"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-upload-modal"
+          class="border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm text-white"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const modal = document.getElementById("upload-modal");
+    const closeButton = document.getElementById("close-upload-modal");
+    const cancelButton = document.getElementById("cancel-upload-modal");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    window.addEventListener("dashboard:open-upload", openModal);
+    if (closeButton) closeButton.addEventListener("click", closeModal);
+    if (cancelButton) cancelButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+  })();
+
+  let productosAbort = null;
+
+  window.dashboardPageInit = async function dashboardPageInit() {
+    window.dashboardDestroyCharts?.();
+    productosAbort?.abort();
+    productosAbort = new AbortController();
+    const { signal } = productosAbort;
+
+    const dataNode = document.getElementById("productos-data");
+    if (!dataNode) {
+      window.dashboardRevealHost?.("productos-charts");
+      return;
+    }
+
+    const productos = JSON.parse(dataNode.textContent || "{}");
+    const allProducts = productos.products || [];
+    const plants = productos.plants || [];
+
+    const plantSelect = document.getElementById("filter-planta");
+    const categorySelect = document.getElementById("filter-categoria");
+    const searchInput = document.getElementById("search-producto");
+    const tableBody = document.getElementById("products-table-body");
+    const tableSubtitle = document.getElementById("table-subtitle");
+    const chartSubtitle = document.getElementById("chart-subtitle");
+
+    if (!plantSelect || !categorySelect || !searchInput || !tableBody) {
+      window.dashboardRevealHost?.("productos-charts");
+      return;
+    }
+
+    const formatVolume = (value) =>
+      new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(value);
+
+    const chartFont = "Noto Sans, sans-serif";
+    const theme = window.DASHBOARD_THEME;
+    const dark = theme.dark;
+    const axisStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartLabel,
+    };
+    const categoryStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartCategory,
+    };
+
+    function matchesPlantFilter(product, plantId) {
+      if (!plantId) return true;
+      return (product.volumen_por_planta[plantId] || 0) > 0;
+    }
+
+    function matchesCategoryFilter(product, category) {
+      if (!category) return true;
+      return product.categoria === category;
+    }
+
+    function matchesSearch(product, query) {
+      if (!query) return true;
+      const haystack = `${product.codigo_producto} ${product.descripcion} ${product.categoria} ${product.subcategoria}`.toLowerCase();
+      return haystack.includes(query);
+    }
+
+    function getFilteredProducts() {
+      const plantId = plantSelect.value;
+      const category = categorySelect.value;
+      const query = (searchInput.value || "").trim().toLowerCase();
+
+      return allProducts.filter((product) => {
+        return (
+          matchesPlantFilter(product, plantId) &&
+          matchesCategoryFilter(product, category) &&
+          matchesSearch(product, query)
+        );
+      });
+    }
+
+    function buildChartSeries(filteredProducts) {
+      const plantId = plantSelect.value;
+      const category = categorySelect.value;
+      const grouped = new Map();
+
+      filteredProducts.forEach((product) => {
+        const key = category ? product.subcategoria_label : product.categoria;
+        const current = grouped.get(key) || { label: key, count: 0, volumen: 0 };
+
+        current.count += 1;
+        current.volumen += plantId
+          ? product.volumen_por_planta[plantId] || 0
+          : product.volumen_total;
+
+        grouped.set(key, current);
+      });
+
+      return Array.from(grouped.values()).sort((a, b) => b.count - a.count);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderTable(filteredProducts) {
+      tableBody.innerHTML = filteredProducts
+        .map((product) => {
+          const plantCells = plants
+            .map((plant) => {
+              const value = product.volumen_por_planta[plant.id] || 0;
+              return `<td class="px-4 py-3 text-right tabular-nums text-neutral-700">${value > 0 ? formatVolume(value) : "—"}</td>`;
+            })
+            .join("");
+
+          const descripcion = escapeHtml(product.descripcion);
+
+          return `
+            <tr class="product-row" data-product-id="${product.codigo_producto}">
+              <td class="px-4 py-3 font-medium text-neutral-900">${product.codigo_producto}</td>
+              <td class="px-4 py-3 max-w-xs truncate text-neutral-700" title="${descripcion}">${descripcion}</td>
+              <td class="px-4 py-3 text-neutral-700">${product.categoria}</td>
+              <td class="px-4 py-3 text-neutral-700">${product.subcategoria_label}</td>
+              <td class="px-4 py-3 text-right tabular-nums font-medium text-neutral-900">${formatVolume(product.volumen_total)}</td>
+              ${plantCells}
+            </tr>
+          `;
+        })
+        .join("");
+
+      tableSubtitle.textContent = `Mostrando ${filteredProducts.length} de ${allProducts.length} productos`;
+    }
+
+    let categoryChart = null;
+    let chartsReady = false;
+
+    async function renderChart() {
+      const plantId = plantSelect.value;
+      const category = categorySelect.value;
+      const filteredProducts = getFilteredProducts();
+      const seriesData = buildChartSeries(filteredProducts);
+
+      if (category) {
+        chartSubtitle.textContent = plantId
+          ? `Subcategorias de ${category} con demanda en la planta seleccionada`
+          : `Subcategorias dentro de ${category}`;
+      } else {
+        chartSubtitle.textContent = plantId
+          ? "SKUs por categoria con demanda en la planta seleccionada"
+          : "Cantidad de SKUs agrupados por categoria";
+      }
+
+      if (!window.ApexCharts) return;
+
+      if (categoryChart) {
+        categoryChart.destroy();
+        categoryChart = null;
+      }
+
+      categoryChart = new ApexCharts(document.querySelector("#category-chart"), {
+        chart: {
+          type: "bar",
+          height: 320,
+          width: "100%",
+          fontFamily: chartFont,
+          toolbar: { show: false },
+          background: "transparent",
+        },
+        colors: [theme.primary],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "58%",
+            borderRadius: 0,
+          },
+        },
+        dataLabels: {
+          enabled: true,
+          offsetY: -18,
+          style: {
+            fontFamily: chartFont,
+            fontWeight: 500,
+            colors: ["#171717"],
+          },
+        },
+        grid: {
+          borderColor: dark.chartGrid,
+          strokeDashArray: 4,
+        },
+        legend: { show: false },
+        tooltip: {
+          theme: "dark",
+          custom: ({ dataPointIndex }) => {
+            const item = seriesData[dataPointIndex];
+            if (!item) return "";
+            return `
+              <div class="px-3 py-2 text-sm">
+                <div class="font-medium text-neutral-100">${item.label}</div>
+                <div class="mt-1 text-neutral-400">${item.count} SKU${item.count !== 1 ? "s" : ""}</div>
+                <div class="text-neutral-400">${formatVolume(item.volumen)} uds/año</div>
+              </div>
+            `;
+          },
+        },
+        xaxis: {
+          categories: seriesData.map((item) => item.label),
+          axisBorder: { show: false },
+          axisTicks: { show: false },
+          labels: {
+            rotate: -35,
+            rotateAlways: seriesData.length > 4,
+            hideOverlappingLabels: false,
+            style: {
+              ...categoryStyle,
+              fontSize: "11px",
+            },
+          },
+        },
+        yaxis: {
+          min: 0,
+          forceNiceScale: true,
+          labels: {
+            style: axisStyle,
+          },
+          title: {
+            text: category ? "SKUs por subcategoria" : "SKUs por categoria",
+            style: {
+              ...axisStyle,
+              fontWeight: 500,
+            },
+          },
+        },
+        series: [
+          {
+            name: "SKUs",
+            data: seriesData.map((item) => item.count),
+          },
+        ],
+      });
+      await categoryChart.render();
+      if (!chartsReady) {
+        chartsReady = true;
+        window.dashboardRevealHost?.("productos-charts");
+      }
+    }
+
+    async function refresh() {
+      const filteredProducts = getFilteredProducts();
+      renderTable(filteredProducts);
+      await renderChart();
+    }
+
+    plantSelect.addEventListener("change", refresh, { signal });
+    categorySelect.addEventListener("change", refresh, { signal });
+    searchInput.addEventListener("input", refresh, { signal });
+
+    chartsReady = false;
+    await refresh();
+  };
+
+  window.dashboardCharts = window.dashboardCharts || [];
+  window.dashboardPageInit();
+</script>
+<script src="{{ url_for('static', filename='product-drawer.js') }}"></script>
+{% endblock %}

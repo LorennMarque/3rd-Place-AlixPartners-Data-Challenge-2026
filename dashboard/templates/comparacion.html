@@ -1,0 +1,1320 @@
+{% extends "base.html" %}
+
+{% block title %}Comparacion — Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<style>
+  .solution-label-a { color: #78A844; }
+  .solution-label-b { color: #61605F; }
+
+  .quota-distance-track {
+    position: relative;
+    height: 3.5rem;
+    margin: 0 1.5rem;
+  }
+
+  .quota-distance-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: #2a2f33;
+    transform: translateY(-50%);
+  }
+
+  .quota-distance-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .quota-distance-marker .dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  }
+
+  .quota-distance-marker .quota-star {
+    font-size: 0.95rem;
+    line-height: 1;
+    color: #d4d4d4;
+  }
+
+  .quota-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem 1.25rem;
+    margin-top: 0.75rem;
+    font-size: 10px;
+    color: #a3a3a3;
+  }
+
+  .quota-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .quota-legend-star {
+    font-size: 0.75rem;
+    line-height: 1;
+    color: #d4d4d4;
+  }
+
+  .quota-legend-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    border: 2px solid var(--dash-card);
+    flex-shrink: 0;
+  }
+
+  .quota-legend-dot--winner {
+    background: #78a844;
+  }
+
+  .quota-legend-dot--loser {
+    background: #61605f;
+  }
+
+  .compare-section-block {
+    margin-top: 2rem;
+  }
+
+  .compare-section-block--inner {
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .compare-section-block {
+      margin-top: 3rem;
+    }
+
+    .compare-section-block--inner {
+      margin-top: 3.5rem;
+    }
+  }
+
+  .quota-distance-marker .label {
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    color: #737373;
+  }
+
+  .quota-distance-marker .pct {
+    font-size: 11px;
+    font-weight: 500;
+    color: #171717;
+  }
+
+  .compare-selector-section {
+    position: relative;
+  }
+
+  .compare-vs-badge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #737373;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  @media (min-width: 1024px) {
+    .compare-vs-badge {
+      display: flex;
+    }
+  }
+
+  .dashboard-dark .compare-vs-badge {
+    background: var(--dash-card);
+    border-color: var(--dash-border);
+    color: #a3a3a3;
+    box-shadow: 0 0 0 4px var(--dash-bg);
+  }
+
+  .compare-metrics-table th,
+  .compare-metrics-table td {
+    border-color: var(--dash-border);
+  }
+
+  .compare-metrics-table tbody tr + tr {
+    border-top: 1px solid var(--dash-border);
+  }
+
+  .compare-surface-bare,
+  .compare-surface-bare .dashboard-chart-bare {
+    background: transparent !important;
+  }
+
+  .compare-section-title {
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #f5f5f5;
+  }
+
+  .compare-metrics-table tr.compare-metrics-diff td {
+    border-top: 1px solid var(--dash-border);
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    font-size: 0.75rem;
+    color: #737373;
+  }
+
+  .compare-metrics-table tr.compare-metrics-diff .compare-metric-win,
+  .compare-metrics-table tr.compare-metrics-diff .compare-metric-lose {
+    color: #737373;
+  }
+
+  .compare-metric-win {
+    color: #f5f5f5;
+  }
+
+  .compare-metric-lose {
+    color: #737373;
+  }
+
+  .compare-metrics-table th:first-child,
+  .compare-metrics-table td:first-child {
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .compare-plant-table th,
+  .compare-plant-table td {
+    border-color: var(--dash-border);
+  }
+
+  .compare-plant-table tr.compare-plant-group-start td {
+    border-top: 1px solid var(--dash-border);
+  }
+
+  .compare-plant-table th:first-child,
+  .compare-plant-table td:first-child {
+    padding-left: 0;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .compare-plant-table th.compare-plant-solution-col,
+  .compare-plant-table td.compare-plant-solution-col {
+    padding-left: 0;
+    text-align: left;
+    vertical-align: top;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'comparacion' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 sm:mb-8">
+        <h1 class="text-2xl font-medium">Comparacion</h1>
+        <p class="mt-1 text-sm text-neutral-500">
+          Compará dos soluciones lado a lado: metricas globales, graficos y desglose por planta.
+        </p>
+      </div>
+
+      <section class="compare-selector-section mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div class="compare-vs-badge" aria-hidden="true">VS</div>
+
+        <div class="border border-neutral-200 bg-white p-4 sm:p-5">
+          <p class="text-xs font-medium uppercase tracking-wide solution-label-a">Solucion A</p>
+          <form action="{{ url_for('select_compare_solution') }}" method="post" class="mt-3 flex flex-wrap gap-2">
+            <input type="hidden" name="solution_slot" value="a" />
+            <select
+              name="solution_name"
+              data-upload-slot="a"
+              data-selected="{{ solution_a or '' }}"
+              class="compare-solution-select min-w-0 flex-1 border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-700 focus:border-neutral-900 focus:outline-none"
+            >
+              <option value="">Seleccionar solucion</option>
+              {% for solution in available_solutions %}
+              <option value="{{ solution }}" {% if solution == solution_a %}selected{% endif %}>
+                {{ solution }}
+              </option>
+              {% endfor %}
+              <option value="__upload__">+ Cargar nueva</option>
+            </select>
+          </form>
+        </div>
+
+        <div class="border border-neutral-200 bg-white p-4 sm:p-5">
+          <p class="text-xs font-medium uppercase tracking-wide solution-label-b">Solucion B</p>
+          <form action="{{ url_for('select_compare_solution') }}" method="post" class="mt-3 flex flex-wrap gap-2">
+            <input type="hidden" name="solution_slot" value="b" />
+            <select
+              name="solution_name"
+              data-upload-slot="b"
+              data-selected="{{ solution_b or '' }}"
+              class="compare-solution-select min-w-0 flex-1 border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-700 focus:border-neutral-900 focus:outline-none"
+            >
+              <option value="">Seleccionar solucion</option>
+              {% for solution in available_solutions %}
+              <option value="{{ solution }}" {% if solution == solution_b %}selected{% endif %}>
+                {{ solution }}
+              </option>
+              {% endfor %}
+              <option value="__upload__">+ Cargar nueva</option>
+            </select>
+          </form>
+        </div>
+      </section>
+
+      {% if ideal_winner_name or ideal_is_tie %}
+      <div class="mb-8 flex flex-wrap items-center justify-between gap-4 border px-5 py-4
+        {% if ideal_solution %}border-brand-light bg-brand-light text-brand-dark{% else %}border-neutral-200 bg-neutral-50 text-neutral-700{% endif %}">
+        <div>
+          {% if ideal_is_tie %}
+          <p class="text-sm font-medium text-neutral-900">Empate</p>
+          <p class="mt-1 text-sm text-neutral-600">
+            Ambas soluciones tienen el mismo costo total de ${{ "{:,.2f}".format(ideal_winner_cost) }}.
+          </p>
+          {% else %}
+          <p class="text-sm font-medium text-neutral-900">
+            Ganador:
+            <span class="{% if ideal_solution == 'a' %}solution-label-a{% else %}solution-label-b{% endif %}">
+              {{ ideal_winner_name }}
+            </span>
+          </p>
+          <p class="mt-1 text-sm text-neutral-600">
+            Con un costo total de ${{ "{:,.2f}".format(ideal_winner_cost) }}
+          </p>
+          {% endif %}
+        </div>
+
+        {% if ideal_savings %}
+        <div class="text-left sm:text-right">
+          <p class="text-xs font-medium text-neutral-500">
+            Ahorro vs
+            <span class="{% if ideal_solution == 'a' %}solution-label-b{% else %}solution-label-a{% endif %}">
+              {{ snapshot_b.name if ideal_solution == 'a' else snapshot_a.name }}
+            </span>
+          </p>
+          <p class="mt-1 text-2xl font-medium text-brand-dark">${{ "{:,.2f}".format(ideal_savings) }}</p>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if snapshot_a and snapshot_b %}
+      {% set host = "compare-charts" %}
+      {% include "_skel_chart_start.html" %}
+      {% macro compare_metric_class(self_val, other_val, higher_better=false) -%}
+        {%- if self_val == other_val -%}
+          compare-metric-lose
+        {%- elif higher_better -%}
+          {{ 'compare-metric-win' if self_val > other_val else 'compare-metric-lose' }}
+        {%- else -%}
+          {{ 'compare-metric-win' if self_val < other_val else 'compare-metric-lose' }}
+        {%- endif -%}
+      {%- endmacro %}
+
+      {% set diff_costo_total = snapshot_a.costo_total - snapshot_b.costo_total %}
+      {% set diff_costo_envio = snapshot_a.costo_envio - snapshot_b.costo_envio %}
+      {% set diff_costo_packaging = snapshot_a.costo_packaging - snapshot_b.costo_packaging %}
+      {% set diff_cajas_unicas = snapshot_a.cajas_unicas - snapshot_b.cajas_unicas %}
+      {% set diff_ahorro_pct = snapshot_a.ahorro_pct - snapshot_b.ahorro_pct %}
+
+      {% set quota_val = snapshot_a.cpsat_quota %}
+      {% set cost_a_val = snapshot_a.costo_total %}
+      {% set cost_b_val = snapshot_b.costo_total %}
+      {% set min_cost = [cost_a_val, cost_b_val, quota_val] | min %}
+      {% set max_cost = [cost_a_val, cost_b_val, quota_val] | max %}
+      {% set cost_pad = (max_cost - min_cost) * 0.15 if max_cost > min_cost else max_cost * 0.02 %}
+      {% set cost_lo = min_cost - cost_pad %}
+      {% set cost_hi = max_cost + cost_pad %}
+      {% set cost_span = cost_hi - cost_lo if cost_hi > cost_lo else 1 %}
+      {% set pos_quota = ((quota_val - cost_lo) / cost_span * 100) %}
+      {% set pos_a = ((cost_a_val - cost_lo) / cost_span * 100) %}
+      {% set pos_b = ((cost_b_val - cost_lo) / cost_span * 100) %}
+      {% set label_a_short = solution_a | truncate(20, True, '…') %}
+      {% set label_b_short = solution_b | truncate(20, True, '…') %}
+
+      <section class="compare-surface-bare compare-section-block">
+        <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+          <article class="dashboard-chart-bare min-w-0">
+            <h2 class="text-sm font-medium text-neutral-100">Analisis de Costo total</h2>
+            {% set winner_snap = snapshot_a if ideal_solution == 'a' else (snapshot_b if ideal_solution == 'b' else none) %}
+            {% if winner_snap %}
+            {% set winner_gap_pct = winner_snap.diff_cpsat_pct | abs %}
+            <p class="mt-1 flex items-center gap-1.5 text-xs {% if winner_gap_pct < 1 %}text-brand{% elif winner_gap_pct < 5 %}text-amber-400{% elif winner_snap.diff_cpsat > 0 %}text-red-400{% else %}text-brand{% endif %}">
+              {% if winner_gap_pct >= 5 and winner_snap.diff_cpsat > 0 %}
+              <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              {% endif %}
+              <span>Ganador a un {{ "{:.2f}".format(winner_gap_pct) }}% de la cota teorica</span>
+            </p>
+            {% endif %}
+            <div class="relative mt-4 min-h-[360px] w-full overflow-visible">
+              <div id="cost-analysis-chart" class="relative h-[320px] w-full overflow-visible"></div>
+            </div>
+          </article>
+
+          <article class="dashboard-chart-bare min-w-0">
+            <h2 class="text-sm font-medium text-neutral-100">Costo total: envio y cajas</h2>
+            <p class="mt-1 text-xs text-neutral-400">
+              Desglose del costo total por componente en cada solucion.
+            </p>
+            <div id="cost-breakdown-chart" class="mt-4 min-h-[320px] w-full"></div>
+          </article>
+        </div>
+
+        <article class="dashboard-chart-bare compare-section-block--inner">
+          <h3 class="compare-section-title">Distancia a cota teorica</h3>
+          <p class="text-xs text-neutral-500">
+            Bajo los constraints determinados se compara cada solucion a la cota teorica (CP-SAT, tiers por planta).
+          </p>
+
+          <div class="quota-distance-track mt-5">
+            <div class="quota-distance-line"></div>
+
+            <div class="quota-distance-marker" style="left: {{ pos_quota }}%;">
+              <span class="label" aria-hidden="true">&nbsp;</span>
+              <span class="quota-star" aria-hidden="true">★</span>
+              <span class="pct text-neutral-500">0.00%</span>
+            </div>
+
+            <div class="quota-distance-marker" style="left: {{ pos_a }}%;">
+              <span class="label solution-label-a" title="{{ solution_a }}">{{ label_a_short }}</span>
+              <span class="dot" style="background: #78A844;"></span>
+              <span class="pct {% if snapshot_a.diff_cpsat_pct <= 0 %}text-brand-dark{% else %}text-red-700{% endif %}">
+                {{ "{:+.2f}".format(snapshot_a.diff_cpsat_pct) }}%
+              </span>
+            </div>
+
+            <div class="quota-distance-marker" style="left: {{ pos_b }}%;">
+              <span class="label solution-label-b" title="{{ solution_b }}">{{ label_b_short }}</span>
+              <span class="dot" style="background: #61605F;"></span>
+              <span class="pct {% if snapshot_b.diff_cpsat_pct <= 0 %}text-brand-dark{% else %}text-red-700{% endif %}">
+                {{ "{:+.2f}".format(snapshot_b.diff_cpsat_pct) }}%
+              </span>
+            </div>
+          </div>
+
+          <div class="quota-legend">
+            <span class="quota-legend-item">
+              <span class="quota-legend-star" aria-hidden="true">★</span>
+              <span>Cota: ${{ "{:,.0f}".format(quota_val) }}</span>
+            </span>
+            {% if ideal_solution == 'a' %}
+            <span class="quota-legend-item" title="{{ solution_a }}">
+              <span class="quota-legend-dot quota-legend-dot--winner" aria-hidden="true"></span>
+              <span>{{ label_a_short }}: ${{ "{:,.0f}".format(cost_a_val) }}</span>
+            </span>
+            <span class="quota-legend-item" title="{{ solution_b }}">
+              <span class="quota-legend-dot quota-legend-dot--loser" aria-hidden="true"></span>
+              <span>{{ label_b_short }}: ${{ "{:,.0f}".format(cost_b_val) }}</span>
+            </span>
+            {% elif ideal_solution == 'b' %}
+            <span class="quota-legend-item" title="{{ solution_b }}">
+              <span class="quota-legend-dot quota-legend-dot--winner" aria-hidden="true"></span>
+              <span>{{ label_b_short }}: ${{ "{:,.0f}".format(cost_b_val) }}</span>
+            </span>
+            <span class="quota-legend-item" title="{{ solution_a }}">
+              <span class="quota-legend-dot quota-legend-dot--loser" aria-hidden="true"></span>
+              <span>{{ label_a_short }}: ${{ "{:,.0f}".format(cost_a_val) }}</span>
+            </span>
+            {% else %}
+            <span class="quota-legend-item" title="{{ solution_a }}">
+              <span class="quota-legend-dot quota-legend-dot--winner" aria-hidden="true"></span>
+              <span>{{ label_a_short }}: ${{ "{:,.0f}".format(cost_a_val) }}</span>
+            </span>
+            <span class="quota-legend-item" title="{{ solution_b }}">
+              <span class="quota-legend-dot quota-legend-dot--loser" aria-hidden="true"></span>
+              <span>{{ label_b_short }}: ${{ "{:,.0f}".format(cost_b_val) }}</span>
+            </span>
+            {% endif %}
+          </div>
+        </article>
+
+        <div class="compare-section-block--inner overflow-x-auto">
+          <h2 class="compare-section-title">Resumen de metricas</h2>
+          <table class="compare-metrics-table min-w-full text-sm">
+            <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-4 py-3 font-medium">Solucion</th>
+                <th class="px-4 py-3 font-medium text-right">Costo total</th>
+                <th class="px-4 py-3 font-medium text-right">Costo envio</th>
+                <th class="px-4 py-3 font-medium text-right">Costo packaging</th>
+                <th class="px-4 py-3 font-medium text-right">Cajas unicas</th>
+                <th class="px-4 py-3 font-medium text-right">Ahorro vs baseline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4 py-4">
+                  <p class="font-medium text-neutral-100">{{ snapshot_a.name }}</p>
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_a.costo_total, snapshot_b.costo_total) }}">
+                  ${{ "{:,.2f}".format(snapshot_a.costo_total) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_a.costo_envio, snapshot_b.costo_envio) }}">
+                  ${{ "{:,.2f}".format(snapshot_a.costo_envio) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_a.costo_packaging, snapshot_b.costo_packaging) }}">
+                  ${{ "{:,.2f}".format(snapshot_a.costo_packaging) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_a.cajas_unicas, snapshot_b.cajas_unicas) }}">
+                  {{ snapshot_a.cajas_unicas }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_a.ahorro_pct, snapshot_b.ahorro_pct, true) }}">
+                  {{ "{:+.4f}".format(snapshot_a.ahorro_pct) }}%
+                </td>
+              </tr>
+              <tr>
+                <td class="px-4 py-4">
+                  <p class="font-medium text-neutral-100">{{ snapshot_b.name }}</p>
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_b.costo_total, snapshot_a.costo_total) }}">
+                  ${{ "{:,.2f}".format(snapshot_b.costo_total) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_b.costo_envio, snapshot_a.costo_envio) }}">
+                  ${{ "{:,.2f}".format(snapshot_b.costo_envio) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_b.costo_packaging, snapshot_a.costo_packaging) }}">
+                  ${{ "{:,.2f}".format(snapshot_b.costo_packaging) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_b.cajas_unicas, snapshot_a.cajas_unicas) }}">
+                  {{ snapshot_b.cajas_unicas }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(snapshot_b.ahorro_pct, snapshot_a.ahorro_pct, true) }}">
+                  {{ "{:+.4f}".format(snapshot_b.ahorro_pct) }}%
+                </td>
+              </tr>
+              <tr class="compare-metrics-diff">
+                <td class="pr-4 pl-0">
+                  <p class="font-medium">Diferencia</p>
+                </td>
+                <td class="px-4 text-right font-medium">
+                  {% if diff_costo_total >= 0 %}+${{ "{:,.2f}".format(diff_costo_total) }}{% else %}-${{ "{:,.2f}".format(diff_costo_total | abs) }}{% endif %}
+                </td>
+                <td class="px-4 text-right font-medium">
+                  {% if diff_costo_envio >= 0 %}+${{ "{:,.2f}".format(diff_costo_envio) }}{% else %}-${{ "{:,.2f}".format(diff_costo_envio | abs) }}{% endif %}
+                </td>
+                <td class="px-4 text-right font-medium">
+                  {% if diff_costo_packaging >= 0 %}+${{ "{:,.2f}".format(diff_costo_packaging) }}{% else %}-${{ "{:,.2f}".format(diff_costo_packaging | abs) }}{% endif %}
+                </td>
+                <td class="px-4 text-right font-medium">
+                  {{ "{:+d}".format(diff_cajas_unicas) }}
+                </td>
+                <td class="px-4 text-right font-medium">
+                  {{ "{:+.4f}".format(diff_ahorro_pct) }} pp
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="compare-surface-bare compare-section-block space-y-4">
+        <h2 class="compare-section-title">Desglose por planta</h2>
+
+        <article class="dashboard-chart-bare w-full">
+          <div id="plant-cost-by-plant-chart" class="min-h-[320px] w-full"></div>
+        </article>
+
+        <div class="compare-section-block--inner grid grid-cols-1 gap-4 xl:grid-cols-2">
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Aprovechamiento de descuentos por planta</h3>
+            <p class="mt-1 text-xs text-neutral-400">
+              % del volumen en tiers con descuento (T3–T5) por planta.
+            </p>
+            <div id="tier-by-plant-chart" class="mt-4 min-h-[320px] w-full"></div>
+          </article>
+
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Distribucion de utilizacion de pallet</h3>
+            <p class="mt-1 text-xs text-neutral-400">
+              % del volumen por bin de utilizacion (media señalada por solucion).
+            </p>
+            <div id="plant-util-global-chart" class="mt-4 min-h-[320px] w-full"></div>
+          </article>
+        </div>
+
+        <div class="compare-section-block--inner overflow-x-auto">
+          <table class="compare-plant-table min-w-full text-sm">
+            <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-4 py-3 font-medium">Planta</th>
+                <th class="compare-plant-solution-col py-3 pr-4 font-medium">Solucion</th>
+                <th class="px-4 py-3 font-medium text-right">Costo total</th>
+                <th class="px-4 py-3 font-medium text-right">Costo envio</th>
+                <th class="px-4 py-3 font-medium text-right">Costo cajas</th>
+                <th class="px-4 py-3 font-medium text-right">Aprovechamiento T3–T5</th>
+                <th class="px-4 py-3 font-medium text-right">Util. pallet (media)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for card in plant_cards %}
+              <tr class="{% if not loop.first %}compare-plant-group-start{% endif %}">
+                <td class="px-4 py-4 font-medium text-neutral-100" rowspan="2">
+                  {{ card.label }}
+                </td>
+                <td class="compare-plant-solution-col py-4 pr-4">
+                  <p class="font-medium text-neutral-100">{{ snapshot_a.name }}</p>
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_a.costo_total, card.solution_b.costo_total) }}">
+                  ${{ "{:,.2f}".format(card.solution_a.costo_total) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_a.costo_envio, card.solution_b.costo_envio) }}">
+                  ${{ "{:,.2f}".format(card.solution_a.costo_envio) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_a.costo_packaging, card.solution_b.costo_packaging) }}">
+                  ${{ "{:,.2f}".format(card.solution_a.costo_packaging) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_a.tier_discount_pct, card.solution_b.tier_discount_pct, true) }}">
+                  {{ "{:.1f}".format(card.solution_a.tier_discount_pct) }}%
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_a.util_mean_pct, card.solution_b.util_mean_pct, true) }}">
+                  {{ "{:.1f}".format(card.solution_a.util_mean_pct) }}%
+                </td>
+              </tr>
+              <tr>
+                <td class="compare-plant-solution-col py-4 pr-4">
+                  <p class="font-medium text-neutral-100">{{ snapshot_b.name }}</p>
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_b.costo_total, card.solution_a.costo_total) }}">
+                  ${{ "{:,.2f}".format(card.solution_b.costo_total) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_b.costo_envio, card.solution_a.costo_envio) }}">
+                  ${{ "{:,.2f}".format(card.solution_b.costo_envio) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_b.costo_packaging, card.solution_a.costo_packaging) }}">
+                  ${{ "{:,.2f}".format(card.solution_b.costo_packaging) }}
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_b.tier_discount_pct, card.solution_a.tier_discount_pct, true) }}">
+                  {{ "{:.1f}".format(card.solution_b.tier_discount_pct) }}%
+                </td>
+                <td class="px-4 py-4 text-right font-medium {{ compare_metric_class(card.solution_b.util_mean_pct, card.solution_a.util_mean_pct, true) }}">
+                  {{ "{:.1f}".format(card.solution_b.util_mean_pct) }}%
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      {% include "_skel_chart_end.html" %}
+      {% else %}
+      <div class="border border-neutral-200 bg-neutral-50 px-4 py-8 text-center text-sm text-neutral-500">
+        Seleccioná dos soluciones para ver la comparacion.
+      </div>
+      {% endif %}
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+<div
+  id="solution-upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/20 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-500">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-solution-upload-modal"
+        class="text-neutral-500 hover:text-neutral-900"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-neutral-300 px-3 py-2 text-sm text-neutral-700"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-solution-upload-modal"
+          class="border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm text-white"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div
+  id="upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/20 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-500" id="upload-modal-subtitle">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-upload-modal"
+        class="text-neutral-500 hover:text-neutral-900"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_compare_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input type="hidden" name="solution_slot" id="upload-solution-slot" value="a" />
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-neutral-300 px-3 py-2 text-sm text-neutral-700"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-upload-modal"
+          class="border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm text-white"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script id="compare-data" type="application/json">
+{
+  "snapshot_a": {{ snapshot_a | tojson }},
+  "snapshot_b": {{ snapshot_b | tojson }},
+  "plant_cards": {{ plant_cards | tojson }},
+  "solution_a_name": {{ solution_a | tojson }},
+  "solution_b_name": {{ solution_b | tojson }}
+}
+</script>
+
+<script>
+  (function () {
+    const solutionModal = document.getElementById("solution-upload-modal");
+    const solutionCloseButton = document.getElementById("close-solution-upload-modal");
+    const solutionCancelButton = document.getElementById("cancel-solution-upload-modal");
+
+    function openSolutionModal() {
+      solutionModal.classList.remove("hidden");
+      solutionModal.classList.add("flex");
+      solutionModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeSolutionModal() {
+      solutionModal.classList.add("hidden");
+      solutionModal.classList.remove("flex");
+      solutionModal.setAttribute("aria-hidden", "true");
+    }
+
+    window.addEventListener("dashboard:open-upload", openSolutionModal);
+    if (solutionCloseButton) solutionCloseButton.addEventListener("click", closeSolutionModal);
+    if (solutionCancelButton) solutionCancelButton.addEventListener("click", closeSolutionModal);
+
+    solutionModal.addEventListener("click", (event) => {
+      if (event.target === solutionModal) closeSolutionModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !solutionModal.classList.contains("hidden")) {
+        closeSolutionModal();
+      }
+    });
+  })();
+
+  (function () {
+    const modal = document.getElementById("upload-modal");
+    const slotInput = document.getElementById("upload-solution-slot");
+    const subtitle = document.getElementById("upload-modal-subtitle");
+    const closeButton = document.getElementById("close-upload-modal");
+    const cancelButton = document.getElementById("cancel-upload-modal");
+
+    function openModal(slot) {
+      slotInput.value = slot;
+      subtitle.textContent = `Se valida el CSV y se asigna a la solucion ${slot.toUpperCase()}.`;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    document.querySelectorAll(".compare-solution-select").forEach((select) => {
+      select.addEventListener("change", () => {
+        if (select.value === "__upload__") {
+          select.value = select.dataset.selected || "";
+          openModal(select.dataset.uploadSlot);
+          return;
+        }
+        select.form?.submit();
+      });
+    });
+
+    if (closeButton) closeButton.addEventListener("click", closeModal);
+    if (cancelButton) cancelButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+  })();
+
+  window.dashboardPageInit = async function dashboardPageInit() {
+    window.dashboardDestroyCharts?.();
+
+    const dataNode = document.getElementById("compare-data");
+    if (!dataNode || !window.ApexCharts) {
+      window.dashboardRevealHost?.("compare-charts");
+      return;
+    }
+
+    const payload = JSON.parse(dataNode.textContent || "{}");
+    const snapA = payload.snapshot_a;
+    const snapB = payload.snapshot_b;
+    if (!snapA || !snapB) {
+      window.dashboardRevealHost?.("compare-charts");
+      return;
+    }
+
+    const chartRenders = [];
+
+    function queueChart(el, options) {
+      if (!el) return;
+      const chart = new ApexCharts(el, options);
+      window.dashboardCharts.push(chart);
+      chartRenders.push(chart.render());
+    }
+
+    const theme = window.DASHBOARD_THEME;
+    const dark = theme.dark;
+    const colors = {
+      a: theme.comparison.a,
+      b: theme.comparison.b,
+      total: theme.primaryDark,
+      cpsat: theme.secondary,
+    };
+
+    const labelA = payload.solution_a_name || "Solucion A";
+    const labelB = payload.solution_b_name || "Solucion B";
+
+    const formatCurrency = (value) => {
+      const amount = Number(value);
+      if (!Number.isFinite(amount)) {
+        return "—";
+      }
+      return new Intl.NumberFormat("es-AR", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(amount);
+    };
+
+    const chartFont = "Noto Sans, sans-serif";
+    const baseChartOptions = {
+      chart: {
+        fontFamily: chartFont,
+        toolbar: { show: false },
+        background: "transparent",
+      },
+      grid: {
+        borderColor: dark.chartGrid,
+        strokeDashArray: 4,
+      },
+      legend: {
+        show: true,
+        position: "top",
+        horizontalAlign: "left",
+        fontFamily: chartFont,
+        fontSize: "12px",
+        labels: { colors: dark.chartLabel },
+        markers: { width: 10, height: 10, radius: 0 },
+      },
+      tooltip: {
+        theme: "dark",
+      },
+    };
+
+    const axisStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartLabel,
+    };
+
+    const categoryStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartCategory,
+    };
+
+    const truncateLabel = (value, max = 18) => {
+      const text = String(value || "");
+      return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+    };
+
+    const formatAxisMillions = (value) => {
+      const amount = Number(value);
+      if (!Number.isFinite(amount) || amount === 0) return "0";
+      return `${Math.round(amount / 1_000_000)}M`;
+    };
+
+    const totalA = Number(snapA.costo_total) || 0;
+    const totalB = Number(snapB.costo_total) || 0;
+    const cpsatQuota = Number(snapA.cpsat_quota) || 0;
+    const costCategories = [truncateLabel(labelA), truncateLabel(labelB)];
+    const costValues = [totalA, totalB];
+    const costMin = Math.min(0, totalA, totalB, cpsatQuota);
+    const costMax = Math.max(totalA, totalB, cpsatQuota);
+    const yAxisMax = costMax * 1.1;
+
+    queueChart(document.querySelector("#cost-analysis-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 320,
+        width: "100%",
+      },
+      colors: [colors.a, colors.b],
+      legend: { show: false },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "62%",
+          distributed: true,
+          borderRadius: 0,
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        offsetY: -18,
+        style: {
+          fontFamily: chartFont,
+          fontWeight: 500,
+          colors: [dark.dataLabel],
+        },
+        formatter: (value) => formatCurrency(value),
+      },
+      xaxis: {
+        categories: costCategories,
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        min: costMin,
+        max: yAxisMax,
+        forceNiceScale: true,
+        tickAmount: 5,
+        labels: {
+          formatter: (value) => formatAxisMillions(value),
+          style: axisStyle,
+        },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+      },
+      grid: {
+        ...baseChartOptions.grid,
+        padding: { top: 28, left: 12, right: 12 },
+        xaxis: { lines: { show: false } },
+        yaxis: { lines: { show: true } },
+      },
+      annotations: {
+        yaxis: [
+          {
+            y: cpsatQuota,
+            borderColor: colors.cpsat,
+            strokeDashArray: 6,
+          },
+        ],
+      },
+      tooltip: {
+        theme: "dark",
+        y: { formatter: (value) => formatCurrency(value) },
+      },
+      series: [
+        {
+          name: "Costo total",
+          data: costValues,
+        },
+      ],
+    });
+
+    const envioA = Number(snapA.costo_envio) || 0;
+    const envioB = Number(snapB.costo_envio) || 0;
+    const cajasA = Number(snapA.costo_packaging) || 0;
+    const cajasB = Number(snapB.costo_packaging) || 0;
+    const breakdownMax = Math.max(envioA, envioB, cajasA, cajasB);
+
+    queueChart(document.querySelector("#cost-breakdown-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 320,
+        width: "100%",
+      },
+      colors: [theme.primary, theme.secondary],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "45%",
+          borderRadius: 0,
+        },
+      },
+      dataLabels: { enabled: false },
+      xaxis: {
+        categories: [truncateLabel(labelA), truncateLabel(labelB)],
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        min: 0,
+        max: breakdownMax * 1.1,
+        labels: {
+          formatter: (value) => formatAxisMillions(value),
+          style: axisStyle,
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        y: { formatter: (value) => formatCurrency(value) },
+      },
+      series: [
+        { name: "Envio", data: [envioA, envioB] },
+        { name: "Cajas", data: [cajasA, cajasB] },
+      ],
+    });
+
+    const plantCards = payload.plant_cards || [];
+    const tierValues = plantCards.flatMap((card) => [
+      Number(card.solution_a.tier_discount_pct) || 0,
+      Number(card.solution_b.tier_discount_pct) || 0,
+    ]);
+    const tierDataMin = tierValues.length ? Math.min(...tierValues) : 0;
+    const tierDataMax = tierValues.length ? Math.max(...tierValues) : 100;
+    const tierSpan = Math.max(tierDataMax - tierDataMin, 1);
+    const tierPadding = Math.max(tierSpan * 0.2, 3);
+    let tierYMin = Math.max(0, tierDataMin - tierPadding);
+    let tierYMax = Math.min(100, tierDataMax + tierPadding);
+    if (tierYMax - tierYMin < 8) {
+      const mid = (tierDataMin + tierDataMax) / 2;
+      tierYMin = Math.max(0, mid - 4);
+      tierYMax = Math.min(100, mid + 4);
+    }
+
+    queueChart(document.querySelector("#tier-by-plant-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 320,
+        width: "100%",
+      },
+      colors: [colors.a, colors.b],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "52%",
+          borderRadius: 0,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      xaxis: {
+        categories: plantCards.map((card) => card.label),
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        min: tierYMin,
+        max: tierYMax,
+        forceNiceScale: true,
+        tickAmount: 5,
+        labels: {
+          formatter: (value) => `${value.toFixed(0)}%`,
+          style: axisStyle,
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        y: {
+          formatter: (value) => `${value.toFixed(1)}% del volumen en T3–T5`,
+        },
+      },
+      series: [
+        {
+          name: labelA,
+          data: plantCards.map((card) => card.solution_a.tier_discount_pct),
+        },
+        {
+          name: labelB,
+          data: plantCards.map((card) => card.solution_b.tier_discount_pct),
+        },
+      ],
+    });
+
+    queueChart(document.querySelector("#plant-cost-by-plant-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 320,
+        width: "100%",
+      },
+      colors: [colors.a, colors.b],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "52%",
+          borderRadius: 0,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      xaxis: {
+        categories: plantCards.map((card) => card.label),
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        min: 0,
+        forceNiceScale: true,
+        tickAmount: 5,
+        labels: {
+          formatter: (value) => formatAxisMillions(value),
+          style: axisStyle,
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        y: { formatter: (value) => formatCurrency(value) },
+      },
+      series: [
+        {
+          name: labelA,
+          data: plantCards.map((card) => card.solution_a.costo_total),
+        },
+        {
+          name: labelB,
+          data: plantCards.map((card) => card.solution_b.costo_total),
+        },
+      ],
+    });
+
+    const aggregateUtilHistogram = (cards, solutionKey) => {
+      const binLabels = cards[0]?.solution_a?.util_bin_labels || [];
+      const weighted = new Array(binLabels.length).fill(0);
+      let totalWeight = 0;
+
+      cards.forEach((card) => {
+        const solution = card[solutionKey];
+        const weight = Number(solution.costo_total) || 0;
+        if (weight <= 0) return;
+        solution.util_histogram_pct.forEach((pct, index) => {
+          weighted[index] += pct * weight;
+        });
+        totalWeight += weight;
+      });
+
+      return totalWeight > 0
+        ? weighted.map((value) => value / totalWeight)
+        : weighted.map(() => 0);
+    };
+
+    const aggregateUtilMean = (cards, solutionKey) => {
+      let weightedSum = 0;
+      let totalWeight = 0;
+
+      cards.forEach((card) => {
+        const solution = card[solutionKey];
+        const weight = Number(solution.costo_total) || 0;
+        if (weight <= 0) return;
+        weightedSum += solution.util_mean_pct * weight;
+        totalWeight += weight;
+      });
+
+      return totalWeight > 0 ? weightedSum / totalWeight : 0;
+    };
+
+    const utilBinLabels = plantCards[0]?.solution_a?.util_bin_labels || [];
+    const utilHistA = aggregateUtilHistogram(plantCards, "solution_a");
+    const utilHistB = aggregateUtilHistogram(plantCards, "solution_b");
+    const utilMeanA = aggregateUtilMean(plantCards, "solution_a");
+    const utilMeanB = aggregateUtilMean(plantCards, "solution_b");
+    const meanBinA = utilBinLabels[
+      Math.min(Math.floor(utilMeanA / 10), Math.max(utilBinLabels.length - 1, 0))
+    ];
+    const meanBinB = utilBinLabels[
+      Math.min(Math.floor(utilMeanB / 10), Math.max(utilBinLabels.length - 1, 0))
+    ];
+
+    queueChart(document.querySelector("#plant-util-global-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "area",
+        height: 320,
+        width: "100%",
+        stacked: false,
+      },
+      colors: [colors.a, colors.b],
+      stroke: { curve: "smooth", width: 2 },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 0.4,
+          opacityFrom: 0.45,
+          opacityTo: 0.05,
+        },
+      },
+      markers: { size: 0 },
+      dataLabels: { enabled: false },
+      xaxis: {
+        categories: utilBinLabels,
+        title: {
+          text: "Utilizacion de pallet (%)",
+          style: { fontFamily: chartFont, fontSize: "11px", color: "#737373" },
+        },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        labels: {
+          formatter: (value) => `${value.toFixed(0)}%`,
+          style: axisStyle,
+        },
+        title: {
+          text: "% del volumen",
+          style: { fontFamily: chartFont, fontSize: "11px", color: "#737373" },
+        },
+      },
+      annotations: {
+        xaxis: [
+          {
+            x: meanBinA,
+            borderColor: colors.a,
+            strokeDashArray: 4,
+            label: {
+              text: `μ A: ${utilMeanA.toFixed(1)}%`,
+              style: {
+                color: colors.a,
+                background: dark.card,
+                fontFamily: chartFont,
+                fontSize: "10px",
+              },
+              orientation: "horizontal",
+              offsetY: -4,
+            },
+          },
+          {
+            x: meanBinB,
+            borderColor: colors.b,
+            strokeDashArray: 4,
+            label: {
+              text: `μ B: ${utilMeanB.toFixed(1)}%`,
+              style: {
+                color: colors.b,
+                background: dark.card,
+                fontFamily: chartFont,
+                fontSize: "10px",
+              },
+              orientation: "horizontal",
+              offsetY: 14,
+            },
+          },
+        ],
+      },
+      tooltip: {
+        theme: "dark",
+        y: { formatter: (value) => `${value.toFixed(1)}% del volumen` },
+      },
+      series: [
+        { name: labelA, data: utilHistA },
+        { name: labelB, data: utilHistB },
+      ],
+    });
+
+    await Promise.all(chartRenders);
+    window.dashboardRevealHost?.("compare-charts");
+  };
+
+  window.dashboardCharts = window.dashboardCharts || [];
+  window.dashboardPageInit();
+</script>
+{% endblock %}

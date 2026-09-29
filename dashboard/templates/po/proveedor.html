@@ -1,0 +1,54 @@
+{% extends "po/_print_shell.html" %}
+
+{% block title %}Orden de cajas — Proveedor{% endblock %}
+
+{% block content %}
+<p class="po-doc-title">Orden de compra de cajas — {{ plant_label }}</p>
+<p class="po-doc-subtitle">
+  Listado de tipos de caja requeridos · Volúmenes anuales para proveedor
+</p>
+
+<div class="po-plants-grid">
+  {% for plant in ordenes.plants %}
+  <section class="po-plant-sheet">
+    <div class="po-plant-head">
+      <h2>{{ plant.label }}</h2>
+      <span>{{ plant.n_cajas }} cajas · {{ "{:,.0f}".format(plant.volumen_total) }} uds</span>
+    </div>
+
+    <table class="po-table">
+      <colgroup>
+        <col style="width: 9%" />
+        <col style="width: 24%" />
+        <col style="width: 10%" />
+        <col style="width: 14%" />
+        <col style="width: 16%" />
+        <col style="width: 7%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Dimensiones</th>
+          <th>Grosor</th>
+          <th class="po-num">Volumen</th>
+          <th>Tier</th>
+          <th class="po-num">SKUs</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for box in plant.boxes %}
+        <tr>
+          <td class="po-mono">{{ box.id }}</td>
+          <td>{{ box.label }}</td>
+          <td>{{ "%.1f"|format(box.grosor_mm) }} mm</td>
+          <td class="po-num">{{ "{:,.0f}".format(box.volumen) }}</td>
+          <td>{{ box.tier_label }}</td>
+          <td class="po-num">{{ box.n_productos }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

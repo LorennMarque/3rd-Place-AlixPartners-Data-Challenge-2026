@@ -1,0 +1,100 @@
+<article class="plant-summary-card {% if card.is_global %}plant-summary-card-global{% endif %} border border-neutral-200 bg-white p-4 sm:p-5">
+  <div class="flex flex-wrap items-start justify-between gap-3">
+    <div>
+      <h3 class="text-sm font-medium text-neutral-900">{{ card.label }}</h3>
+      {% if card.is_global %}
+      <p class="mt-1 text-xs text-neutral-500">Agregado de las {{ demanda.summary_cards | length - 1 }} plantas activas</p>
+      {% else %}
+      <p class="mt-1 text-xs text-neutral-500">{{ "%.1f"|format(card.volumen_pct) }}% de la demanda total</p>
+      {% endif %}
+    </div>
+    {% if card.has_solution %}
+    <span class="border border-brand-light bg-brand-light px-2 py-1 text-[10px] font-medium uppercase tracking-wide text-brand-dark">
+      Solucion activa
+    </span>
+    {% endif %}
+  </div>
+
+  <div class="mt-4 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 xl:grid-cols-4">
+    <div class="plant-summary-metric">
+      <p class="text-xs text-neutral-500">Demanda anual</p>
+      <p class="mt-1 text-lg font-medium tabular-nums">{{ "{:,.0f}".format(card.volumen) }}</p>
+      <p class="mt-0.5 text-[11px] text-neutral-400">uds/año</p>
+    </div>
+
+    <div class="plant-summary-metric">
+      <p class="text-xs text-neutral-500">Productos unicos</p>
+      <p class="mt-1 text-lg font-medium tabular-nums">{{ card.productos_unicos }}</p>
+      <p class="mt-0.5 text-[11px] text-neutral-400">SKUs activos</p>
+    </div>
+
+    <div class="plant-summary-metric">
+      <p class="text-xs text-neutral-500">Cajas unicas</p>
+      <p class="mt-1 text-lg font-medium tabular-nums">
+        {% if card.cajas_unicas is not none %}{{ card.cajas_unicas }}{% else %}-{% endif %}
+      </p>
+      <p class="mt-0.5 text-[11px] text-neutral-400">tipos de caja</p>
+    </div>
+
+    <div class="plant-summary-metric">
+      <p class="text-xs text-neutral-500">Costo total</p>
+      <p class="mt-1 text-lg font-medium tabular-nums">${{ "{:,.0f}".format(card.costo_total) }}</p>
+      <p class="mt-0.5 text-[11px] text-neutral-400">
+        pkg ${{ "{:,.0f}".format(card.costo_packaging) }} · flete ${{ "{:,.0f}".format(card.costo_envio) }}
+      </p>
+    </div>
+
+    <div class="plant-summary-metric">
+      <p class="text-xs text-neutral-500">Util. pallet (media)</p>
+      <p class="mt-1 text-lg font-medium tabular-nums">
+        {% if card.util_mean_pct is not none %}{{ "%.1f"|format(card.util_mean_pct) }}%{% else %}-{% endif %}
+      </p>
+      <p class="mt-0.5 text-[11px] text-neutral-400">ponderada por volumen</p>
+    </div>
+
+    <div class="plant-summary-metric">
+      <p class="text-xs text-neutral-500">Aprovech. tiers</p>
+      <p class="mt-1 text-lg font-medium tabular-nums">
+        {% if card.has_solution %}{{ "%.1f"|format(card.tier_discount_pct) }}%{% else %}-{% endif %}
+      </p>
+      <p class="mt-0.5 text-[11px] text-neutral-400">vol. en T3–T5</p>
+    </div>
+  </div>
+
+  <div class="mt-5 border-t border-neutral-100 pt-4">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <p class="text-xs font-medium text-neutral-700">Distribucion por tier de descuento</p>
+      {% if not card.has_solution %}
+      <p class="text-[11px] text-neutral-400">Requiere solucion activa</p>
+      {% endif %}
+    </div>
+
+    {% set tier_volume = card.tiers | sum(attribute='volumen') %}
+    {% if card.has_solution and tier_volume > 0 %}
+    <div class="mt-3 flex h-2.5 overflow-hidden rounded-full bg-neutral-100">
+      {% for tier in card.tiers if tier.volumen > 0 %}
+      <span
+        class="h-full"
+        style="width: {{ tier.pct_volumen }}%; background: {{ tier.color }};"
+        title="{{ tier.label }}: {{ '{:,.0f}'.format(tier.volumen) }} uds/año"
+      ></span>
+      {% endfor %}
+    </div>
+
+    <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
+      {% for tier in card.tiers if tier.n_tipos_caja > 0 or tier.volumen > 0 %}
+      <div class="border border-neutral-100 bg-neutral-50 px-2.5 py-2">
+        <div class="flex items-center gap-1.5">
+          <span class="inline-block h-2 w-2 rounded-full" style="background: {{ tier.color }};"></span>
+          <span class="text-[11px] font-medium text-neutral-700">{{ tier.short }}</span>
+        </div>
+        <p class="mt-1 text-xs tabular-nums text-neutral-900">{{ tier.n_tipos_caja }} cajas</p>
+        <p class="text-[11px] tabular-nums text-neutral-500">{{ "{:,.0f}".format(tier.volumen) }} uds</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="mt-3 text-xs text-neutral-400">Sin datos de tiers para mostrar.</p>
+    {% endif %}
+  </div>
+</article>

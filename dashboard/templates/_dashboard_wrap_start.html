@@ -1,0 +1,9 @@
+<div class="dashboard-content">
+  <div id="policy-toast-container">
+    {% if solution_policy_violation %}
+    {% include "_policy_toast.html" %}
+    {% endif %}
+  </div>
+  {% include "_upload_messages.html" %}
+  <div class="dashboard-body">
+    <div class="dashboard-reveal">

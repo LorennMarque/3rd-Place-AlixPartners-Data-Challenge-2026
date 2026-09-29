@@ -1,0 +1,40 @@
+{
+  "pallets_now": 1074388,
+  "cost_now": 161158200.0,
+  "density_ok_pct": 52.92740046838408,
+  "density_ratio_mean": 0.93767382760357,
+  "skus_lose_density": 201,
+  "waste_pallet_eq": 339.19431908369404,
+  "waste_usd": 50879.147862554106,
+  "last_half_or_less": 326,
+  "last_half_pct": 45.78651685393258,
+  "residual_pairs_save_pallets": 162,
+  "residual_pairs_save_usd": 24300.0,
+  "full_dd_slots": 1170891,
+  "full_dd_delta_usd": 14475450.0,
+  "upper_bound_save_pallets": 337,
+  "upper_bound_save_usd": 50550.0,
+  "comp_fail_same": 0,
+  "comp_fail_vs_max_top": 0,
+  "fill_buckets": {
+    "0-25%": 145,
+    "25-50%": 194,
+    "50-75%": 179,
+    "75-100%": 181
+  },
+  "pairs_by_plant": {
+    "buenos_aires": 31,
+    "curitiba": 45,
+    "santiago": 39,
+    "monterrey": 23,
+    "bakersfield": 24
+  },
+  "compare_policies_usd": {
+    "mix_grosor": 1600000.0,
+    "altura_plus_100": 2000000.0,
+    "altura_plus_150": 3600000.0,
+    "double_dock_residual": 24300.0,
+    "double_dock_full_mix": -14475450.0,
+    "mix_products_upper_bound": 50550.0
+  }
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Documento{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #737373;
+      --line: #e5e5e5;
+      --surface: #fafafa;
+      --accent: #78A844;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 10px 12px 16px;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 10px;
+      line-height: 1.35;
+      color: var(--ink);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .po-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .po-toolbar-meta {
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .po-toolbar button {
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font: 500 10px/1 "Noto Sans", sans-serif;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .po-toolbar button:hover {
+      background: #404040;
+      border-color: #404040;
+    }
+
+    .po-doc-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0 0 2px;
+    }
+
+    .po-doc-subtitle {
+      margin: 0 0 10px;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .po-plant-sheet {
+      width: 100%;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .po-plant-sheet:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .po-plant-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .po-plant-head h2 {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .po-plant-head span {
+      font-size: 9px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    table.po-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .po-table th,
+    .po-table td {
+      border: 1px solid var(--line);
+      padding: 3px 5px;
+      vertical-align: top;
+      word-break: break-word;
+    }
+
+    .po-table th {
+      background: var(--surface);
+      font-size: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #525252;
+    }
+
+    .po-table td {
+      font-size: 9px;
+    }
+
+    .po-num { text-align: right; font-variant-numeric: tabular-nums; }
+    .po-mono { font-family: ui-monospace, monospace; font-size: 8px; }
+
+    .po-box-block {
+      margin-bottom: 8px;
+    }
+
+    .po-box-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .po-box-title {
+      margin: 0 0 3px;
+      padding: 4px 6px;
+      background: #EBF3E0;
+      border: 1px solid #B8D892;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .po-box-title span {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .po-plants-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    @media (min-width: 900px) {
+      .po-plants-grid--assignment {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .po-plants-grid--assignment .po-plant-sheet {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+        border: 1px solid var(--line);
+        padding: 8px;
+      }
+    }
+
+    @media print {
+      body { padding: 0; }
+
+      .po-toolbar { display: none !important; }
+
+      .po-plant-sheet {
+        page-break-after: always;
+        break-after: page;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .po-plant-sheet:last-child {
+        page-break-after: auto;
+      }
+
+      .po-plants-grid--assignment {
+        display: block;
+      }
+
+      .po-plants-grid--assignment .po-plant-sheet {
+        border: none;
+        padding: 0;
+      }
+
+      .po-table th,
+      .po-table td {
+        padding: 2px 4px;
+      }
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% if not embed %}
+  <div class="po-toolbar">
+    <div class="po-toolbar-meta">
+      {{ solution_name }} · {{ generated_at }}
+    </div>
+    <button type="button" onclick="window.print()">Imprimir</button>
+  </div>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>

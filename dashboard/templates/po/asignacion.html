@@ -1,0 +1,53 @@
+{% extends "po/_print_shell.html" %}
+
+{% block title %}Instrucciones de asignación — Plantas{% endblock %}
+
+{% block content %}
+<p class="po-doc-title">Instrucciones de asignación — {{ plant_label }}</p>
+<p class="po-doc-subtitle">
+  Cada caja con los productos asignados y su volumen anual en la planta
+</p>
+
+<div class="po-plants-grid{% if ordenes.plants|length > 1 %} po-plants-grid--assignment{% endif %}">
+  {% for plant in ordenes.plants %}
+  <section class="po-plant-sheet">
+    <div class="po-plant-head">
+      <h2>{{ plant.label }}</h2>
+      <span>{{ plant.n_cajas }} cajas · {{ plant.n_productos }} SKUs</span>
+    </div>
+
+    {% for box in plant.boxes %}
+    <div class="po-box-block">
+      <p class="po-box-title">
+        Caja {{ box.id }}
+        <span>· {{ box.label }} · {{ "%.1f"|format(box.grosor_mm) }} mm · {{ box.tier_label }} · {{ "{:,.0f}".format(box.volumen) }} uds</span>
+      </p>
+      <table class="po-table">
+        <colgroup>
+          <col style="width: 14%" />
+          <col style="width: 66%" />
+          <col style="width: 20%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th class="po-num">Volumen</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in box.products %}
+          <tr>
+            <td class="po-mono">{{ product.codigo_producto }}</td>
+            <td>{{ product.descripcion }}</td>
+            <td class="po-num">{{ "{:,.0f}".format(product.volumen) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

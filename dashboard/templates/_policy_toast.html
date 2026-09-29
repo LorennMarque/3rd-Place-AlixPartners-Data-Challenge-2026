@@ -1,0 +1,16 @@
+{% if solution_policy_violation %}
+<div class="policy-toast" role="status" aria-live="polite">
+  <span class="policy-toast__message">
+    Solución seleccionada no cumple políticas de grosor único entre 3, 4.5 mm y 5
+  </span>
+  <form action="{{ url_for('dismiss_policy_toast') }}" method="post">
+    <button
+      type="submit"
+      class="policy-toast__close"
+      aria-label="Cerrar advertencia"
+    >
+      ×
+    </button>
+  </form>
+</div>
+{% endif %}

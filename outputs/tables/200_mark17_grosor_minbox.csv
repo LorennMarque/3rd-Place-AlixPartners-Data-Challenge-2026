@@ -1,0 +1,9 @@
+policy,label,grosores,ok,reused,optimal_surrogate,surrogate,bound,gap_surrogate,elapsed_s,n_tipos,total,packaging,flete,score,dist_grosor,solution_path,source
+3.0,Único 3 mm,3.0,True,True,True,,,0.0,0.0,41,189197949.24,27019449.24,162178500.0,9.576378571438793,3.0:427,outputs/mark17/grosor/mark17_minbox_g3.csv,mark17_from_minbox.csv
+4.1,Único 4.1 mm,4.1,True,False,True,,,0.0,147.5,39,195783029.92000002,29193629.92,166589400.0,6.4291624156784515,4.1:427,outputs/mark17/grosor/mark17_minbox_g4.1.csv,mark17_from_minbox
+4.5,Único 4.5 mm,4.5,True,False,True,,,0.0,86.5,40,196442934.29500002,29315334.295,167127600.0,6.113773461285727,4.5:427,outputs/mark17/grosor/mark17_minbox_g4.5.csv,mark17_from_minbox
+4.6,Único 4.6 mm,4.6,True,False,False,,,,902.7,38,197373818.62,31547618.619999997,165826200.0,5.668874707701432,4.6:427,outputs/mark17/grosor/mark17_minbox_g4.6.csv,mark17_from_minbox
+4.7,Único 4.7 mm,4.7,True,False,True,2464547.887,2464547.887,0.0,162.89666485786438,36,197392800.1,31499400.099999998,165893400.0,5.659802864330152,4.7:427,outputs/mark17/grosor/mark17_minbox_g4.7.csv,mark17_from_minbox
+4.8,Único 4.8 mm,4.8,True,False,False,2469191.11,2465092.068,4099.041999999899,902.6626539230348,37,197856644.74,31570544.74,166286100.0,5.438116993539745,4.8:427,outputs/mark17/grosor/mark17_minbox_g4.8.csv,mark17_from_minbox
+5.0,Único 5 mm,5.0,True,False,False,2487585.944,2481526.309,6059.635000000242,902.8116810321808,36,198743112.61,31318512.61,167424600.0,5.014446253938969,5.0:427,outputs/mark17/grosor/mark17_minbox_g5.csv,mark17_from_minbox
+"2.5,2.7,3.0","Mezcla (2.5, 2.7, 3 mm)","2.5,2.7,3.0",True,False,False,2389457.011,2376806.974,12650.037000000011,904.5884947776794,43,187639511.46,26980811.459999997,160658700.0,10.32120476223398,2.5:81;2.7:188;3.0:158,outputs/mark17/grosor/mark17_minbox_g2.5-2.7-3.csv,mark17_from_minbox

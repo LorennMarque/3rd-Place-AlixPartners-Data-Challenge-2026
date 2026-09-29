@@ -1,0 +1,544 @@
+{% extends "base.html" %}
+
+{% block title %}Packaging — Dashboard{% endblock %}
+
+{% block head %}
+<style>
+  .box-slider {
+    scrollbar-width: none;
+  }
+
+  .box-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .box-slider-shell {
+    position: relative;
+    margin-top: 1.25rem;
+  }
+
+  .box-slider-fade {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 5.5rem;
+    background: linear-gradient(to right, rgba(19, 22, 23, 0), var(--dash-bg, #0a0b0c) 72%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .box-slider-next {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #1f2326;
+    background: #131617;
+    color: #d4d4d4;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .box-slider-next:hover {
+    background: #1a1d1f;
+    color: #f5f5f5;
+  }
+
+  .box-slider-shell.can-scroll .box-slider-fade,
+  .box-slider-shell.can-scroll .box-slider-next {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .box-slider-shell.can-scroll .box-slider-fade {
+    pointer-events: none;
+  }
+
+  .box-slider-shell.at-end .box-slider-fade,
+  .box-slider-shell.at-end .box-slider-next {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .box-card {
+    min-width: 128px;
+    background: transparent;
+    padding: 0.75rem 0.5rem 0.75rem;
+    text-align: center;
+    transition: opacity 0.15s ease, filter 0.15s ease;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .box-card {
+      min-width: 148px;
+      padding: 1rem 0.75rem 0.875rem;
+    }
+  }
+
+  .box-slider.has-filter .box-card:not(.is-selected) {
+    opacity: 0.38;
+    filter: grayscale(1);
+  }
+
+  .box-scene {
+    --box-l: 72px;
+    --box-w: 54px;
+    --box-h: 44px;
+    width: 108px;
+    height: 92px;
+    margin: 0 auto;
+    perspective: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box-prism {
+    position: relative;
+    width: var(--box-l);
+    height: var(--box-h);
+    transform-style: preserve-3d;
+    transform: rotateX(-17deg) rotateY(28deg);
+    transition: transform 0.2s ease;
+  }
+
+  .box-card.is-selected .box-prism {
+    transform: rotateX(-17deg) rotateY(28deg) scale(1.04);
+  }
+
+  .box-face {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid rgba(23, 23, 23, 0.18);
+    backface-visibility: hidden;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .box-face-front,
+  .box-face-back {
+    width: var(--box-l);
+    height: var(--box-h);
+    margin-left: calc(var(--box-l) / -2);
+    margin-top: calc(var(--box-h) / -2);
+  }
+
+  .box-face-right,
+  .box-face-left {
+    width: var(--box-w);
+    height: var(--box-h);
+    margin-left: calc(var(--box-w) / -2);
+    margin-top: calc(var(--box-h) / -2);
+  }
+
+  .box-face-top,
+  .box-face-bottom {
+    width: var(--box-l);
+    height: var(--box-w);
+    margin-left: calc(var(--box-l) / -2);
+    margin-top: calc(var(--box-w) / -2);
+  }
+
+  .box-face-front {
+    transform: translateZ(calc(var(--box-w) / 2));
+    background: #f4b8a8;
+  }
+
+  .box-face-back {
+    transform: rotateY(180deg) translateZ(calc(var(--box-w) / 2));
+    background: #d66f57;
+  }
+
+  .box-face-right {
+    transform: rotateY(90deg) translateZ(calc(var(--box-l) / 2));
+    background: #e07a5f;
+  }
+
+  .box-face-left {
+    transform: rotateY(-90deg) translateZ(calc(var(--box-l) / 2));
+    background: #c96a52;
+  }
+
+  .box-face-top {
+    transform: rotateX(90deg) translateZ(calc(var(--box-h) / 2));
+    background: #efb09f;
+  }
+
+  .box-face-bottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--box-h) / 2));
+    background: #b85f49;
+  }
+
+  .box-card.is-selected .box-face-front { background: #B8D892; }
+  .box-card.is-selected .box-face-back { background: #78A844; }
+  .box-card.is-selected .box-face-right { background: #9BC070; }
+  .box-card.is-selected .box-face-left { background: #5E8434; }
+  .box-card.is-selected .box-face-top { background: #EBF3E0; }
+  .box-card.is-selected .box-face-bottom { background: #4A6B2E; }
+
+  .occupancy-bar {
+    height: 6px;
+    background: #f5f5f5;
+  }
+
+  .occupancy-bar > span {
+    display: block;
+    height: 100%;
+    background: #78A844;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'packaging' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 flex flex-wrap items-start justify-between gap-3 sm:mb-8 sm:gap-6">
+        <div class="min-w-0">
+          <h1 class="text-2xl font-medium">Packaging</h1>
+          <p class="mt-1 text-sm text-neutral-500">
+            {% if selected_solution %}
+            Solucion activa: {{ selected_solution }}
+            {% if packaging %}
+            · {{ packaging.n_productos }} productos
+            {% endif %}
+            {% else %}
+            Todavia no hay una solucion seleccionada.
+            {% endif %}
+          </p>
+        </div>
+        <button
+          type="button"
+          id="clear-box-filters"
+          class="hidden shrink-0 border border-neutral-300 px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Limpiar filtro
+        </button>
+      </div>
+
+      {% if packaging %}
+      <section>
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="flex h-14 min-w-[3.5rem] items-center justify-center px-3">
+              <span class="text-2xl font-medium tabular-nums text-neutral-900">{{ packaging.n_tipos_caja }}</span>
+            </div>
+            <div>
+              <h2 class="text-sm font-medium text-neutral-900">Tipos de caja</h2>
+              <p class="mt-0.5 text-xs text-neutral-500">cajas unicas</p>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-500">Tocá una o varias cajas para filtrar el listado</p>
+        </div>
+
+        <div id="box-slider-shell" class="box-slider-shell">
+          <div id="box-slider" class="box-slider flex gap-3 overflow-x-auto scroll-smooth pb-3">
+            {% for box in packaging.box_types %}
+            <button
+              type="button"
+              class="box-card shrink-0"
+              data-box-id="{{ box.id }}"
+              aria-pressed="false"
+              aria-label="Caja {{ box.largo|round(0)|int }} x {{ box.ancho|round(0)|int }} x {{ box.alto|round(0)|int }} mm"
+            >
+              <div
+                class="box-scene"
+                style="--box-l: {{ box.display_largo }}px; --box-w: {{ box.display_ancho }}px; --box-h: {{ box.display_alto }}px;"
+              >
+                <div class="box-prism">
+                  <div class="box-face box-face-front"></div>
+                  <div class="box-face box-face-back"></div>
+                  <div class="box-face box-face-right"></div>
+                  <div class="box-face box-face-left"></div>
+                  <div class="box-face box-face-top"></div>
+                  <div class="box-face box-face-bottom"></div>
+                </div>
+              </div>
+              <p class="mt-3 text-xs font-medium text-neutral-900">
+                {{ box.largo|round(0)|int }} × {{ box.ancho|round(0)|int }} × {{ box.alto|round(0)|int }} mm
+              </p>
+              <p class="mt-1 text-xs text-neutral-500">
+                {{ box.n_productos }} producto{% if box.n_productos != 1 %}s{% endif %}
+              </p>
+            </button>
+            {% endfor %}
+          </div>
+          <div class="box-slider-fade" aria-hidden="true"></div>
+          <button
+            type="button"
+            id="box-slider-next"
+            class="box-slider-next"
+            aria-label="Ver mas cajas"
+          >
+            <i data-feather="chevron-right" class="h-4 w-4"></i>
+          </button>
+        </div>
+      </section>
+
+      <section class="mt-6 border border-neutral-200 bg-white">
+        <div class="border-b border-neutral-200 px-5 py-4">
+          <h2 class="text-sm font-medium text-neutral-900">Productos por caja</h2>
+          <p id="products-filter-label" class="mt-1 text-xs text-neutral-500">
+            Mostrando {{ packaging.n_productos }} productos
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-neutral-50 text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-5 py-3 font-medium">Producto</th>
+                <th class="px-5 py-3 font-medium">Caja</th>
+                <th class="px-5 py-3 font-medium">% ocupacion caja</th>
+                <th class="px-5 py-3 font-medium">% util. pallet (teor.)</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-body" class="divide-y divide-neutral-100">
+              {% for product in packaging.products %}
+              <tr
+                class="product-row"
+                data-box-id="{{ product.caja_id }}"
+                data-product-id="{{ product.codigo_producto }}"
+              >
+                <td class="px-5 py-3 font-medium text-neutral-900">{{ product.codigo_producto }}</td>
+                <td class="px-5 py-3 text-neutral-600">{{ product.caja_label }}</td>
+                <td class="px-5 py-3">
+                  <div class="flex items-center gap-3">
+                    <div class="occupancy-bar w-24">
+                      <span style="width: {{ product.ocupacion_bar_pct }}%;"></span>
+                    </div>
+                    <span class="tabular-nums text-neutral-700">
+                      {{ "%.1f"|format(product.ocupacion_caja_pct) }}%
+                    </span>
+                  </div>
+                </td>
+                <td class="px-5 py-3">
+                  <div class="flex items-center gap-3">
+                    <div class="occupancy-bar w-24">
+                      <span style="width: {{ product.utilizacion_pallet_bar_pct }}%;"></span>
+                    </div>
+                    <span class="tabular-nums text-neutral-700">
+                      {{ "%.1f"|format(product.utilizacion_pallet_teorica_pct) }}%
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      {% else %}
+      <section class="border border-neutral-200 bg-white p-8 text-sm text-neutral-500">
+        Cargá o seleccioná una solucion para ver el detalle de packaging.
+      </section>
+      {% endif %}
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+{% include '_product_drawer.html' %}
+
+{% if packaging %}
+<script id="packaging-products-data" type="application/json">{{ packaging.products | tojson }}</script>
+<script id="packaging-pallet-data" type="application/json">{{ packaging.pallet | tojson }}</script>
+{% endif %}
+
+<div
+  id="upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/20 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-500">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-upload-modal"
+        class="text-neutral-500 hover:text-neutral-900"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-neutral-300 px-3 py-2 text-sm text-neutral-700"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-upload-modal"
+          class="border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm text-white"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const modal = document.getElementById("upload-modal");
+    const closeButton = document.getElementById("close-upload-modal");
+    const cancelButton = document.getElementById("cancel-upload-modal");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    window.addEventListener("dashboard:open-upload", openModal);
+    if (closeButton) closeButton.addEventListener("click", closeModal);
+    if (cancelButton) cancelButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+  })();
+
+  let packagingAbort = null;
+
+  window.dashboardPageInit = async function dashboardPageInit() {
+    packagingAbort?.abort();
+    packagingAbort = new AbortController();
+    const { signal } = packagingAbort;
+
+    const slider = document.getElementById("box-slider");
+    const tableBody = document.getElementById("products-table-body");
+    const filterLabel = document.getElementById("products-filter-label");
+    const clearButton = document.getElementById("clear-box-filters");
+
+    if (slider && tableBody) {
+      const cards = Array.from(slider.querySelectorAll(".box-card"));
+      const rows = Array.from(tableBody.querySelectorAll("tr"));
+      const selected = new Set();
+      const totalProducts = rows.length;
+
+      function updateView() {
+        const hasFilter = selected.size > 0;
+
+        slider.classList.toggle("has-filter", hasFilter);
+        clearButton?.classList.toggle("hidden", !hasFilter);
+
+        cards.forEach((card) => {
+          const isSelected = selected.has(card.dataset.boxId);
+          card.classList.toggle("is-selected", isSelected);
+          card.setAttribute("aria-pressed", String(isSelected));
+        });
+
+        let visibleCount = 0;
+        rows.forEach((row) => {
+          const visible = !hasFilter || selected.has(row.dataset.boxId);
+          row.classList.toggle("hidden", !visible);
+          if (visible) visibleCount += 1;
+        });
+
+        if (!filterLabel) return;
+        if (!hasFilter) {
+          filterLabel.textContent = `Mostrando ${totalProducts} productos`;
+          return;
+        }
+
+        filterLabel.textContent = `Mostrando ${visibleCount} de ${totalProducts} productos · ${selected.size} caja(s) seleccionada(s)`;
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener(
+          "click",
+          () => {
+            const boxId = card.dataset.boxId;
+            if (selected.has(boxId)) {
+              selected.delete(boxId);
+            } else {
+              selected.add(boxId);
+            }
+            updateView();
+          },
+          { signal }
+        );
+      });
+
+      clearButton?.addEventListener(
+        "click",
+        () => {
+          selected.clear();
+          updateView();
+        },
+        { signal }
+      );
+    }
+
+    const sliderShell = document.getElementById("box-slider-shell");
+    const sliderEl = document.getElementById("box-slider");
+    const nextButton = document.getElementById("box-slider-next");
+
+    if (sliderShell && sliderEl && nextButton) {
+      function updateSliderControls() {
+        const canScroll = sliderEl.scrollWidth > sliderEl.clientWidth + 1;
+        const atEnd = sliderEl.scrollLeft + sliderEl.clientWidth >= sliderEl.scrollWidth - 4;
+
+        sliderShell.classList.toggle("can-scroll", canScroll);
+        sliderShell.classList.toggle("at-end", atEnd);
+      }
+
+      nextButton.addEventListener(
+        "click",
+        () => {
+          sliderEl.scrollBy({ left: Math.max(sliderEl.clientWidth * 0.7, 280), behavior: "smooth" });
+        },
+        { signal }
+      );
+
+      sliderEl.addEventListener("scroll", updateSliderControls, { passive: true, signal });
+      window.addEventListener("resize", updateSliderControls, { signal });
+      updateSliderControls();
+    }
+  };
+
+  window.dashboardPageInit();
+</script>
+<script src="{{ url_for('static', filename='product-drawer.js') }}"></script>
+{% endblock %}

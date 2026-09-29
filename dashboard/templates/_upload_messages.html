@@ -1,0 +1,23 @@
+{% if upload_error or upload_warning or upload_success %}
+<div id="dashboard-upload-messages">
+{% if upload_error %}
+<div class="mb-6 border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+  {{ upload_error }}
+</div>
+{% endif %}
+
+{% if upload_warning %}
+<div class="mb-6 border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
+  {{ upload_warning }}
+</div>
+{% endif %}
+
+{% if upload_success %}
+<div class="mb-6 border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-brand">
+  {{ upload_success }}
+</div>
+{% endif %}
+</div>
+{% else %}
+<div id="dashboard-upload-messages"></div>
+{% endif %}

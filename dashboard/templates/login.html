@@ -1,0 +1,603 @@
+{% extends "base.html" %}
+
+{% block title %}Ingresar — Dashboard{% endblock %}
+
+{% block head %}
+<style>
+  .login-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .login-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .login-bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      rgba(52, 52, 52, 0.34) 2px,
+      transparent 2px
+    );
+    background-size: 24px 24px;
+    opacity: 0.14;
+  }
+
+  .login-bg-dots--tr,
+  .login-bg-dots--bl {
+    background-image: radial-gradient(
+      circle,
+      rgba(85, 173, 60, 0.48) 2px,
+      transparent 2px
+    );
+    background-size: 24px 24px;
+    transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .login-bg-dots--tr {
+    opacity: var(--glow-tr, 0);
+    -webkit-mask-image: radial-gradient(
+      ellipse 105% 82% at 100% 0%,
+      #000 0%,
+      rgba(0, 0, 0, 0.78) 34%,
+      transparent 62%
+    );
+    mask-image: radial-gradient(
+      ellipse 105% 82% at 100% 0%,
+      #000 0%,
+      rgba(0, 0, 0, 0.78) 34%,
+      transparent 62%
+    );
+  }
+
+  .login-bg-dots--bl {
+    opacity: var(--glow-bl, 0);
+    -webkit-mask-image: radial-gradient(
+      ellipse 105% 82% at 0% 100%,
+      #000 0%,
+      rgba(0, 0, 0, 0.78) 34%,
+      transparent 62%
+    );
+    mask-image: radial-gradient(
+      ellipse 105% 82% at 0% 100%,
+      #000 0%,
+      rgba(0, 0, 0, 0.78) 34%,
+      transparent 62%
+    );
+  }
+
+  .login-bg-glow {
+    position: absolute;
+    inset: 0;
+    transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .login-bg-glow--tr {
+    background: radial-gradient(
+      ellipse 105% 82% at 100% 0%,
+      rgba(85, 173, 60, 0.34) 0%,
+      rgba(85, 173, 60, 0.1) 32%,
+      transparent 62%
+    );
+    opacity: var(--glow-tr, 0);
+  }
+
+  .login-bg-glow--bl {
+    background: radial-gradient(
+      ellipse 105% 82% at 0% 100%,
+      rgba(85, 173, 60, 0.28) 0%,
+      rgba(85, 173, 60, 0.08) 32%,
+      transparent 62%
+    );
+    opacity: var(--glow-bl, 0);
+  }
+
+  .login-bg-flash {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .login-bg-flash--tr {
+    background: radial-gradient(
+      circle at 100% 0%,
+      rgba(85, 173, 60, 0.42) 0%,
+      rgba(85, 173, 60, 0.14) 24%,
+      rgba(85, 173, 60, 0.04) 46%,
+      transparent 68%
+    );
+    transform-origin: 100% 0%;
+    transform: scale(0.35);
+  }
+
+  .login-bg-flash--bl {
+    background: radial-gradient(
+      circle at 0% 100%,
+      rgba(85, 173, 60, 0.36) 0%,
+      rgba(85, 173, 60, 0.12) 24%,
+      rgba(85, 173, 60, 0.03) 46%,
+      transparent 68%
+    );
+    transform-origin: 0% 100%;
+    transform: scale(0.35);
+  }
+
+  .login-page[data-count="0"] {
+    --glow-tr: 0;
+    --glow-bl: 0;
+  }
+
+  .login-page[data-count="1"] {
+    --glow-tr: 0.28;
+    --glow-bl: 0.22;
+  }
+
+  .login-page[data-count="2"] {
+    --glow-tr: 0.48;
+    --glow-bl: 0.38;
+  }
+
+  .login-page[data-count="3"] {
+    --glow-tr: 0.66;
+    --glow-bl: 0.54;
+  }
+
+  .login-page[data-count="3"] .login-bg-glow,
+  .login-page[data-count="3"] .login-bg-dots--tr,
+  .login-page[data-count="3"] .login-bg-dots--bl {
+    animation: login-glow-pulse-subtle 2.6s ease-in-out infinite;
+  }
+
+  .login-page[data-count="4"] {
+    --glow-tr: 0.82;
+    --glow-bl: 0.7;
+  }
+
+  .login-page[data-count="4"] .login-bg-glow,
+  .login-page[data-count="4"] .login-bg-dots--tr,
+  .login-page[data-count="4"] .login-bg-dots--bl {
+    animation: login-glow-pulse-ready 1.9s ease-in-out infinite;
+  }
+
+  .login-page.is-flashing .login-bg-flash--tr {
+    animation: login-expand-tr 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .login-page.is-flashing .login-bg-flash--bl {
+    animation: login-expand-bl 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .login-page.is-error .login-bg-glow {
+    animation: none !important;
+    transition: opacity 0.35s ease;
+  }
+
+  .login-page.is-error .login-bg-glow--tr,
+  .login-page.is-error .login-bg-glow--bl,
+  .login-page.is-error .login-bg-dots--tr,
+  .login-page.is-error .login-bg-dots--bl {
+    opacity: 0 !important;
+    animation: none !important;
+  }
+
+  .login-page.is-error .login-bg-flash--tr {
+    background: radial-gradient(
+      circle at 100% 0%,
+      rgba(248, 113, 113, 0.45) 0%,
+      rgba(248, 113, 113, 0.14) 24%,
+      rgba(248, 113, 113, 0.04) 46%,
+      transparent 68%
+    );
+    animation: login-expand-error-tr 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .login-page.is-error .login-bg-flash--bl {
+    background: radial-gradient(
+      circle at 0% 100%,
+      rgba(248, 113, 113, 0.38) 0%,
+      rgba(248, 113, 113, 0.12) 24%,
+      rgba(248, 113, 113, 0.03) 46%,
+      transparent 68%
+    );
+    animation: login-expand-error-bl 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes login-expand-tr {
+    0% {
+      opacity: 0;
+      transform: scale(0.35);
+    }
+    22% {
+      opacity: 0.42;
+      transform: scale(0.58);
+    }
+    55% {
+      opacity: 0.22;
+      transform: scale(0.88);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes login-expand-bl {
+    0% {
+      opacity: 0;
+      transform: scale(0.35);
+    }
+    22% {
+      opacity: 0.36;
+      transform: scale(0.58);
+    }
+    55% {
+      opacity: 0.18;
+      transform: scale(0.88);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes login-expand-error-tr {
+    0% {
+      opacity: 0;
+      transform: scale(0.35);
+    }
+    20% {
+      opacity: 0.55;
+      transform: scale(0.62);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(0.92);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes login-expand-error-bl {
+    0% {
+      opacity: 0;
+      transform: scale(0.35);
+    }
+    20% {
+      opacity: 0.48;
+      transform: scale(0.62);
+    }
+    50% {
+      opacity: 0.26;
+      transform: scale(0.92);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes login-glow-pulse-subtle {
+    0%, 100% {
+      filter: brightness(0.94);
+    }
+    50% {
+      filter: brightness(1.1);
+    }
+  }
+
+  @keyframes login-glow-pulse-ready {
+    0%, 100% {
+      filter: brightness(0.9);
+    }
+    50% {
+      filter: brightness(1.22);
+    }
+  }
+
+  .login-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .code-box.is-correct {
+    border-color: #55ad3c !important;
+    box-shadow: 0 0 0 1px rgba(85, 173, 60, 0.35);
+    color: #55ad3c;
+  }
+
+  .code-box.is-error {
+    border-color: #f87171 !important;
+    animation: login-box-shake 0.4s ease;
+  }
+
+  @keyframes login-box-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<main class="login-page flex items-center justify-center p-6" data-count="0" id="login-page">
+  <div class="login-bg" aria-hidden="true">
+    <div class="login-bg-dots"></div>
+    <div class="login-bg-dots login-bg-dots--tr"></div>
+    <div class="login-bg-dots login-bg-dots--bl"></div>
+    <div class="login-bg-glow login-bg-glow--tr"></div>
+    <div class="login-bg-glow login-bg-glow--bl"></div>
+    <div class="login-bg-flash login-bg-flash--tr"></div>
+    <div class="login-bg-flash login-bg-flash--bl"></div>
+  </div>
+  <div class="login-content w-full max-w-sm">
+    <div class="mb-10">
+      <h1 class="text-xl font-medium text-neutral-100">Dashboard</h1>
+      <p class="text-neutral-400 text-sm mt-1">Código de acceso</p>
+    </div>
+
+    <p id="login-error" class="mb-6 text-sm text-red-400{% if not error %} hidden{% endif %}" role="alert">
+      {{ error or "" }}
+    </p>
+
+    <form id="login-form" action="{{ url_for('login') }}" method="post" class="space-y-8">
+      <input type="hidden" name="code" id="code-input" />
+
+      <div>
+        <label class="sr-only" for="box-0">Código de acceso</label>
+        <div class="flex gap-3" id="code-boxes">
+          {% for i in range(4) %}
+          <input
+            type="text"
+            id="box-{{ i }}"
+            maxlength="1"
+            inputmode="text"
+            autocomplete="off"
+            autocapitalize="characters"
+            class="code-box w-14 h-14 text-center text-xl font-medium uppercase
+                   border border-surface-border bg-black text-neutral-100
+                   focus:outline-none focus:border-brand transition-colors duration-200"
+            aria-label="Letra {{ i + 1 }}"
+          />
+          {% endfor %}
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        id="submit-btn"
+        disabled
+        class="w-full py-3 text-sm font-medium border border-brand bg-brand text-black
+               disabled:border-surface-border disabled:bg-surface disabled:text-neutral-500 disabled:cursor-not-allowed
+               transition-colors duration-200"
+      >
+        Entrar
+      </button>
+    </form>
+  </div>
+</main>
+
+<script>
+  const loginPage = document.getElementById("login-page");
+  const boxes = Array.from(document.querySelectorAll(".code-box"));
+  const hiddenInput = document.getElementById("code-input");
+  const submitBtn = document.getElementById("submit-btn");
+  const form = document.getElementById("login-form");
+  const errorEl = document.getElementById("login-error");
+
+  let flashTimer = null;
+  let isSubmitting = false;
+  const hadServerError = {{ "true" if error else "false" }};
+
+  function getCode() {
+    return boxes.map((b) => b.value.toUpperCase()).join("");
+  }
+
+  function getFilledCount() {
+    return boxes.filter((b) => b.value.length > 0).length;
+  }
+
+  function updateDottedState() {
+    const count = getFilledCount();
+    loginPage.dataset.count = String(count);
+  }
+
+  function flashGreen() {
+    loginPage.classList.remove("is-flashing");
+    void loginPage.offsetWidth;
+    loginPage.classList.add("is-flashing");
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => {
+      loginPage.classList.remove("is-flashing");
+      updateDottedState();
+    }, 1280);
+  }
+
+  function clearBoxes() {
+    boxes.forEach((box) => {
+      box.value = "";
+      box.classList.remove("is-correct", "is-error");
+    });
+    updateState();
+    updateDottedState();
+  }
+
+  function showError(message) {
+    errorEl.textContent = message;
+    errorEl.classList.remove("hidden");
+  }
+
+  function hideError() {
+    errorEl.classList.add("hidden");
+    errorEl.textContent = "";
+  }
+
+  function triggerErrorFeedback(message) {
+    loginPage.classList.remove("is-flashing", "is-error");
+    void loginPage.offsetWidth;
+    loginPage.classList.add("is-error");
+    boxes.forEach((box) => box.classList.add("is-error"));
+
+    showError(message || "Código incorrecto. Intentá de nuevo.");
+
+    setTimeout(() => {
+      loginPage.classList.remove("is-error");
+      boxes.forEach((box) => box.classList.remove("is-error"));
+      clearBoxes();
+      focusBox(0);
+    }, 1050);
+  }
+
+  function triggerSuccessFeedback(redirectUrl) {
+    boxes.forEach((box) => {
+      box.classList.remove("is-error");
+      box.classList.add("is-correct");
+    });
+    loginPage.dataset.count = "4";
+    loginPage.classList.remove("is-error", "is-flashing");
+
+    setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, 480);
+  }
+
+  function updateState() {
+    const code = getCode();
+    hiddenInput.value = code;
+    submitBtn.disabled = code.length !== 4 || isSubmitting;
+    updateDottedState();
+  }
+
+  function focusBox(index) {
+    if (index >= 0 && index < boxes.length) {
+      boxes[index].focus();
+      boxes[index].select();
+    }
+  }
+
+  async function submitLogin() {
+    const code = getCode();
+    if (code.length !== 4 || isSubmitting) return;
+
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    hideError();
+
+    try {
+      const body = new FormData();
+      body.append("code", code);
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body,
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        credentials: "same-origin",
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.ok) {
+        triggerSuccessFeedback(data.redirect || "/home");
+        return;
+      }
+
+      triggerErrorFeedback(data.error || "Código incorrecto. Intentá de nuevo.");
+    } catch {
+      triggerErrorFeedback("No se pudo verificar el código. Intentá de nuevo.");
+    } finally {
+      isSubmitting = false;
+      updateState();
+    }
+  }
+
+  boxes.forEach((box, index) => {
+    box.addEventListener("input", (e) => {
+      const value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, "").toUpperCase();
+      e.target.value = value.slice(-1);
+
+      if (value) {
+        flashGreen();
+        hideError();
+        box.classList.remove("is-error", "is-correct");
+      }
+
+      if (value && index < boxes.length - 1) {
+        focusBox(index + 1);
+      }
+
+      updateState();
+
+      if (getCode().length === 4) {
+        submitBtn.focus();
+      }
+    });
+
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && !box.value && index > 0) {
+        focusBox(index - 1);
+      }
+      if (e.key === "ArrowLeft" && index > 0) {
+        e.preventDefault();
+        focusBox(index - 1);
+      }
+      if (e.key === "ArrowRight" && index < boxes.length - 1) {
+        e.preventDefault();
+        focusBox(index + 1);
+      }
+      if (e.key === "Enter" && getCode().length === 4) {
+        e.preventDefault();
+        submitLogin();
+      }
+    });
+
+    box.addEventListener("paste", (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData.getData("text") || "")
+        .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, "")
+        .toUpperCase()
+        .slice(0, 4);
+
+      pasted.split("").forEach((char, i) => {
+        if (boxes[i]) boxes[i].value = char;
+      });
+
+      if (pasted.length > 0) {
+        flashGreen();
+        hideError();
+      }
+
+      updateState();
+      focusBox(Math.min(pasted.length, boxes.length - 1));
+
+      if (getCode().length === 4) {
+        submitLogin();
+      }
+    });
+
+    box.addEventListener("focus", () => box.select());
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    submitLogin();
+  });
+
+  focusBox(0);
+  updateState();
+
+  if (hadServerError) {
+    triggerErrorFeedback(errorEl.textContent.trim());
+  }
+</script>
+{% endblock %}

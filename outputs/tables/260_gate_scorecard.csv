@@ -1,0 +1,9 @@
+dimension,kpi,baseline_or_target,owner
+Economics,Realized savings vs model,Target ≥ 80% of USD 6.179.124,Ops finance
+Logistics,Units per pallet / pallets shipped,Model util 94.8% (vs 83.4% actual),Model baseline
+Logistics,Freight per unit,Model $2.6354 / unit,Model baseline
+Packaging,Box cost per unit,Model $0.4320 / unit,Model baseline
+Quality,Damage / compression / deformation,≤ baseline Actual (threshold TBD Ops/QA),Ops approve
+Production,Line throughput & stoppages,No material regression vs baseline (TBD),Ops approve
+Service,Fill rate / delays / exceptions,≥ baseline service level (TBD),Ops approve
+Complexity,Manual assignment exceptions,≤ agreed cap during pilot window,Ops approve

@@ -1,0 +1,263 @@
+<!-- Mobile top bar -->
+<header
+  id="mobile-topbar"
+  class="fixed inset-x-0 top-0 z-30 flex h-14 items-center gap-3 border-b border-surface-border bg-surface px-3 md:hidden"
+>
+  <button
+    type="button"
+    id="mobile-menu-open"
+    class="shrink-0 p-2 text-neutral-300 hover:text-neutral-100"
+    aria-label="Abrir menú"
+    aria-controls="sidebar"
+    aria-expanded="false"
+  >
+    <i data-feather="menu" class="h-5 w-5"></i>
+  </button>
+  <a href="{{ url_for('home') }}" class="min-w-0 flex-1">
+    <span class="text-sm font-semibold tracking-[0.14em] text-neutral-100">BONSAI</span>
+  </a>
+</header>
+
+<!-- Backdrop (mobile drawer) -->
+<div
+  id="sidebar-backdrop"
+  class="fixed inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200 md:hidden"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="sidebar"
+  class="sidebar fixed inset-y-0 left-0 z-50 flex h-screen w-64 max-w-[85vw] -translate-x-full flex-col border-r border-surface-border bg-surface transition-transform duration-200 ease-in-out md:z-40 md:translate-x-0 md:transition-[width] md:duration-200"
+>
+  <div class="border-b border-surface-border px-4 py-4">
+    <div class="flex items-center justify-between gap-2">
+      <a href="{{ url_for('home') }}" class="sidebar-logo min-w-0 overflow-hidden pr-3">
+        <span class="text-sm font-semibold tracking-[0.14em] text-neutral-100">BONSAI</span>
+      </a>
+      <button
+        type="button"
+        id="mobile-menu-close"
+        class="shrink-0 p-1.5 text-neutral-400 hover:text-neutral-100 md:hidden"
+        aria-label="Cerrar menú"
+      >
+        <i data-feather="x" class="h-5 w-5"></i>
+      </button>
+      <button
+        type="button"
+        id="sidebar-toggle"
+        class="hidden shrink-0 p-1.5 text-neutral-400 hover:text-neutral-100 md:inline-flex"
+        aria-label="Colapsar sidebar"
+        aria-expanded="true"
+      >
+        <i data-feather="layout" class="h-5 w-5"></i>
+      </button>
+    </div>
+
+    <div class="sidebar-solution mt-4">
+      <select
+        id="solution-select"
+        name="solution_name"
+        data-selected="{{ selected_solution or '' }}"
+        class="w-full border border-surface-border bg-black px-3 py-2 text-sm text-neutral-200 focus:border-brand focus:outline-none"
+      >
+        <option value="" {% if not selected_solution %}selected{% endif %}>Seleccionar solucion</option>
+        {% for solution in available_solutions %}
+        <option value="{{ solution }}" {% if solution == selected_solution %}selected{% endif %}>
+          {{ solution }}
+        </option>
+        {% endfor %}
+        <option value="__upload__">+ Cargar nueva</option>
+      </select>
+    </div>
+  </div>
+
+  <nav class="flex-1 space-y-6 overflow-y-auto px-3 py-4">
+    {% macro section(title) %}
+    <div>
+      <p class="sidebar-section mb-2 px-3 text-[11px] font-medium uppercase tracking-wide text-neutral-400">
+        {{ title }}
+      </p>
+      <div class="space-y-0.5">
+        {{ caller() }}
+      </div>
+    </div>
+    {% endmacro %}
+
+    {% macro item(icon, label, href='#', active=false, is_button=false, danger=false) %}
+    {% if is_button %}
+    <form action="{{ href }}" method="post">
+      <button
+        type="submit"
+        class="sidebar-item flex w-full items-center gap-3 px-3 py-2 text-sm
+               {% if danger %}text-red-400 hover:bg-red-500/10{% else %}text-neutral-300 hover:bg-white/5{% endif %}"
+      >
+        <i data-feather="{{ icon }}" class="sidebar-icon h-[18px] w-[18px] shrink-0"></i>
+        <span class="sidebar-text truncate">{{ label }}</span>
+      </button>
+    </form>
+    {% else %}
+    <a
+      href="{{ href }}"
+      class="sidebar-item flex items-center gap-3 px-3 py-2 text-sm
+             {% if active %}
+               bg-brand/15 text-brand
+             {% else %}
+               text-neutral-300 hover:bg-white/5
+             {% endif %}"
+    >
+      <i data-feather="{{ icon }}" class="sidebar-icon h-[18px] w-[18px] shrink-0"></i>
+      <span class="sidebar-text flex-1 truncate">{{ label }}</span>
+    </a>
+    {% endif %}
+    {% endmacro %}
+
+    {% call section('Panel') %}
+      {{ item('home', label='Home', href=url_for('home'), active=(active_item == 'home')) }}
+      {{ item('package', label='Packaging', href=url_for('packaging'), active=(active_item == 'packaging')) }}
+      {{ item('bar-chart-2', label='Demanda', href=url_for('demanda'), active=(active_item == 'demanda')) }}
+      {{ item('grid', label='Productos', href=url_for('productos'), active=(active_item == 'productos')) }}
+    {% endcall %}
+
+    {% call section('Herramientas') %}
+      {{ item('sliders', label='Optimizar', href=url_for('optimizar'), active=(active_item == 'optimizar')) }}
+      {{ item('box', label='Asignación', href=url_for('asignacion'), active=(active_item == 'asignacion')) }}
+      {{ item('shopping-cart', label='Ordenes de compra', href=url_for('ordenes_compra'), active=(active_item == 'ordenes_compra')) }}
+      {{ item('shuffle', label='Comparacion', href=url_for('comparacion'), active=(active_item == 'comparacion')) }}
+    {% endcall %}
+  </nav>
+
+  <div class="space-y-0.5 border-t border-surface-border px-3 py-3">
+    {{ item('log-out', label='Cerrar sesión', href=url_for('logout'), is_button=true, danger=true) }}
+  </div>
+</aside>
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+  (function () {
+    const sidebar = document.getElementById("sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const mobileOpen = document.getElementById("mobile-menu-open");
+    const mobileClose = document.getElementById("mobile-menu-close");
+    const desktopToggle = document.getElementById("sidebar-toggle");
+    const storageKey = "dashboard-sidebar-collapsed";
+    const mqDesktop = window.matchMedia("(min-width: 768px)");
+
+    function renderIcons() {
+      if (window.feather) feather.replace();
+    }
+
+    function isDesktop() {
+      return mqDesktop.matches;
+    }
+
+    function setMobileOpen(open) {
+      sidebar.classList.toggle("mobile-open", open);
+      sidebar.classList.toggle("-translate-x-full", !open);
+      sidebar.classList.toggle("translate-x-0", open);
+      backdrop.classList.toggle("opacity-0", !open);
+      backdrop.classList.toggle("pointer-events-none", !open);
+      backdrop.setAttribute("aria-hidden", String(!open));
+      if (mobileOpen) mobileOpen.setAttribute("aria-expanded", String(open));
+      document.body.classList.toggle("overflow-hidden", open && !isDesktop());
+      renderIcons();
+    }
+
+    function setCollapsed(collapsed) {
+      if (!isDesktop()) return;
+      sidebar.classList.toggle("sidebar-collapsed", collapsed);
+      sidebar.classList.toggle("w-64", !collapsed);
+      sidebar.classList.toggle("w-[72px]", collapsed);
+      if (desktopToggle) {
+        desktopToggle.setAttribute("aria-expanded", String(!collapsed));
+        desktopToggle.setAttribute(
+          "aria-label",
+          collapsed ? "Expandir sidebar" : "Colapsar sidebar"
+        );
+      }
+      localStorage.setItem(storageKey, collapsed ? "1" : "0");
+      renderIcons();
+      window.dispatchEvent(new Event("resize"));
+    }
+
+    if (mobileOpen) {
+      mobileOpen.addEventListener("click", () => setMobileOpen(true));
+    }
+    if (mobileClose) {
+      mobileClose.addEventListener("click", () => setMobileOpen(false));
+    }
+    if (backdrop) {
+      backdrop.addEventListener("click", () => setMobileOpen(false));
+    }
+    if (desktopToggle) {
+      desktopToggle.addEventListener("click", () => {
+        setCollapsed(!sidebar.classList.contains("sidebar-collapsed"));
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && sidebar.classList.contains("mobile-open")) {
+        setMobileOpen(false);
+      }
+    });
+
+    sidebar.querySelectorAll("a.sidebar-item").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (!isDesktop()) setMobileOpen(false);
+      });
+    });
+
+    function syncForViewport() {
+      if (isDesktop()) {
+        setMobileOpen(false);
+        document.body.classList.remove("overflow-hidden");
+        sidebar.classList.remove("-translate-x-full", "translate-x-0", "mobile-open");
+        if (localStorage.getItem(storageKey) === "1") {
+          setCollapsed(true);
+        } else {
+          setCollapsed(false);
+        }
+      } else {
+        sidebar.classList.remove("sidebar-collapsed", "w-[72px]");
+        sidebar.classList.add("w-64");
+        setMobileOpen(false);
+      }
+      renderIcons();
+    }
+
+    mqDesktop.addEventListener("change", syncForViewport);
+    syncForViewport();
+  })();
+</script>
+
+<style>
+  #sidebar.sidebar-collapsed .sidebar-logo,
+  #sidebar.sidebar-collapsed .sidebar-solution,
+  #sidebar.sidebar-collapsed .sidebar-section,
+  #sidebar.sidebar-collapsed .sidebar-text {
+    display: none;
+  }
+
+  #sidebar.sidebar-collapsed > div:first-child {
+    justify-content: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  #sidebar.sidebar-collapsed .sidebar-item {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #sidebar.sidebar-collapsed nav,
+  #sidebar.sidebar-collapsed > div:last-child {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  @media (max-width: 767px) {
+    #sidebar.mobile-open {
+      box-shadow: 8px 0 32px rgba(0, 0, 0, 0.45);
+    }
+  }
+</style>

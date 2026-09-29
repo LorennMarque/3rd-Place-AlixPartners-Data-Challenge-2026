@@ -1,0 +1,2 @@
+policy,label,grosores,ok,reused,optimal_surrogate,surrogate,bound,gap_surrogate,elapsed_s,n_tipos,total,packaging,flete,score,dist_grosor,solution_path,source
+"2.5,2.7,3.0","Mezcla (2.5, 2.7, 3 mm)","2.5,2.7,3.0",True,False,False,2389861.773,2380406.606,9455.1669999999,122.19432926177979,45,187653657.29999998,26995707.299999993,160657950.0,10.314444022563768,2.5:104;2.7:185;3.0:138,outputs/mark17/grosor/mark17_minbox_g2.5-2.7-3.csv,mark17_from_minbox

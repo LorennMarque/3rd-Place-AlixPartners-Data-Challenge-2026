@@ -1,0 +1,4 @@
+policy,label,grosores,ok,reused,optimal_surrogate,surrogate,bound,gap_surrogate,elapsed_s,n_tipos,total,packaging,flete,score,dist_grosor,solution_path,source
+4.7,Único 4.7 mm,4.7,True,False,False,2632508.017,2389047.195,243460.82200000016,32.18063259124756,98,200945294.67,32410544.669999998,168534750.0,3.9619545239276084,4.7:427,outputs/mark17/grosor/mark17_minbox_g4.7.csv,mark17_from_minbox
+4.8,Único 4.8 mm,4.8,True,False,False,2672052.389,2391044.352,281008.037,32.323511362075806,100,205398347.47,32667797.47,172730550.0,1.8337012198824636,4.8:427,outputs/mark17/grosor/mark17_minbox_g4.8.csv,mark17_from_minbox
+5.0,Único 5 mm,5.0,True,False,False,2641942.48,2416300.891,225641.58900000015,32.350141763687134,101,200995924.86,32483674.86,168512250.0,3.937756771511111,5.0:427,outputs/mark17/grosor/mark17_minbox_g5.csv,mark17_from_minbox

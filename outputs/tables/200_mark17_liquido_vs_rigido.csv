@@ -1,0 +1,5 @@
+base_diseno,fit_model,politica_grosor,solver,total,score,packaging,flete,n_tipos,fisico_ok,n_con_achique,dist_grosor,path
+Productos líquidos (fit volumen),volume,"Único 3,0 mm",Mark17 from minbox,189197949.24,9.576378571438793,27019449.24,162178500.0,41,False,286,3.0:427,outputs/mark17/mark17_from_minbox.csv
+Productos líquidos (fit volumen),volume,"Mezcla 2,5 / 2,7 / 3,0 mm",Mark17 from minbox,187639511.45999998,10.321204762233979,26980811.459999993,160658700.0,43,False,303,2.5:81;2.7:188;3.0:158,outputs/mark17/grosor/mark17_minbox_g2.5-2.7-3.csv
+Productos rígidos (fit por eje),physical_axis,"Único 3,0 mm",Mark17 from minbox,237489981.78,-13.50389521563832,27463581.78,210026400.0,60,True,0,3.0:427,outputs/mark17/fisico/mark17_fisico_g3.csv
+Productos rígidos (fit por eje),physical_axis,"Mezcla 2,5 / 2,7 / 3,0 mm",Mark17 from minbox,206446756.98,1.332633502102467,27431356.979999993,179015400.0,59,True,0,2.5:207;2.7:88;3.0:132,outputs/mark17/fisico/mark17_fisico_g2.5-2.7-3.csv

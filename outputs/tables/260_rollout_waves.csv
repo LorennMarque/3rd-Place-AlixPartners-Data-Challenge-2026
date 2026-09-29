@@ -1,0 +1,7 @@
+wave,plant_added,plants_migrated,annual_savings,pct_total_value,active_box_types,incremental_value,plant_label
+0,(none),,0.0,0.0,204,0.0,(none)
+1,curitiba,curitiba,7067223.330000013,35.04467951429398,207,7067223.330000013,Curitiba
+2,santiago,"curitiba,santiago",13321882.140000015,66.06004484699035,161,6254658.810000002,Santiago
+3,bakersfield,"curitiba,santiago,bakersfield",16702422.255000025,82.82333919662422,131,3380540.1150000095,Bakersfield
+4,buenos_aires,"curitiba,santiago,bakersfield,buenos_aires",18613225.205000013,92.29855653034855,93,1910802.949999988,Buenos Aires
+5,monterrey,"curitiba,santiago,bakersfield,buenos_aires,monterrey",20166323.185000002,100.0,41,1553097.9799999893,Monterrey

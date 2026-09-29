@@ -1,0 +1,1342 @@
+{% extends "base.html" %}
+
+{% block title %}Demanda — Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<style>
+  .demanda-section-block {
+    margin-top: 3rem;
+  }
+
+  .demanda-section-block--inner {
+    margin-top: 2.5rem;
+  }
+
+  .demanda-surface-bare,
+  .demanda-surface-bare .dashboard-chart-bare {
+    background: transparent !important;
+  }
+
+  .demanda-section-title {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #f5f5f5;
+  }
+
+  .demanda-section-subtitle {
+    font-size: 0.75rem;
+    color: #a3a3a3;
+  }
+
+  .demanda-metrics-table th,
+  .demanda-metrics-table td {
+    border-color: var(--dash-border);
+  }
+
+  .demanda-metrics-table thead th {
+    background: transparent;
+    padding-left: 0;
+  }
+
+  .demanda-metrics-table tbody td:first-child,
+  .demanda-metrics-table thead th:first-child {
+    padding-left: 0;
+  }
+
+  #americas-map {
+    height: 100%;
+    min-height: 320px;
+    width: 100%;
+    background: #0a0b0c;
+  }
+
+  .demanda-map-shell {
+    position: relative;
+    border: 1px solid var(--dash-border);
+    min-height: 320px;
+  }
+
+  .plant-summary-card-global {
+    border-color: rgba(85, 173, 60, 0.35);
+    background: linear-gradient(180deg, rgba(85, 173, 60, 0.12) 0%, #131617 42%);
+  }
+
+  .plant-summary-metric {
+    border: 1px solid #1f2326;
+    background: #1a1d1f;
+    padding: 0.75rem;
+  }
+
+  .plant-summary-card-global .plant-summary-metric {
+    background: rgba(26, 29, 31, 0.85);
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'demanda' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 sm:mb-8">
+        <h1 class="text-2xl font-medium">Demanda</h1>
+        <p class="mt-1 text-sm text-neutral-500">
+          Volumen, plantas y composición comercial
+          {% if selected_solution %}
+          · Solucion: {{ selected_solution }}
+          {% endif %}
+          {% if demanda.costo_source == 'baseline' %}
+          · Costos baseline
+          {% endif %}
+        </p>
+      </div>
+
+      <section class="dash-metrics-grid--4">
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Volumen anual</p>
+          <p class="mt-3 text-2xl font-medium tabular-nums">
+            {{ "{:,.0f}".format(demanda.total_volumen) }}
+          </p>
+          <p class="mt-1 text-xs text-neutral-500">uds / año</p>
+        </article>
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Productos activos</p>
+          <p class="mt-3 text-2xl font-medium tabular-nums">
+            {{ demanda.n_productos_total }}
+          </p>
+          <p class="mt-1 text-xs text-neutral-500">SKUs con demanda</p>
+        </article>
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Top 30 SKUs</p>
+          <p class="mt-3 text-2xl font-medium tabular-nums">
+            {{ "%.1f"|format(demanda.top_30_pct) }}%
+          </p>
+          <p class="mt-1 text-xs text-neutral-500">del volumen total</p>
+        </article>
+        <article class="dashboard-card p-5">
+          <p class="text-sm text-neutral-400">Multi-planta</p>
+          <p class="mt-3 text-2xl font-medium tabular-nums">
+            {{ "%.1f"|format(demanda.multiplant_pct_skus) }}%
+          </p>
+          <p class="mt-1 text-xs text-neutral-500">SKUs en más de una planta</p>
+        </article>
+      </section>
+
+      {% set host = "demanda-charts" %}
+      {% include "_skel_chart_start.html" %}
+
+      {# —— Plantas: volumen + costo + mapa —— #}
+      <section class="demanda-surface-bare demanda-section-block">
+        <h2 class="demanda-section-title">Por planta</h2>
+        <p class="demanda-section-subtitle">
+          Volumen de producción, costo y ubicación geográfica
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-3">
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Demanda</h3>
+            <p class="mt-1 text-xs text-neutral-400">Volumen anual por planta</p>
+            <div id="plant-chart" class="mt-4 min-h-[300px] w-full"></div>
+          </article>
+
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Costo</h3>
+            <p class="mt-1 text-xs text-neutral-400">
+              {% if demanda.costo_source == 'solution' %}
+              Packaging + flete según la solución
+              {% else %}
+              Packaging + pallets (baseline)
+              {% endif %}
+            </p>
+            <div id="costo-chart" class="mt-4 min-h-[300px] w-full"></div>
+          </article>
+
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Ubicación</h3>
+            <p class="mt-1 text-xs text-neutral-400">Demanda anual por país</p>
+            <div class="demanda-map-shell mt-4">
+              <div id="americas-map"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="demanda-section-block--inner overflow-x-auto">
+          <table class="demanda-metrics-table min-w-full text-sm">
+            <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-3 py-3 font-medium">Planta</th>
+                <th class="px-3 py-3 font-medium text-right">Volumen</th>
+                <th class="px-3 py-3 font-medium text-right">%</th>
+                <th class="px-3 py-3 font-medium text-right">SKUs</th>
+                <th class="px-3 py-3 font-medium text-right">Costo total</th>
+                <th class="px-3 py-3 font-medium text-right">Packaging</th>
+                <th class="px-3 py-3 font-medium text-right">Flete</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-800">
+              {% for plant in demanda.plants_detail %}
+              <tr>
+                <td class="px-3 py-3 font-medium text-neutral-100">{{ plant.label }}</td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                  {{ "{:,.0f}".format(plant.volumen) }}
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                  {{ "%.1f"|format(plant.pct) }}%
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                  {{ plant.n_productos }}
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-100">
+                  ${{ "{:,.0f}".format(plant.costo_total) }}
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-400">
+                  ${{ "{:,.0f}".format(plant.costo_packaging) }}
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-400">
+                  ${{ "{:,.0f}".format(plant.costo_envio) }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% if demanda.summary_cards %}
+        <div class="demanda-section-block--inner space-y-4">
+          <div>
+            <h3 class="text-sm font-medium text-neutral-100">Resumen operativo</h3>
+            <p class="mt-1 text-xs text-neutral-400">
+              Utilización de pallet y aprovechamiento de tiers por planta
+            </p>
+          </div>
+          {% for card in demanda.summary_cards %}
+          {% include '_plant_summary_card.html' %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+
+      {# —— Composición comercial —— #}
+      <section class="demanda-surface-bare demanda-section-block">
+        <h2 class="demanda-section-title">Composición</h2>
+        <p class="demanda-section-subtitle">
+          Canales comerciales y mix de producto
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-2">
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Por canal</h3>
+            <p class="mt-1 text-xs text-neutral-400">¿Qué canales mandan la demanda?</p>
+            <div id="channel-chart" class="mt-4 min-h-[300px] w-full"></div>
+          </article>
+
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-sm font-medium text-neutral-100">Categoría y proyecto</h3>
+            <p class="mt-1 text-xs text-neutral-400">¿Qué tipo de producto sostiene el volumen?</p>
+            <div id="category-chart" class="mt-4 min-h-[180px] w-full"></div>
+            <div id="project-chart" class="mt-2 min-h-[160px] w-full"></div>
+          </article>
+        </div>
+
+        <div class="demanda-section-block--inner grid grid-cols-1 gap-8 xl:grid-cols-2">
+          <div class="overflow-x-auto">
+            <table class="demanda-metrics-table min-w-full text-sm">
+              <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+                <tr>
+                  <th class="px-3 py-2 font-medium">Canal</th>
+                  <th class="px-3 py-2 font-medium text-right">Volumen</th>
+                  <th class="px-3 py-2 font-medium text-right">%</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-800">
+                {% for channel in demanda.channels %}
+                <tr>
+                  <td class="px-3 py-2 font-medium text-neutral-100">
+                    <span class="inline-flex items-center gap-2">
+                      <span class="inline-block h-2 w-2 rounded-full" style="background: {{ channel.color }};"></span>
+                      {{ channel.label }}
+                    </span>
+                  </td>
+                  <td class="px-3 py-2 text-right tabular-nums text-neutral-300">
+                    {{ "{:,.0f}".format(channel.volumen) }}
+                  </td>
+                  <td class="px-3 py-2 text-right tabular-nums text-neutral-300">
+                    {{ "%.1f"|format(channel.pct) }}%
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="demanda-metrics-table min-w-full text-sm">
+              <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+                <tr>
+                  <th class="px-3 py-2 font-medium">Categoría</th>
+                  <th class="px-3 py-2 font-medium text-right">SKUs</th>
+                  <th class="px-3 py-2 font-medium text-right">%</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-800">
+                {% for cat in demanda.category_mix.categorias %}
+                <tr>
+                  <td class="px-3 py-2 font-medium text-neutral-100">{{ cat.label }}</td>
+                  <td class="px-3 py-2 text-right tabular-nums text-neutral-300">{{ cat.n_skus }}</td>
+                  <td class="px-3 py-2 text-right tabular-nums text-neutral-300">
+                    {{ "%.1f"|format(cat.pct) }}%
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {# —— Cola larga —— #}
+      <section class="demanda-surface-bare demanda-section-block">
+        <h2 class="demanda-section-title">Distribución por SKU</h2>
+        <p class="demanda-section-subtitle">
+          Cola larga: cuántos productos vs cuánto volumen concentran
+        </p>
+        <div id="buckets-chart" class="mt-6 min-h-[280px] w-full"></div>
+        <div class="demanda-section-block--inner overflow-x-auto">
+          <table class="demanda-metrics-table min-w-full text-sm">
+            <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-3 py-3 font-medium">Rango</th>
+                <th class="px-3 py-3 font-medium text-right">SKUs</th>
+                <th class="px-3 py-3 font-medium text-right">% SKUs</th>
+                <th class="px-3 py-3 font-medium text-right">Volumen</th>
+                <th class="px-3 py-3 font-medium text-right">% Vol</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-800">
+              {% for bucket in demanda.volume_buckets %}
+              <tr>
+                <td class="px-3 py-3 font-medium text-neutral-100">{{ bucket.label }}</td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">{{ bucket.n_skus }}</td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                  {{ "%.1f"|format(bucket.pct_skus) }}%
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                  {{ "{:,.0f}".format(bucket.volumen) }}
+                </td>
+                <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                  {{ "%.1f"|format(bucket.pct_volumen) }}%
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {# —— Tipo de caja × planta —— #}
+      <section class="demanda-surface-bare demanda-section-block">
+        <h2 class="demanda-section-title">Tipo de caja × planta</h2>
+        <p class="demanda-section-subtitle">
+          Los tiers se calculan sobre el volumen de cada tipo de caja
+          <span class="text-neutral-300">en cada planta</span>, no sobre el global.
+        </p>
+
+        {% if demanda.box_demand %}
+        <div class="mt-4 flex flex-wrap gap-2 text-xs text-neutral-500">
+          {% for tier in demanda.tier_defs %}
+          <span class="inline-flex items-center gap-1.5 border border-neutral-700 px-2 py-1">
+            <span class="inline-block h-2 w-2 rounded-full" style="background: {{ tier.color }};"></span>
+            {{ tier.label }}
+          </span>
+          {% endfor %}
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {% for chart in demanda.box_demand.tier_charts %}
+          <article class="dashboard-chart-bare min-w-0">
+            <h3 class="text-xs font-medium uppercase tracking-wide text-neutral-500">{{ chart.label }}</h3>
+            <p class="mt-1 text-xs text-neutral-400">Tipos de caja por tier</p>
+            <div id="tier-chart-{{ chart.id }}" class="mt-3 min-h-[220px] w-full"></div>
+          </article>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="mt-6 border border-neutral-800 px-5 py-8 text-sm text-neutral-500">
+          Cargá o seleccioná una solución para ver el volumen por tipo de caja en cada planta.
+        </div>
+        {% endif %}
+      </section>
+
+      {% include "_skel_chart_end.html" %}
+
+      {% if demanda.box_demand %}
+      <div class="demanda-section-block overflow-x-auto">
+        {% set n_cols = 2 + demanda.box_demand.plant_columns|length + 2 %}
+        <table class="demanda-metrics-table min-w-full text-sm" id="box-demand-table">
+          <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+            <tr>
+              <th class="w-8 px-2 py-3"></th>
+              <th class="sortable-th px-3 py-3 font-medium cursor-pointer select-none hover:text-neutral-200" data-sort-key="tipo" data-sort-type="text">
+                <span class="inline-flex items-center gap-1">Tipo <span class="sort-icon text-neutral-600">↕</span></span>
+              </th>
+              <th class="sortable-th px-3 py-3 font-medium cursor-pointer select-none hover:text-neutral-200" data-sort-key="dimensiones" data-sort-type="text">
+                <span class="inline-flex items-center gap-1">Dimensiones <span class="sort-icon text-neutral-600">↕</span></span>
+              </th>
+              {% for col in demanda.box_demand.plant_columns %}
+              <th class="sortable-th px-3 py-3 font-medium text-right whitespace-nowrap cursor-pointer select-none hover:text-neutral-200" data-sort-key="{{ col.id }}" data-sort-type="number">
+                <span class="inline-flex items-center justify-end gap-1">{{ col.label }} <span class="sort-icon text-neutral-600">↕</span></span>
+              </th>
+              {% endfor %}
+              <th class="sortable-th px-3 py-3 font-medium text-right cursor-pointer select-none hover:text-neutral-200" data-sort-key="total" data-sort-type="number">
+                <span class="inline-flex items-center justify-end gap-1">Total <span class="sort-icon text-neutral-600">↕</span></span>
+              </th>
+              <th class="sortable-th px-3 py-3 font-medium text-right cursor-pointer select-none hover:text-neutral-200" data-sort-key="productos" data-sort-type="number">
+                <span class="inline-flex items-center justify-end gap-1">Productos <span class="sort-icon text-neutral-600">↕</span></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-800">
+            {% for box in demanda.box_demand.box_types %}
+            <tr
+              class="box-row hover:bg-neutral-900/40"
+              data-box-id="{{ box.id }}"
+              data-sort-tipo="{{ box.id }}"
+              data-sort-dimensiones="{{ box.label }}"
+              data-sort-total="{{ box.volumen_total }}"
+              data-sort-productos="{{ box.n_productos }}"
+              {% for col in demanda.box_demand.plant_columns %}
+              {% set plant_data = box.by_plant.get(col.id) %}
+              data-sort-{{ col.id }}="{{ plant_data.volumen if plant_data else 0 }}"
+              {% endfor %}
+            >
+              <td class="px-2 py-3 text-center">
+                <button
+                  type="button"
+                  class="box-expand-btn inline-flex h-6 w-6 items-center justify-center text-neutral-500 hover:text-neutral-100"
+                  data-box-id="{{ box.id }}"
+                  aria-expanded="false"
+                  aria-label="Expandir productos de {{ box.id }}"
+                >
+                  <svg class="box-expand-icon h-3.5 w-3.5 transition-transform" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M6 4l4 4-4 4V4z"/>
+                  </svg>
+                </button>
+              </td>
+              <td class="px-3 py-3 font-medium text-neutral-100 whitespace-nowrap">{{ box.id }}</td>
+              <td class="px-3 py-3 text-neutral-400 whitespace-nowrap">{{ box.label }}</td>
+              {% for col in demanda.box_demand.plant_columns %}
+              <td class="px-3 py-3 text-right tabular-nums text-neutral-300 whitespace-nowrap">
+                {% set plant_data = box.by_plant.get(col.id) %}
+                {% if plant_data %}
+                <span title="{{ plant_data.tier_label }}">{{ "{:,.0f}".format(plant_data.volumen) }}</span>
+                <span class="ml-1 text-xs" style="color: {{ plant_data.tier_color }};">{{ plant_data.tier_short }}</span>
+                {% else %}
+                <span class="text-neutral-600">—</span>
+                {% endif %}
+              </td>
+              {% endfor %}
+              <td class="px-3 py-3 text-right tabular-nums font-medium text-neutral-100 whitespace-nowrap">
+                {{ "{:,.0f}".format(box.volumen_total) }}
+              </td>
+              <td class="px-3 py-3 text-right tabular-nums text-neutral-300">
+                {{ box.n_productos }}
+              </td>
+            </tr>
+            <tr class="box-detail hidden bg-neutral-900/50" data-box-id="{{ box.id }}">
+              <td colspan="{{ n_cols }}" class="px-3 py-3">
+                <table class="min-w-full text-xs">
+                  <thead class="text-neutral-500">
+                    <tr>
+                      <th class="px-3 py-2 text-left font-medium">Producto</th>
+                      {% for col in demanda.box_demand.plant_columns %}
+                      <th class="px-3 py-2 text-right font-medium whitespace-nowrap">{{ col.label }}</th>
+                      {% endfor %}
+                      <th class="px-3 py-2 text-right font-medium">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-neutral-800">
+                    {% for product in box.products %}
+                    <tr>
+                      <td class="px-3 py-2 font-medium text-neutral-200 whitespace-nowrap">{{ product.codigo_producto }}</td>
+                      {% for col in demanda.box_demand.plant_columns %}
+                      <td class="px-3 py-2 text-right tabular-nums text-neutral-400 whitespace-nowrap">
+                        {% set prod_plant = product.by_plant.get(col.id) %}
+                        {% if prod_plant %}
+                        {{ "{:,.0f}".format(prod_plant.volumen) }}
+                        {% else %}
+                        <span class="text-neutral-600">—</span>
+                        {% endif %}
+                      </td>
+                      {% endfor %}
+                      <td class="px-3 py-2 text-right tabular-nums text-neutral-300 whitespace-nowrap">
+                        {{ "{:,.0f}".format(product.volumen_total) }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+{% if demanda %}
+<script id="demanda-data" type="application/json">{{ demanda | tojson }}</script>
+<script id="americas-geojson-url" type="application/json">{{ url_for('static', filename='geo/americas.geojson') | tojson }}</script>
+{% endif %}
+
+<div
+  id="upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/20 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-500">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-upload-modal"
+        class="text-neutral-500 hover:text-neutral-900"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-neutral-300 px-3 py-2 text-sm text-neutral-700"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-upload-modal"
+          class="border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm text-white"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+<script>
+  (function () {
+    const modal = document.getElementById("upload-modal");
+    const closeButton = document.getElementById("close-upload-modal");
+    const cancelButton = document.getElementById("cancel-upload-modal");
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    window.addEventListener("dashboard:open-upload", openModal);
+    if (closeButton) closeButton.addEventListener("click", closeModal);
+    if (cancelButton) cancelButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModal();
+    });
+  })();
+
+  window.dashboardPageInit = async function dashboardPageInit() {
+    window.dashboardDestroyCharts?.();
+    if (window.dashboardMap?.remove) {
+      window.dashboardMap.remove();
+      window.dashboardMap = null;
+    }
+
+    const dataNode = document.getElementById("demanda-data");
+    if (!dataNode || !window.ApexCharts) {
+      window.dashboardRevealHost?.("demanda-charts");
+      return;
+    }
+
+    const chartRenders = [];
+
+    function queueChart(el, options) {
+      if (!el) return;
+      const chart = new ApexCharts(el, options);
+      window.dashboardCharts.push(chart);
+      chartRenders.push(chart.render());
+    }
+
+    const theme = window.DASHBOARD_THEME;
+    const dark = theme.dark;
+    const demanda = JSON.parse(dataNode.textContent || "{}");
+    const chartFont = "Noto Sans, sans-serif";
+
+    const formatVolume = (value) =>
+      new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(value);
+
+    const formatPct = (value) =>
+      `${Number(value || 0).toFixed(1)}%`;
+
+    const formatCount = (value) =>
+      new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(value);
+
+    const formatCurrency = (value) =>
+      new Intl.NumberFormat("es-AR", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }).format(value);
+
+    const axisStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartLabel,
+    };
+
+    const categoryStyle = {
+      fontFamily: chartFont,
+      colors: dark.chartCategory,
+    };
+
+    const baseChartOptions = {
+      chart: {
+        fontFamily: chartFont,
+        toolbar: { show: false },
+        background: "transparent",
+      },
+      grid: {
+        borderColor: dark.chartGrid,
+        strokeDashArray: 4,
+      },
+      legend: { show: false },
+      tooltip: {
+        theme: "dark",
+        y: {
+          formatter: (value) => `${formatVolume(value)} uds/año`,
+        },
+      },
+    };
+
+    const plants = demanda.plants || [];
+    queueChart(document.querySelector("#plant-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 300,
+        width: "100%",
+      },
+      colors: [theme.primary],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          borderRadius: 0,
+          barHeight: "58%",
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        offsetX: 24,
+        style: {
+          fontFamily: chartFont,
+          fontWeight: 500,
+          colors: [dark.dataLabel || "#f5f5f5"],
+        },
+        formatter: (value) => formatVolume(value),
+      },
+      xaxis: {
+        labels: {
+          formatter: (value) => formatVolume(value),
+          style: axisStyle,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: categoryStyle,
+        },
+      },
+      series: [
+        {
+          name: "Volumen",
+          data: plants.map((plant) => ({
+            x: plant.label,
+            y: plant.volumen,
+          })),
+        },
+      ],
+    });
+
+    const costoPlants = demanda.costo_plants || [];
+    queueChart(document.querySelector("#costo-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 300,
+        width: "100%",
+      },
+      colors: [theme.secondary],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          borderRadius: 0,
+          barHeight: "58%",
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        offsetX: 24,
+        style: {
+          fontFamily: chartFont,
+          fontWeight: 500,
+          colors: [dark.dataLabel || "#f5f5f5"],
+        },
+        formatter: (value) => formatCurrency(value),
+      },
+      xaxis: {
+        labels: {
+          formatter: (value) => formatCurrency(value),
+          style: axisStyle,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: categoryStyle,
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        y: {
+          formatter: (value) => formatCurrency(value),
+        },
+      },
+      series: [
+        {
+          name: "Costo",
+          data: costoPlants.map((plant) => ({
+            x: plant.label,
+            y: plant.costo_total,
+          })),
+        },
+      ],
+    });
+
+    const channels = demanda.channels || [];
+    queueChart(document.querySelector("#channel-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 300,
+        width: "100%",
+      },
+      colors: channels.map((channel) => channel.color),
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          distributed: true,
+          borderRadius: 0,
+          barHeight: "58%",
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        offsetX: 24,
+        style: {
+          fontFamily: chartFont,
+          fontWeight: 500,
+          colors: [dark.dataLabel || "#f5f5f5"],
+        },
+        formatter: (value) => formatVolume(value),
+      },
+      xaxis: {
+        labels: {
+          formatter: (value) => formatVolume(value),
+          style: axisStyle,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: categoryStyle,
+        },
+      },
+      legend: { show: false },
+      tooltip: {
+        theme: "dark",
+        y: {
+          formatter: (value, { dataPointIndex }) => {
+            const channel = channels[dataPointIndex];
+            return `${formatVolume(value)} uds/año (${formatPct(channel?.pct || 0)})`;
+          },
+        },
+      },
+      series: [
+        {
+          name: "Volumen",
+          data: channels.map((channel) => ({
+            x: channel.label,
+            y: channel.volumen,
+          })),
+        },
+      ],
+    });
+
+    const categorias = (demanda.category_mix && demanda.category_mix.categorias) || [];
+    queueChart(document.querySelector("#category-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 180,
+        width: "100%",
+      },
+      colors: [theme.primary],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          borderRadius: 0,
+          barHeight: "62%",
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        offsetX: 20,
+        style: {
+          fontFamily: chartFont,
+          fontWeight: 500,
+          fontSize: "11px",
+          colors: [dark.dataLabel || "#f5f5f5"],
+        },
+        formatter: (value) => formatPct(value),
+      },
+      xaxis: {
+        max: 100,
+        labels: {
+          formatter: (value) => formatPct(value),
+          style: axisStyle,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            ...categoryStyle,
+            fontSize: "11px",
+          },
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        y: {
+          formatter: (value, { dataPointIndex }) => {
+            const row = categorias[dataPointIndex];
+            return `${formatPct(value)} · ${formatVolume(row?.volumen || 0)} uds`;
+          },
+        },
+      },
+      series: [
+        {
+          name: "% volumen",
+          data: categorias.map((row) => ({
+            x: row.label,
+            y: row.pct,
+          })),
+        },
+      ],
+    });
+
+    const tiposProyecto = (demanda.category_mix && demanda.category_mix.tipos_proyecto) || [];
+    queueChart(document.querySelector("#project-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 160,
+        width: "100%",
+      },
+      colors: ["#5B8DEF"],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          borderRadius: 0,
+          barHeight: "58%",
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        offsetX: 20,
+        style: {
+          fontFamily: chartFont,
+          fontWeight: 500,
+          fontSize: "11px",
+          colors: [dark.dataLabel || "#f5f5f5"],
+        },
+        formatter: (value) => formatPct(value),
+      },
+      xaxis: {
+        max: 100,
+        labels: {
+          formatter: (value) => formatPct(value),
+          style: axisStyle,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            ...categoryStyle,
+            fontSize: "11px",
+          },
+        },
+      },
+      tooltip: {
+        theme: "dark",
+        y: {
+          formatter: (value, { dataPointIndex }) => {
+            const row = tiposProyecto[dataPointIndex];
+            return `${formatPct(value)} · ${formatVolume(row?.volumen || 0)} uds`;
+          },
+        },
+      },
+      series: [
+        {
+          name: "% volumen",
+          data: tiposProyecto.map((row) => ({
+            x: row.label,
+            y: row.pct,
+          })),
+        },
+      ],
+    });
+
+    const volumeBuckets = demanda.volume_buckets || [];
+    queueChart(document.querySelector("#buckets-chart"), {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "bar",
+        height: 280,
+        width: "100%",
+      },
+      colors: [theme.primary, "#5B8DEF"],
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+          borderRadius: 0,
+        },
+      },
+      dataLabels: { enabled: false },
+      xaxis: {
+        categories: volumeBuckets.map((bucket) => bucket.label),
+        labels: {
+          style: categoryStyle,
+        },
+      },
+      yaxis: [
+        {
+          seriesName: "SKUs",
+          title: {
+            text: "SKUs",
+            style: {
+              fontFamily: chartFont,
+              color: "#a3a3a3",
+              fontSize: "11px",
+              fontWeight: 500,
+            },
+          },
+          labels: {
+            style: axisStyle,
+            formatter: (value) => formatCount(value),
+          },
+        },
+        {
+          seriesName: "% volumen",
+          opposite: true,
+          max: 100,
+          title: {
+            text: "% volumen",
+            style: {
+              fontFamily: chartFont,
+              color: "#a3a3a3",
+              fontSize: "11px",
+              fontWeight: 500,
+            },
+          },
+          labels: {
+            style: axisStyle,
+            formatter: (value) => formatPct(value),
+          },
+        },
+      ],
+      legend: {
+        show: true,
+        position: "top",
+        horizontalAlign: "right",
+        fontFamily: chartFont,
+        labels: { colors: dark.chartCategory },
+        markers: { width: 8, height: 8, radius: 0 },
+      },
+      tooltip: {
+        theme: "dark",
+        shared: true,
+        intersect: false,
+        custom: ({ dataPointIndex }) => {
+          const bucket = volumeBuckets[dataPointIndex];
+          if (!bucket) return "";
+          return (
+            `<div class="px-3 py-2 text-xs">` +
+            `<div class="font-medium text-neutral-900">${bucket.label}</div>` +
+            `<div class="mt-1 text-neutral-600">${formatCount(bucket.n_skus)} SKUs (${formatPct(bucket.pct_skus)})</div>` +
+            `<div class="text-neutral-500">${formatVolume(bucket.volumen)} uds (${formatPct(bucket.pct_volumen)})</div>` +
+            `</div>`
+          );
+        },
+      },
+      series: [
+        {
+          name: "SKUs",
+          data: volumeBuckets.map((bucket) => bucket.n_skus),
+        },
+        {
+          name: "% volumen",
+          data: volumeBuckets.map((bucket) => bucket.pct_volumen),
+        },
+      ],
+    });
+
+    const boxDemand = demanda.box_demand;
+    if (boxDemand && boxDemand.tier_charts) {
+      boxDemand.tier_charts.forEach((chart) => {
+        const tiers = chart.tiers || [];
+        const counts = tiers.map((tier) => tier.n_tipos_caja);
+        const colors = tiers.map((tier) => tier.color);
+
+        queueChart(document.querySelector(`#tier-chart-${chart.id}`), {
+          ...baseChartOptions,
+          chart: {
+            ...baseChartOptions.chart,
+            type: "bar",
+            height: 220,
+            width: "100%",
+          },
+          colors,
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              distributed: true,
+              columnWidth: "68%",
+              borderRadius: 0,
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            style: {
+              fontFamily: chartFont,
+              fontWeight: 500,
+              colors: [dark.dataLabel || "#f5f5f5"],
+              fontSize: "11px",
+            },
+            formatter: (value) => (value > 0 ? formatCount(value) : ""),
+          },
+          xaxis: {
+            categories: tiers.map((tier) => tier.short),
+            axisBorder: { show: false },
+            axisTicks: { show: false },
+            labels: {
+              style: {
+                ...categoryStyle,
+                fontSize: "11px",
+              },
+            },
+          },
+          yaxis: {
+            min: 0,
+            forceNiceScale: true,
+            tickAmount: 4,
+            labels: {
+              formatter: (value) => formatCount(value),
+              style: axisStyle,
+            },
+            title: {
+              text: "Tipos de caja",
+              style: {
+                fontFamily: chartFont,
+                color: "#a3a3a3",
+                fontSize: "10px",
+                fontWeight: 500,
+              },
+            },
+          },
+          tooltip: {
+            theme: "light",
+            custom: ({ dataPointIndex }) => {
+              const tier = tiers[dataPointIndex];
+              return (
+                `<div class="px-3 py-2 text-xs">` +
+                `<div class="font-medium text-neutral-900">${tier.label}</div>` +
+                `<div class="mt-1 text-neutral-600">${formatCount(tier.n_tipos_caja)} tipos de caja</div>` +
+                `<div class="text-neutral-500">${formatVolume(tier.volumen)} uds/año</div>` +
+                `</div>`
+              );
+            },
+          },
+          series: [
+            {
+              name: "Tipos de caja",
+              data: counts,
+            },
+          ],
+        });
+      });
+    }
+
+    await Promise.all(chartRenders);
+    window.dashboardRevealHost?.("demanda-charts");
+
+    const mapNode = document.getElementById("americas-map");
+    const geojsonUrlNode = document.getElementById("americas-geojson-url");
+    if (!mapNode || !window.L || !geojsonUrlNode) return;
+
+    mapNode.innerHTML = "";
+
+    const countryDemand = demanda.country_demand || {};
+    const geojsonUrl = JSON.parse(geojsonUrlNode.textContent || '""');
+    const CHOROPLETH_COLORS = theme.choropleth;
+    const NO_DATA_COLOR = "#1a1d1f";
+
+    function colorForVolumen(volumen, maxVolumen) {
+      if (!volumen || !maxVolumen) return NO_DATA_COLOR;
+      const ratio = volumen / maxVolumen;
+      if (ratio >= 0.85) return CHOROPLETH_COLORS[5];
+      if (ratio >= 0.65) return CHOROPLETH_COLORS[4];
+      if (ratio >= 0.45) return CHOROPLETH_COLORS[3];
+      if (ratio >= 0.25) return CHOROPLETH_COLORS[2];
+      if (ratio >= 0.05) return CHOROPLETH_COLORS[1];
+      return CHOROPLETH_COLORS[0];
+    }
+
+    const map = L.map("americas-map", {
+      center: [4, -78],
+      zoom: 3,
+      minZoom: 2,
+      maxZoom: 8,
+      scrollWheelZoom: false,
+      zoomControl: true,
+    });
+    window.dashboardMap = map;
+
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: "abcd",
+      maxZoom: 19,
+    }).addTo(map);
+
+    const maxCountryVolumen = Math.max(
+      ...Object.values(countryDemand).map((entry) => entry.volumen || 0),
+      0
+    );
+
+    fetch(geojsonUrl)
+      .then((response) => response.json())
+      .then((geojson) => {
+        const choropleth = L.geoJSON(geojson, {
+          style(feature) {
+            const iso3 = feature.properties["ISO3166-1-Alpha-3"];
+            const entry = countryDemand[iso3];
+            const volumen = entry?.volumen || 0;
+            const fillColor = colorForVolumen(volumen, maxCountryVolumen);
+
+            return {
+              fillColor,
+              weight: 1,
+              opacity: 1,
+              color: volumen ? theme.primaryDark : "#2a2f33",
+              fillOpacity: volumen ? 0.88 : 0.35,
+            };
+          },
+          onEachFeature(feature, layer) {
+            const iso3 = feature.properties["ISO3166-1-Alpha-3"];
+            const countryName = feature.properties.name;
+            const entry = countryDemand[iso3];
+            if (!entry) return;
+
+            const plantLines = (entry.plants || [])
+              .map(
+                (plant) =>
+                  `${plant.label}: ${formatVolume(plant.volumen)} uds/año (${plant.pct.toFixed(1)}%)`
+              )
+              .join("<br>");
+
+            layer.bindPopup(
+              `<strong>${entry.name || countryName}</strong><br>` +
+                `${formatVolume(entry.volumen)} uds/año total<br>` +
+                `${entry.pct.toFixed(1)}% del total<br>` +
+                (plantLines ? `<br>${plantLines}` : "")
+            );
+
+            layer.on({
+              mouseover(event) {
+                const target = event.target;
+                target.setStyle({
+                  weight: 2,
+                  color: "#f5f5f5",
+                  fillOpacity: 0.95,
+                });
+                target.bringToFront();
+              },
+              mouseout(event) {
+                choropleth.resetStyle(event.target);
+              },
+            });
+          },
+        }).addTo(map);
+
+        map.fitBounds(choropleth.getBounds(), { padding: [18, 18] });
+        setTimeout(() => map.invalidateSize(), 0);
+      })
+      .catch((error) => {
+        console.error("No se pudo cargar el GeoJSON de Americas:", error);
+      });
+  };
+
+  window.dashboardCharts = window.dashboardCharts || [];
+  window.dashboardPageInit();
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".box-expand-btn");
+    if (!button) return;
+    const table = button.closest("#box-demand-table");
+    if (!table) return;
+
+    const boxId = button.dataset.boxId;
+    const detailRow = table.querySelector(`.box-detail[data-box-id="${boxId}"]`);
+    const icon = button.querySelector(".box-expand-icon");
+    if (!detailRow) return;
+
+    const isOpen = !detailRow.classList.contains("hidden");
+    detailRow.classList.toggle("hidden", isOpen);
+    button.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    if (icon) {
+      icon.style.transform = isOpen ? "" : "rotate(90deg)";
+    }
+  });
+
+  (function () {
+    const table = document.getElementById("box-demand-table");
+    if (!table) return;
+
+    const tbody = table.querySelector("tbody");
+    const headers = table.querySelectorAll(".sortable-th");
+    let activeKey = null;
+    let activeDir = -1;
+
+    const getGroups = () =>
+      Array.from(tbody.querySelectorAll(".box-row")).map((row) => ({
+        row,
+        detail: tbody.querySelector(`.box-detail[data-box-id="${row.dataset.boxId}"]`),
+      }));
+
+    const getValue = (row, key, type) => {
+      const raw = row.getAttribute(`data-sort-${key}`) ?? "";
+      if (type === "number") {
+        return parseFloat(raw) || 0;
+      }
+      return raw.toLowerCase();
+    };
+
+    const updateIcons = (key, dir) => {
+      headers.forEach((header) => {
+        const icon = header.querySelector(".sort-icon");
+        if (!icon) return;
+        if (header.dataset.sortKey === key) {
+          icon.textContent = dir === -1 ? "↓" : "↑";
+          icon.classList.remove("text-neutral-600");
+          icon.classList.add("text-neutral-100");
+          header.classList.add("text-neutral-100");
+        } else {
+          icon.textContent = "↕";
+          icon.classList.add("text-neutral-600");
+          icon.classList.remove("text-neutral-100");
+          header.classList.remove("text-neutral-100");
+        }
+      });
+    };
+
+    headers.forEach((header) => {
+      header.addEventListener("click", () => {
+        const key = header.dataset.sortKey;
+        const type = header.dataset.sortType || "text";
+
+        if (activeKey === key) {
+          activeDir *= -1;
+        } else {
+          activeKey = key;
+          activeDir = type === "number" ? -1 : 1;
+        }
+
+        const groups = getGroups().sort((a, b) => {
+          const av = getValue(a.row, key, type);
+          const bv = getValue(b.row, key, type);
+          if (type === "number") {
+            return (av - bv) * activeDir;
+          }
+          return av.localeCompare(bv, "es") * activeDir;
+        });
+
+        groups.forEach(({ row, detail }) => {
+          tbody.appendChild(row);
+          if (detail) tbody.appendChild(detail);
+        });
+
+        updateIcons(key, activeDir);
+      });
+    });
+  })();
+</script>
+{% endblock %}

@@ -1,0 +1,1681 @@
+{% extends "base.html" %}
+
+{% block title %}Optimizar — Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<style>
+  .opt-hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .opt-hero-glow {
+    pointer-events: none;
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: min(36rem, 70%);
+    height: min(22rem, 70%);
+    background: radial-gradient(
+      ellipse at 80% 20%,
+      rgba(85, 173, 60, 0.18) 0%,
+      rgba(85, 173, 60, 0.05) 42%,
+      transparent 70%
+    );
+    opacity: 0.9;
+  }
+
+  .opt-drop {
+    border: 1px dashed rgba(85, 173, 60, 0.28);
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(85, 173, 60, 0.08), transparent 55%),
+      var(--dash-card);
+    transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  }
+  .opt-drop.is-dragover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 1px rgba(85, 173, 60, 0.35), 0 0 40px rgba(85, 173, 60, 0.12);
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(85, 173, 60, 0.14), transparent 60%),
+      var(--dash-card);
+  }
+
+  .opt-step-dot {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--dash-border);
+    color: var(--dash-muted);
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  }
+  .opt-step-dot.is-active {
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+    color: #041006;
+    box-shadow: 0 0 18px rgba(85, 173, 60, 0.35);
+  }
+  .opt-step-dot.is-done {
+    border-color: rgba(85, 173, 60, 0.65);
+    color: var(--brand-primary);
+  }
+
+  .opt-chip {
+    border: 1px solid var(--dash-border);
+    background: transparent;
+    color: var(--dash-text);
+    transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+  }
+  .opt-chip.is-selected {
+    border-color: var(--brand-primary);
+    background: rgba(85, 173, 60, 0.12);
+    color: #cfe9c2;
+  }
+  .opt-effort {
+    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  }
+  .opt-effort.is-selected {
+    border-color: var(--brand-primary);
+    background: rgba(85, 173, 60, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(85, 173, 60, 0.25);
+  }
+
+  .opt-model {
+    transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  }
+  .opt-model.is-selected {
+    border-color: var(--brand-primary);
+    background: rgba(85, 173, 60, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(85, 173, 60, 0.25);
+  }
+
+  .opt-toggle {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--dash-border);
+    background: rgba(255, 255, 255, 0.06);
+    transition: background 160ms ease, border-color 160ms ease;
+    flex-shrink: 0;
+  }
+  .opt-toggle.is-on {
+    border-color: rgba(85, 173, 60, 0.55);
+    background: rgba(85, 173, 60, 0.35);
+  }
+  .opt-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 9999px;
+    background: #e5e5e5;
+    transition: transform 160ms ease, background 160ms ease;
+  }
+  .opt-toggle.is-on .opt-toggle-knob {
+    transform: translateX(1.2rem);
+    background: #cfe9c2;
+  }
+
+  .opt-num-input {
+    width: 100%;
+    border: 1px solid var(--dash-border);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--dash-text);
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .opt-num-input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 1px rgba(85, 173, 60, 0.35);
+  }
+  .opt-num-input.is-dirty {
+    border-color: rgba(85, 173, 60, 0.55);
+  }
+
+  .opt-score-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(85, 173, 60, 0.28);
+    background:
+      radial-gradient(ellipse 90% 80% at 100% 0%, rgba(85, 173, 60, 0.16), transparent 55%),
+      radial-gradient(ellipse 70% 60% at 0% 100%, rgba(85, 173, 60, 0.08), transparent 50%),
+      var(--dash-card);
+  }
+  .opt-score-panel.is-live::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 60% 50% at 70% 30%,
+      rgba(85, 173, 60, 0.1),
+      transparent 70%
+    );
+    animation: opt-score-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes opt-score-pulse {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+  }
+
+  .opt-score-value {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-shadow: 0 0 32px rgba(85, 173, 60, 0.28);
+  }
+
+  .opt-metric {
+    border: 1px solid var(--dash-border);
+    background: rgba(19, 22, 23, 0.85);
+  }
+
+  .opt-progress-track {
+    height: 0.4rem;
+    overflow: hidden;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .opt-progress-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #3d8a2c, #55AD3C, #9BC070);
+    box-shadow: 0 0 12px rgba(85, 173, 60, 0.45);
+    transition: width 400ms ease;
+  }
+
+  .opt-chart-wrap {
+    border: 1px solid var(--dash-border);
+    background:
+      linear-gradient(180deg, rgba(85, 173, 60, 0.04), transparent 40%),
+      var(--dash-card);
+  }
+
+  .opt-pct-badge {
+    font-variant-numeric: tabular-nums;
+    border: 1px solid rgba(85, 173, 60, 0.35);
+    background: rgba(85, 173, 60, 0.1);
+    color: #cfe9c2;
+  }
+  .opt-pct-badge.text-red-400 {
+    border-color: rgba(248, 113, 113, 0.4);
+    background: rgba(248, 113, 113, 0.1);
+    color: #f87171;
+  }
+  .opt-pct-badge.text-brand {
+    border-color: rgba(85, 173, 60, 0.35);
+    background: rgba(85, 173, 60, 0.1);
+    color: #cfe9c2;
+  }
+
+  .opt-analysis-section .compare-plant-table th,
+  .opt-analysis-section .compare-plant-table td {
+    border-color: var(--dash-border);
+  }
+  .opt-analysis-section .compare-plant-table tbody tr + tr {
+    border-top: 1px solid var(--dash-border);
+  }
+  .opt-analysis-section .compare-plant-table th:first-child,
+  .opt-analysis-section .compare-plant-table td:first-child {
+    padding-left: 0;
+    text-align: left;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'optimizar' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="opt-hero mb-6 flex flex-wrap items-start justify-between gap-3 sm:mb-8 sm:gap-4">
+        <div class="opt-hero-glow" aria-hidden="true"></div>
+        <div class="relative">
+          <h1 class="text-2xl font-medium">Optimizar</h1>
+          <p class="mt-1 text-sm text-neutral-400" id="opt-hero-sub">
+            Warm start → CP-SAT. Seguí el score de Kaggle en vivo.
+          </p>
+        </div>
+        <div id="opt-bg-badge" class="relative hidden rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs text-brand">
+          Corriendo en segundo plano
+        </div>
+      </div>
+
+      <!-- Stepper -->
+      <div class="mb-8 flex flex-wrap items-center gap-3 text-sm text-neutral-400">
+        <span class="opt-step-dot is-active" data-step-dot="1">1</span>
+        <span data-step-label="1">Solución</span>
+        <span class="text-neutral-700">/</span>
+        <span class="opt-step-dot" data-step-dot="2">2</span>
+        <span data-step-label="2">Parámetros</span>
+        <span class="text-neutral-700">/</span>
+        <span class="opt-step-dot" data-step-dot="3">3</span>
+        <span data-step-label="3">Progreso</span>
+      </div>
+
+      <!-- STEP 1 -->
+      <section id="opt-step-1" class="space-y-6">
+        <div id="opt-source-panel" class="space-y-4">
+          <div class="flex flex-wrap gap-2">
+            <button type="button"
+                    class="opt-chip rounded-full px-3 py-1.5 text-sm {% if not available_solutions %}is-selected{% endif %}"
+                    data-source="upload">
+              Subir CSV
+            </button>
+            <button type="button"
+                    class="opt-chip rounded-full px-3 py-1.5 text-sm {% if available_solutions %}is-selected{% endif %}"
+                    data-source="library"
+                    {% if not available_solutions %}disabled title="No hay soluciones cargadas"{% endif %}>
+              Soluciones cargadas
+              {% if available_solutions %}
+              <span class="ml-1 text-[10px] opacity-60">{{ available_solutions|length }}</span>
+              {% endif %}
+            </button>
+          </div>
+
+          <div id="opt-source-upload">
+            <div id="opt-dropzone" class="opt-drop dashboard-card flex cursor-pointer flex-col items-center justify-center gap-3 px-6 py-16 text-center">
+              <input id="opt-file" type="file" accept=".csv,text/csv" class="hidden" />
+              <div class="flex h-12 w-12 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand">
+                <i data-feather="upload-cloud" class="h-6 w-6"></i>
+              </div>
+              <div>
+                <p class="text-sm text-neutral-200">Arrastrá un CSV de solución o hacé click para elegir</p>
+                <p class="mt-1 text-xs text-neutral-500">Se valida y mide el score antes de continuar</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="opt-source-library" class="hidden">
+            <div class="dashboard-card space-y-4 p-5">
+              <div>
+                <h2 class="text-sm font-medium text-neutral-100">Warm start desde biblioteca</h2>
+                <p class="mt-1 text-xs text-neutral-500">
+                  Elegí una de las soluciones ya cargadas en el dashboard.
+                </p>
+              </div>
+              {% if available_solutions %}
+              <label class="block">
+                <span class="text-xs text-neutral-500">Solución</span>
+                <select id="opt-library-select" class="opt-num-input mt-1.5">
+                  {% for solution in available_solutions %}
+                  <option value="{{ solution }}" {% if solution == selected_solution %}selected{% endif %}>
+                    {{ solution }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </label>
+              <div class="flex justify-end">
+                <button type="button" id="opt-library-use"
+                        class="rounded bg-brand px-4 py-2 text-sm font-medium text-black hover:bg-brand-dark">
+                  Usar esta solución
+                </button>
+              </div>
+              {% else %}
+              <p class="text-sm text-neutral-400">No hay soluciones cargadas. Subí un CSV o cargá una desde el sidebar.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <p id="opt-analyze-error" class="hidden text-sm text-red-400"></p>
+
+        <div id="opt-metrics" class="hidden space-y-4">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <p class="text-sm text-neutral-200" id="opt-file-label">—</p>
+              <p class="mt-1 text-xs text-neutral-500">
+                <span id="opt-source-badge" class="mr-2 hidden rounded border border-brand/30 bg-brand/10 px-1.5 py-0.5 text-[10px] text-brand"></span>
+                <span id="opt-n-productos">0</span> productos identificados
+              </p>
+            </div>
+            <button type="button" id="opt-change-file" class="text-xs text-neutral-400 underline hover:text-neutral-200">
+              Cambiar solución
+            </button>
+          </div>
+          <div class="dash-metrics-grid">
+            <article class="opt-metric rounded-lg p-4">
+              <p class="text-xs text-neutral-500">Costo total</p>
+              <p class="mt-2 text-lg font-medium" id="m-costo-total">—</p>
+            </article>
+            <article class="opt-metric rounded-lg p-4">
+              <p class="text-xs text-neutral-500">Packaging</p>
+              <p class="mt-2 text-lg font-medium" id="m-packaging">—</p>
+            </article>
+            <article class="opt-metric rounded-lg p-4">
+              <p class="text-xs text-neutral-500">Envío</p>
+              <p class="mt-2 text-lg font-medium" id="m-envio">—</p>
+            </article>
+            <article class="opt-metric rounded-lg p-4">
+              <p class="text-xs text-neutral-500">Cajas únicas</p>
+              <p class="mt-2 text-lg font-medium" id="m-cajas">—</p>
+            </article>
+            <article class="opt-metric rounded-lg p-4">
+              <p class="text-xs text-neutral-500">Score Kaggle</p>
+              <p class="mt-2 text-lg font-medium text-brand" id="m-ahorro">—</p>
+            </article>
+          </div>
+          <div class="flex justify-end">
+            <button type="button" id="opt-next-1" class="rounded bg-brand px-4 py-2 text-sm font-medium text-black hover:bg-brand-dark">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section id="opt-step-2" class="hidden space-y-6">
+        <div class="dashboard-card space-y-6 p-6">
+          <div>
+            <h2 class="text-sm font-medium text-neutral-100">Modelo</h2>
+            <p class="mt-1 text-xs text-neutral-500">
+              Elegí el objetivo del solver. El score Kaggle se calcula siempre como diagnóstico.
+            </p>
+            <div class="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+              {% for m in model_options %}
+              <button type="button"
+                      class="opt-model dashboard-card border border-surface-border p-4 text-left {% if m.id == 'mark16' %}is-selected{% endif %}"
+                      data-model="{{ m.id }}">
+                <p class="text-sm font-medium">{{ m.label }}</p>
+                <p class="mt-1 text-xs text-neutral-500">{{ m.description }}</p>
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-medium text-neutral-100">Grosores permitidos</h2>
+            <p class="mt-1 text-xs text-neutral-500">
+              Tabla ECT de las instrucciones (incluye &lt; 3&nbsp;mm). Solo 3.0 / 4.5 / 5.0 son válidos en Kaggle;
+              el resto es modo análisis (tipo Prometeo).
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2" id="opt-grosor-chips">
+              {% set kaggle_grosores = [3.0, 4.5, 5.0] %}
+              {% for g in available_grosores %}
+              <button type="button"
+                      class="opt-chip rounded-full px-3 py-1.5 text-sm {% if g == 3.0 %}is-selected{% endif %}"
+                      data-grosor="{{ g }}"
+                      title="{% if g in kaggle_grosores %}Válido Kaggle{% else %}Fuera de política Kaggle (instrucciones ECT){% endif %}">
+                {{ g }} mm{% if g not in kaggle_grosores %}<span class="ml-1 text-[10px] opacity-60">*</span>{% endif %}
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-sm font-medium text-neutral-100">Effort</h2>
+            <p class="mt-1 text-xs text-neutral-500">Tiempo máximo de CP-SAT.</p>
+            <div class="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
+              {% for e in effort_options %}
+              <button type="button"
+                      class="opt-effort dashboard-card border border-surface-border p-4 text-left {% if e.id == 'mid' %}is-selected{% endif %}"
+                      data-effort="{{ e.id }}"
+                      data-seconds="{{ e.seconds }}">
+                <p class="text-sm font-medium">{{ e.label }}</p>
+                <p class="mt-1 text-xs text-neutral-500">
+                  {% if e.seconds < 60 %}{{ e.seconds }} seg{% else %}{{ (e.seconds / 60)|int }} min{% endif %}
+                </p>
+              </button>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap items-end justify-between gap-2">
+              <div>
+                <h2 class="text-sm font-medium text-neutral-100">Pallet</h2>
+                <p class="mt-1 text-xs text-neutral-500">
+                  Dimensiones en mm (orientación fija: largo caja→ancho, ancho caja→largo).
+                  Cambiá valores para escenarios what-if; el default es el oficial Kaggle.
+                </p>
+              </div>
+              <button type="button" id="opt-pallet-reset" class="text-xs text-neutral-400 underline hover:text-neutral-200">
+                Restaurar default
+              </button>
+            </div>
+            <div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <label class="block">
+                <span class="text-xs text-neutral-500">Ancho (mm)</span>
+                <input id="opt-pallet-ancho" class="opt-num-input mt-1.5" type="number" min="1" max="5000" step="1"
+                       value="{{ pallet_defaults.ancho_mm }}"
+                       data-default="{{ pallet_defaults.ancho_mm }}" />
+                <span class="mt-1 block text-[11px] text-neutral-600">Eje L de la caja</span>
+              </label>
+              <label class="block">
+                <span class="text-xs text-neutral-500">Largo (mm)</span>
+                <input id="opt-pallet-largo" class="opt-num-input mt-1.5" type="number" min="1" max="5000" step="1"
+                       value="{{ pallet_defaults.largo_mm }}"
+                       data-default="{{ pallet_defaults.largo_mm }}" />
+                <span class="mt-1 block text-[11px] text-neutral-600">Eje W de la caja</span>
+              </label>
+              <label class="block">
+                <span class="text-xs text-neutral-500">Alto máx. (mm)</span>
+                <input id="opt-pallet-alto" class="opt-num-input mt-1.5" type="number" min="1" max="5000" step="1"
+                       value="{{ pallet_defaults.alto_mm }}"
+                       data-default="{{ pallet_defaults.alto_mm }}" />
+                <span class="mt-1 block text-[11px] text-neutral-600">Eje H / capas</span>
+              </label>
+            </div>
+            <p id="opt-pallet-hint" class="mt-2 hidden text-xs text-amber-400/90"></p>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div class="min-w-0 flex-1">
+                <h2 class="text-sm font-medium text-neutral-100">Transformar productos</h2>
+                <p class="mt-1 text-xs text-neutral-500" id="opt-transform-hint">
+                  Permite achicar/estirar ejes manteniendo el volumen (±10%, headspace).
+                  Apagá el toggle si el producto es rígido y no se puede compensar.
+                </p>
+              </div>
+              <button type="button"
+                      id="opt-transform-toggle"
+                      class="opt-toggle is-on"
+                      role="switch"
+                      aria-checked="true"
+                      aria-label="Permitir transformar productos">
+                <span class="opt-toggle-knob" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <button type="button" id="opt-transform-on-card" class="rounded-lg border border-brand/40 bg-brand/10 px-3 py-2.5 text-left">
+                <p class="text-xs font-medium text-brand">Volumen constante</p>
+                <p class="mt-0.5 text-[11px] text-neutral-400">Se puede compensar entre ejes (±10%).</p>
+              </button>
+              <button type="button" id="opt-transform-off-card" class="rounded-lg border border-surface-border px-3 py-2.5 text-left opacity-50">
+                <p class="text-xs font-medium text-neutral-300">Producto rígido</p>
+                <p class="mt-0.5 text-[11px] text-neutral-500">Cada eje de la caja ≥ producto (sin achique).</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button type="button" id="opt-back-2" class="text-sm text-neutral-400 hover:text-neutral-200">Atrás</button>
+          <button type="button" id="opt-start" class="rounded bg-brand px-4 py-2 text-sm font-medium text-black hover:bg-brand-dark">
+            Iniciar optimización
+          </button>
+        </div>
+        <p id="opt-start-error" class="hidden text-sm text-red-400"></p>
+      </section>
+
+      <!-- STEP 3 -->
+      <section id="opt-step-3" class="hidden space-y-6">
+        <div class="opt-score-panel rounded-xl p-6 md:p-8" id="opt-score-panel">
+          <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.18em] text-neutral-500">Ahorro vs baseline</p>
+              <p class="opt-score-value mt-3 text-5xl font-medium md:text-6xl" id="j-score">—</p>
+              <p class="mt-3 text-sm text-neutral-400" id="j-message">Esperando eventos…</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 md:min-w-[22rem]">
+              <article class="opt-metric rounded-lg p-3">
+                <p class="text-[11px] text-neutral-500">Progreso</p>
+                <p class="mt-1 text-sm font-medium" id="j-progress">0%</p>
+                <div class="opt-progress-track mt-2">
+                  <div id="j-progress-bar" class="opt-progress-fill" style="width:0%"></div>
+                </div>
+              </article>
+              <article class="opt-metric rounded-lg p-3">
+                <p class="text-[11px] text-neutral-500">Estado</p>
+                <p class="mt-1 text-sm font-medium" id="j-status">—</p>
+                <p class="mt-1 text-[11px] text-neutral-500" id="j-elapsed">0s</p>
+              </article>
+              <article class="opt-metric rounded-lg p-3">
+                <p class="text-[11px] text-neutral-500">Mejor costo</p>
+                <p class="mt-1 text-sm font-medium tabular-nums" id="j-cost">—</p>
+              </article>
+              <article class="opt-metric rounded-lg p-3">
+                <p class="text-[11px] text-neutral-500">Ahorro $</p>
+                <p class="mt-1 text-sm font-medium tabular-nums text-brand" id="j-ahorro">—</p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="opt-chart-wrap rounded-xl p-5">
+          <div class="mb-3 flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h2 class="text-sm font-medium text-neutral-100">Ahorro en el tiempo</h2>
+              <p class="mt-1 text-xs text-neutral-500" id="opt-chart-caption">
+                Línea sólida = ahorro logrado · punteada = cota CP-SAT (techo)
+              </p>
+            </div>
+            <div class="opt-pct-badge rounded-full px-3 py-1.5 text-sm font-medium" id="j-ahorro-pct" title="Ahorro % sobre baseline (= score Kaggle)">
+              —
+            </div>
+          </div>
+          <div id="opt-chart" class="min-h-[300px]"></div>
+        </div>
+
+        <!-- Análisis post-run (tipo Home), solo al terminar -->
+        <div id="opt-analysis" class="opt-analysis-section hidden space-y-4">
+          <div class="flex items-end justify-between gap-3">
+            <div>
+              <h2 class="text-sm font-medium text-neutral-100">Análisis de la solución</h2>
+              <p class="mt-1 text-xs text-neutral-500" id="opt-analysis-sub">Evaluación al terminar la corrida.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+            <article class="opt-chart-wrap rounded-xl p-5 min-w-0">
+              <h3 class="text-sm font-medium text-neutral-100">Análisis de costo total</h3>
+              <p class="mt-1 flex items-center gap-1.5 text-xs text-neutral-400" id="opt-quota-gap">
+                —
+              </p>
+              <div class="relative mt-4 min-h-[320px] w-full overflow-visible">
+                <div id="opt-cost-analysis-chart" class="relative h-[320px] w-full overflow-visible"></div>
+              </div>
+            </article>
+
+            <article class="opt-chart-wrap rounded-xl p-5 min-w-0">
+              <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0">
+                  <h3 id="opt-plant-metric-title" class="text-sm font-medium text-neutral-100">Costo por planta</h3>
+                  <p id="opt-plant-metric-subtitle" class="mt-1 text-xs text-neutral-400">
+                    Costo total de la solución optimizada.
+                  </p>
+                </div>
+                <label class="sr-only" for="opt-plant-metric-select">Métrica del gráfico</label>
+                <select
+                  id="opt-plant-metric-select"
+                  class="shrink-0 border border-surface-border bg-black px-2.5 py-1.5 text-xs text-neutral-200 focus:border-brand focus:outline-none"
+                >
+                  <option value="demanda">Demanda</option>
+                  <option value="costo" selected>Costo</option>
+                </select>
+              </div>
+              <div id="opt-plant-metric-chart" class="mt-4 min-h-[320px] w-full"></div>
+            </article>
+          </div>
+
+          <div class="opt-chart-wrap overflow-x-auto rounded-xl p-5">
+            <table class="compare-plant-table min-w-full text-sm">
+              <thead class="text-left text-xs uppercase tracking-wide text-neutral-500">
+                <tr>
+                  <th class="px-4 py-3 font-medium">Planta</th>
+                  <th class="px-4 py-3 font-medium text-right">Costo total</th>
+                  <th class="px-4 py-3 font-medium text-right">Costo envío</th>
+                  <th class="px-4 py-3 font-medium text-right">Costo cajas</th>
+                  <th class="px-4 py-3 font-medium text-right">Util. pallet (media)</th>
+                </tr>
+              </thead>
+              <tbody id="opt-plant-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3">
+          <button type="button" id="opt-restart" class="text-sm text-neutral-400 hover:text-neutral-200">Nueva corrida</button>
+          <button type="button" id="opt-save" class="hidden rounded bg-brand px-4 py-2 text-sm font-medium text-black hover:bg-brand-dark">
+            Guardar en soluciones
+          </button>
+        </div>
+        <p id="opt-save-msg" class="hidden text-sm text-brand"></p>
+      </section>
+
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(() => {
+  const money = (v) => (v == null || Number.isNaN(v)) ? "—" : "$" + Number(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const pct = (v, digits = 2) => {
+    if (v == null || Number.isNaN(v)) return "—";
+    const n = Number(v);
+    return `${n >= 0 ? "+" : ""}${n.toFixed(digits)}%`;
+  };
+  const scoreFmt = (v) => pct(v, 5);
+
+  function applyScoreColor(el, value) {
+    el.classList.remove("text-brand", "text-red-400", "text-neutral-400");
+    if (value == null || Number.isNaN(value)) {
+      el.classList.add("text-neutral-400");
+      return;
+    }
+    el.classList.add(Number(value) >= 0 ? "text-brand" : "text-red-400");
+  }
+
+  const MODEL_COPY = {
+    mark16: "Warm start → CP-SAT con demanda. Seguí el score de Kaggle en vivo.",
+    mark17: "Protocolo demand-free (utilización). El score Kaggle es diagnóstico post-hoc.",
+  };
+
+  const state = {
+    step: 1,
+    uploadId: null,
+    filename: null,
+    metrics: null,
+    model: "mark16",
+    allowTransform: true,
+    grosores: new Set([3.0]),
+    effort: "mid",
+    pallet: {
+      ancho_mm: {{ pallet_defaults.ancho_mm }},
+      largo_mm: {{ pallet_defaults.largo_mm }},
+      alto_mm: {{ pallet_defaults.alto_mm }},
+    },
+    jobId: localStorage.getItem("optimizeJobId") || null,
+    pollTimer: null,
+    chart: null,
+    displayedScore: null,
+    scoreAnim: null,
+    baseline: null,
+    chartAhorro: [],
+    chartBound: [],
+    analysisLoadedFor: null,
+    costChart: null,
+    plantChart: null,
+  };
+
+  const els = {
+    step1: document.getElementById("opt-step-1"),
+    step2: document.getElementById("opt-step-2"),
+    step3: document.getElementById("opt-step-3"),
+    sourcePanel: document.getElementById("opt-source-panel"),
+    sourceUpload: document.getElementById("opt-source-upload"),
+    sourceLibrary: document.getElementById("opt-source-library"),
+    librarySelect: document.getElementById("opt-library-select"),
+    libraryUse: document.getElementById("opt-library-use"),
+    drop: document.getElementById("opt-dropzone"),
+    file: document.getElementById("opt-file"),
+    metrics: document.getElementById("opt-metrics"),
+    err1: document.getElementById("opt-analyze-error"),
+    err2: document.getElementById("opt-start-error"),
+    bg: document.getElementById("opt-bg-badge"),
+    scorePanel: document.getElementById("opt-score-panel"),
+  };
+
+  // sourceMode: "upload" | "library"
+  state.sourceMode = {{ ("library" if available_solutions else "upload") | tojson }};
+
+  function setStep(n) {
+    state.step = n;
+    els.step1.classList.toggle("hidden", n !== 1);
+    els.step2.classList.toggle("hidden", n !== 2);
+    els.step3.classList.toggle("hidden", n !== 3);
+    document.querySelectorAll("[data-step-dot]").forEach((dot) => {
+      const s = Number(dot.dataset.stepDot);
+      dot.classList.toggle("is-active", s === n);
+      dot.classList.toggle("is-done", s < n);
+    });
+  }
+
+  function animateScore(target) {
+    const el = document.getElementById("j-score");
+    if (target == null || Number.isNaN(target)) {
+      el.textContent = "—";
+      applyScoreColor(el, null);
+      state.displayedScore = null;
+      return;
+    }
+    applyScoreColor(el, target);
+    const from = state.displayedScore == null ? target : state.displayedScore;
+    if (state.scoreAnim) cancelAnimationFrame(state.scoreAnim);
+    const t0 = performance.now();
+    const dur = 550;
+    const tick = (now) => {
+      const u = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - u, 3);
+      const val = from + (target - from) * eased;
+      el.textContent = scoreFmt(val);
+      if (u < 1) {
+        state.scoreAnim = requestAnimationFrame(tick);
+      } else {
+        state.displayedScore = target;
+        el.textContent = scoreFmt(target);
+        applyScoreColor(el, target);
+        state.scoreAnim = null;
+      }
+    };
+    state.scoreAnim = requestAnimationFrame(tick);
+  }
+
+  function syncSourceUI() {
+    document.querySelectorAll("[data-source]").forEach((btn) => {
+      if (btn.disabled) return;
+      btn.classList.toggle("is-selected", btn.dataset.source === state.sourceMode);
+    });
+    if (els.sourceUpload) {
+      els.sourceUpload.classList.toggle("hidden", state.sourceMode !== "upload");
+    }
+    if (els.sourceLibrary) {
+      els.sourceLibrary.classList.toggle("hidden", state.sourceMode !== "library");
+    }
+  }
+
+  document.querySelectorAll("[data-source]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      state.sourceMode = btn.dataset.source;
+      els.err1.classList.add("hidden");
+      syncSourceUI();
+    });
+  });
+  syncSourceUI();
+
+  function showMetrics(data) {
+    state.uploadId = data.upload_id;
+    state.filename = data.filename;
+    state.metrics = data.metrics;
+    document.getElementById("opt-file-label").textContent = data.filename;
+    document.getElementById("opt-n-productos").textContent = data.n_productos;
+    document.getElementById("m-costo-total").textContent = money(data.metrics.costo_total);
+    document.getElementById("m-packaging").textContent = money(data.metrics.costo_packaging);
+    document.getElementById("m-envio").textContent = money(data.metrics.costo_envio);
+    document.getElementById("m-cajas").textContent = data.metrics.cajas_unicas;
+    document.getElementById("m-ahorro").textContent = pct(data.metrics.ahorro_pct);
+    const badge = document.getElementById("opt-source-badge");
+    if (badge) {
+      if (data.source === "library") {
+        badge.textContent = "Biblioteca";
+        badge.classList.remove("hidden");
+      } else if (data.source === "upload") {
+        badge.textContent = "Upload";
+        badge.classList.remove("hidden");
+      } else {
+        badge.classList.add("hidden");
+      }
+    }
+    els.metrics.classList.remove("hidden");
+    if (els.sourcePanel) els.sourcePanel.classList.add("hidden");
+  }
+
+  async function analyzeFile(file) {
+    els.err1.classList.add("hidden");
+    const fd = new FormData();
+    fd.append("solution_file", file);
+    const res = await fetch("{{ url_for('api_optimize_analyze') }}", { method: "POST", body: fd });
+    const data = await res.json();
+    if (!data.ok) {
+      els.err1.textContent = data.error || "Error al analizar";
+      els.err1.classList.remove("hidden");
+      return;
+    }
+    showMetrics(data);
+  }
+
+  async function analyzeLibrary(solutionName) {
+    els.err1.classList.add("hidden");
+    if (!solutionName) {
+      els.err1.textContent = "Elegí una solución.";
+      els.err1.classList.remove("hidden");
+      return;
+    }
+    if (els.libraryUse) {
+      els.libraryUse.disabled = true;
+      els.libraryUse.textContent = "Analizando…";
+    }
+    try {
+      const res = await fetch("{{ url_for('api_optimize_analyze') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ solution_name: solutionName }),
+      });
+      const data = await res.json();
+      if (!data.ok) {
+        els.err1.textContent = data.error || "Error al analizar";
+        els.err1.classList.remove("hidden");
+        return;
+      }
+      showMetrics(data);
+    } finally {
+      if (els.libraryUse) {
+        els.libraryUse.disabled = false;
+        els.libraryUse.textContent = "Usar esta solución";
+      }
+    }
+  }
+
+  if (els.drop) {
+    els.drop.addEventListener("click", () => els.file.click());
+  }
+  if (els.file) {
+    els.file.addEventListener("change", () => {
+      if (els.file.files[0]) analyzeFile(els.file.files[0]);
+    });
+  }
+  ["dragenter", "dragover"].forEach((ev) => {
+    if (!els.drop) return;
+    els.drop.addEventListener(ev, (e) => {
+      e.preventDefault();
+      els.drop.classList.add("is-dragover");
+    });
+  });
+  ["dragleave", "drop"].forEach((ev) => {
+    if (!els.drop) return;
+    els.drop.addEventListener(ev, (e) => {
+      e.preventDefault();
+      els.drop.classList.remove("is-dragover");
+    });
+  });
+  if (els.drop) {
+    els.drop.addEventListener("drop", (e) => {
+      const f = e.dataTransfer.files[0];
+      if (f) analyzeFile(f);
+    });
+  }
+  if (els.libraryUse) {
+    els.libraryUse.addEventListener("click", () => {
+      const name = els.librarySelect ? els.librarySelect.value : "";
+      analyzeLibrary(name);
+    });
+  }
+
+  document.getElementById("opt-change-file").addEventListener("click", () => {
+    state.uploadId = null;
+    els.metrics.classList.add("hidden");
+    if (els.sourcePanel) els.sourcePanel.classList.remove("hidden");
+    if (els.file) els.file.value = "";
+    els.err1.classList.add("hidden");
+    syncSourceUI();
+  });
+
+  document.getElementById("opt-next-1").addEventListener("click", () => {
+    if (!state.uploadId) return;
+    setStep(2);
+  });
+  document.getElementById("opt-back-2").addEventListener("click", () => setStep(1));
+
+  document.querySelectorAll("[data-grosor]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const g = Number(btn.dataset.grosor);
+      if (state.grosores.has(g)) {
+        if (state.grosores.size === 1) return;
+        state.grosores.delete(g);
+        btn.classList.remove("is-selected");
+      } else {
+        state.grosores.add(g);
+        btn.classList.add("is-selected");
+      }
+    });
+  });
+
+  document.querySelectorAll("[data-effort]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-effort]").forEach((b) => b.classList.remove("is-selected"));
+      btn.classList.add("is-selected");
+      state.effort = btn.dataset.effort;
+    });
+  });
+
+  function syncModelUI() {
+    document.querySelectorAll("[data-model]").forEach((btn) => {
+      btn.classList.toggle("is-selected", btn.dataset.model === state.model);
+    });
+    const sub = document.getElementById("opt-hero-sub");
+    if (sub) sub.textContent = MODEL_COPY[state.model] || MODEL_COPY.mark16;
+  }
+
+  document.querySelectorAll("[data-model]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.model = btn.dataset.model;
+      syncModelUI();
+    });
+  });
+  syncModelUI();
+
+  function syncTransformUI() {
+    const toggle = document.getElementById("opt-transform-toggle");
+    const onCard = document.getElementById("opt-transform-on-card");
+    const offCard = document.getElementById("opt-transform-off-card");
+    const hint = document.getElementById("opt-transform-hint");
+    toggle.classList.toggle("is-on", state.allowTransform);
+    toggle.setAttribute("aria-checked", state.allowTransform ? "true" : "false");
+    onCard.classList.toggle("border-brand/40", state.allowTransform);
+    onCard.classList.toggle("bg-brand/10", state.allowTransform);
+    onCard.classList.toggle("border-surface-border", !state.allowTransform);
+    onCard.classList.toggle("opacity-50", !state.allowTransform);
+    offCard.classList.toggle("border-brand/40", !state.allowTransform);
+    offCard.classList.toggle("bg-brand/10", !state.allowTransform);
+    offCard.classList.toggle("border-surface-border", state.allowTransform);
+    offCard.classList.toggle("opacity-50", state.allowTransform);
+    const onTitle = onCard.querySelector("p");
+    const offTitle = offCard.querySelector("p");
+    if (onTitle) {
+      onTitle.classList.toggle("text-brand", state.allowTransform);
+      onTitle.classList.toggle("text-neutral-300", !state.allowTransform);
+    }
+    if (offTitle) {
+      offTitle.classList.toggle("text-brand", !state.allowTransform);
+      offTitle.classList.toggle("text-neutral-300", state.allowTransform);
+    }
+    hint.textContent = state.allowTransform
+      ? "Permite achicar/estirar ejes manteniendo el volumen (±10%, headspace)."
+      : "Producto rígido: la caja no puede achicar ningún eje bajo el producto.";
+  }
+
+  function setAllowTransform(value) {
+    state.allowTransform = Boolean(value);
+    syncTransformUI();
+  }
+  document.getElementById("opt-transform-toggle").addEventListener("click", () => {
+    setAllowTransform(!state.allowTransform);
+  });
+  document.getElementById("opt-transform-on-card").addEventListener("click", () => setAllowTransform(true));
+  document.getElementById("opt-transform-off-card").addEventListener("click", () => setAllowTransform(false));
+  syncTransformUI();
+
+  const palletInputs = {
+    ancho_mm: document.getElementById("opt-pallet-ancho"),
+    largo_mm: document.getElementById("opt-pallet-largo"),
+    alto_mm: document.getElementById("opt-pallet-alto"),
+  };
+  const palletHint = document.getElementById("opt-pallet-hint");
+
+  function syncPalletFromInputs() {
+    const next = {};
+    let dirty = false;
+    let invalid = false;
+    for (const [key, el] of Object.entries(palletInputs)) {
+      const def = Number(el.dataset.default);
+      const val = Number(el.value);
+      if (!Number.isFinite(val) || val <= 0) {
+        invalid = true;
+        el.classList.add("is-dirty");
+        continue;
+      }
+      next[key] = val;
+      const isDirty = Math.abs(val - def) > 1e-9;
+      el.classList.toggle("is-dirty", isDirty);
+      dirty = dirty || isDirty;
+    }
+    if (!invalid) state.pallet = next;
+    if (invalid) {
+      palletHint.textContent = "Todas las dims deben ser números > 0.";
+      palletHint.classList.remove("hidden");
+    } else if (dirty) {
+      palletHint.textContent =
+        "Escenario what-if: el score no es comparable 1:1 con Kaggle (pallet distinto al oficial).";
+      palletHint.classList.remove("hidden");
+    } else {
+      palletHint.classList.add("hidden");
+    }
+    return !invalid;
+  }
+
+  Object.values(palletInputs).forEach((el) => {
+    el.addEventListener("input", syncPalletFromInputs);
+    el.addEventListener("change", syncPalletFromInputs);
+  });
+  document.getElementById("opt-pallet-reset").addEventListener("click", () => {
+    for (const el of Object.values(palletInputs)) {
+      el.value = el.dataset.default;
+    }
+    syncPalletFromInputs();
+  });
+  syncPalletFromInputs();
+
+  function valueAtTime(series, t) {
+    if (!series || !series.length || t == null || Number.isNaN(t)) return null;
+    // Último punto con x <= t (step / hold).
+    let best = null;
+    for (const p of series) {
+      if (p.x <= t + 1e-9) best = p;
+      else break;
+    }
+    if (best) return best.y;
+    return series[0].y;
+  }
+
+  function fmtAhorroPair(dollars, baseline) {
+    if (dollars == null || Number.isNaN(dollars)) return "—";
+    const pctStr = baseline
+      ? pct((100.0 * Number(dollars)) / Number(baseline), 5)
+      : "—";
+    return `${money(dollars)} · ${pctStr}`;
+  }
+
+  function ensureChart() {
+    if (state.chart) return state.chart;
+    const theme = window.DASHBOARD_THEME || {};
+    const dark = theme.dark || {};
+    const brand = theme.primary || "#55AD3C";
+    const cotaColor = "rgba(207, 233, 194, 0.85)";
+    state.chart = new ApexCharts(document.getElementById("opt-chart"), {
+      chart: {
+        type: "line",
+        height: 300,
+        background: "transparent",
+        toolbar: { show: false },
+        animations: { enabled: true, dynamicAnimation: { speed: 350 } },
+        zoom: { enabled: false },
+      },
+      theme: { mode: "dark" },
+      stroke: {
+        curve: "straight",
+        width: [2.5, 2],
+        dashArray: [0, 6],
+      },
+      colors: [brand, cotaColor],
+      fill: {
+        type: ["gradient", "solid"],
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.28,
+          opacityTo: 0.02,
+          stops: [0, 100],
+        },
+      },
+      dataLabels: { enabled: false },
+      legend: {
+        show: true,
+        position: "top",
+        horizontalAlign: "left",
+        labels: { colors: dark.chartLabel || "#a3a3a3" },
+        markers: { width: 10, height: 3, radius: 0 },
+      },
+      grid: { borderColor: dark.chartGrid || "#2a2f33", strokeDashArray: 3 },
+      markers: { size: 0, hover: { size: 4 } },
+      xaxis: {
+        type: "numeric",
+        title: { text: "Tiempo (s)", style: { color: dark.chartLabel || "#a3a3a3" } },
+        labels: { style: { colors: dark.chartLabel || "#a3a3a3" } },
+      },
+      yaxis: {
+        labels: {
+          style: { colors: dark.chartLabel || "#a3a3a3" },
+          formatter: (v) => "$" + (v / 1e6).toFixed(2) + "M",
+        },
+        title: { text: "Ahorro ($)", style: { color: dark.chartLabel || "#a3a3a3" } },
+      },
+      series: [
+        { name: "Ahorro logrado", type: "area", data: [] },
+        { name: "Cota CP-SAT", type: "line", data: [] },
+      ],
+      tooltip: {
+        theme: "dark",
+        shared: true,
+        intersect: false,
+        custom: ({ dataPointIndex, seriesIndex, w }) => {
+          const s0 = w.config.series[0]?.data || state.chartAhorro || [];
+          const s1 = w.config.series[1]?.data || state.chartBound || [];
+          let t = null;
+          const src = (seriesIndex === 1 ? s1 : s0);
+          if (src[dataPointIndex]) t = Number(src[dataPointIndex].x);
+          if (t == null || Number.isNaN(t)) {
+            // Fallback: leer globals
+            const gx = w.globals.seriesX?.[seriesIndex]?.[dataPointIndex];
+            t = gx != null ? Number(gx) : null;
+          }
+          const ahorro = valueAtTime(state.chartAhorro.length ? state.chartAhorro : s0, t);
+          const cota = valueAtTime(state.chartBound.length ? state.chartBound : s1, t);
+          const baseline = state.baseline;
+          return `
+            <div style="padding:10px 12px;min-width:220px;font-family:inherit;">
+              <div style="font-size:11px;color:#a3a3a3;margin-bottom:8px;">t = ${t == null ? "—" : Number(t).toFixed(1)}s</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span style="width:8px;height:8px;border-radius:9999px;background:${brand};flex-shrink:0;"></span>
+                <div>
+                  <div style="font-size:11px;color:#a3a3a3;">Ahorro logrado</div>
+                  <div style="font-size:13px;font-weight:500;color:#f5f5f5;">${fmtAhorroPair(ahorro, baseline)}</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="width:8px;height:2px;background:${cotaColor};flex-shrink:0;border-top:1px dashed ${cotaColor};"></span>
+                <div>
+                  <div style="font-size:11px;color:#a3a3a3;">Cota CP-SAT</div>
+                  <div style="font-size:13px;font-weight:500;color:#f5f5f5;">${fmtAhorroPair(cota, baseline)}</div>
+                </div>
+              </div>
+            </div>
+          `;
+        },
+      },
+    });
+    state.chart.render();
+    return state.chart;
+  }
+
+  function sanitizeSeries(points) {
+    const cleaned = (points || [])
+      .map((p) => ({ x: Number(p.x), y: Number(p.y) }))
+      .filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= 0)
+      .sort((a, b) => a.x - b.x);
+    const out = [];
+    for (const p of cleaned) {
+      if (out.length && Math.abs(out[out.length - 1].x - p.x) < 1e-9) {
+        out[out.length - 1] = p; // mismo t → quedarse con el último
+        continue;
+      }
+      // Evitar retrocesos en x (causan líneas horizontales a lo ancho).
+      if (out.length && p.x < out[out.length - 1].x) continue;
+      out.push(p);
+    }
+    return out;
+  }
+
+  function buildBoundSeries(boundHistory, ahorroPoints) {
+    const raw = (boundHistory || [])
+      .filter((p) => p.ahorro_cota != null && Number.isFinite(Number(p.ahorro_cota)))
+      .map((p) => ({ x: Number(p.t || 0), y: Number(p.ahorro_cota) }));
+    if (!raw.length) return [];
+
+    // Ignorar cotas demasiado flojas (eje hinchado); mostrar cuando se acercan al ahorro logrado.
+    const achievedMax = ahorroPoints.length
+      ? Math.max(...ahorroPoints.map((p) => p.y))
+      : null;
+    const useful = achievedMax == null
+      ? raw
+      : raw.filter((p) => p.y <= achievedMax * 1.35);
+    return sanitizeSeries(useful);
+  }
+
+  function destroyAnalysisCharts() {
+    if (state.costChart) {
+      state.costChart.destroy();
+      state.costChart = null;
+    }
+    if (state.plantChart) {
+      state.plantChart.destroy();
+      state.plantChart = null;
+    }
+    state.analysisLoadedFor = null;
+    const section = document.getElementById("opt-analysis");
+    if (section) section.classList.add("hidden");
+    const tbody = document.getElementById("opt-plant-table-body");
+    if (tbody) tbody.innerHTML = "";
+  }
+
+  function formatCurrencyHome(value) {
+    const amount = Number(value);
+    if (!Number.isFinite(amount)) return "—";
+    return new Intl.NumberFormat("es-AR", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  }
+
+  function formatAxisMillions(value) {
+    const amount = Number(value);
+    if (!Number.isFinite(amount) || amount === 0) return "0";
+    return `${Math.round(amount / 1_000_000)}M`;
+  }
+
+  function formatVolume(value) {
+    return new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(value);
+  }
+
+  async function renderAnalysisCharts(payload) {
+    const snap = payload.snapshot;
+    const plantCards = payload.plant_cards || [];
+    if (!snap || !window.ApexCharts) return;
+
+    const section = document.getElementById("opt-analysis");
+    section.classList.remove("hidden");
+    document.getElementById("opt-analysis-sub").textContent =
+      payload.solution_name
+        ? `Resultado: ${payload.solution_name}`
+        : "Evaluación al terminar la corrida.";
+
+    const theme = window.DASHBOARD_THEME || {};
+    const dark = theme.dark || {};
+    const colors = {
+      primary: theme.primary || "#55AD3C",
+      secondary: theme.secondary || "#61605F",
+      cpsat: theme.secondary || "#61605F",
+      negative: theme.negative || "#b91c1c",
+    };
+    const chartFont = "Noto Sans, sans-serif";
+    const baseChartOptions = {
+      chart: {
+        fontFamily: chartFont,
+        toolbar: { show: false },
+        background: "transparent",
+      },
+      grid: { borderColor: dark.chartGrid || "#2a2f33", strokeDashArray: 4 },
+      tooltip: { theme: "dark" },
+    };
+    const axisStyle = { fontFamily: chartFont, colors: dark.chartLabel || "#a3a3a3" };
+    const categoryStyle = { fontFamily: chartFont, colors: dark.chartCategory || "#d4d4d4" };
+
+    const envio = Number(snap.costo_envio) || 0;
+    const cajas = Number(snap.costo_packaging) || 0;
+    const total = Number(snap.costo_total) || 0;
+    const cpsatQuota = Number(snap.cpsat_quota) || 0;
+    const costCategories = ["Total", "Envío", "Cajas"];
+    const costLabelAmounts = [total, envio, cajas];
+    const costValues = [envio, cajas, total, cpsatQuota];
+    const costMin = Math.min(0, ...costValues);
+    const costMax = Math.max(...costValues);
+    const costPadding = Math.max((costMax - costMin) * 0.12, costMax * 0.03);
+    const labelHeadroom = Math.max(costMax * 0.06, costPadding * 0.75);
+    const yAxisMax = costMax + costPadding + labelHeadroom;
+
+    const quotaGapPct = Math.abs(Number(snap.diff_cpsat_pct) || 0);
+    const diffCpsat = Number(snap.diff_cpsat) || 0;
+    let totalBarColor = colors.primary;
+    if (quotaGapPct >= 5 && diffCpsat > 0) totalBarColor = colors.negative;
+    else if (quotaGapPct >= 1) totalBarColor = "#f59e0b";
+
+    const gapEl = document.getElementById("opt-quota-gap");
+    const cotaLabel = snap.cota_label || "Cota";
+    gapEl.className = `mt-1 flex items-center gap-1.5 text-xs ${
+      quotaGapPct < 1 ? "text-brand" : quotaGapPct < 5 ? "text-amber-400" : diffCpsat > 0 ? "text-red-400" : "text-brand"
+    }`;
+    gapEl.textContent = `Distribución a un ${quotaGapPct.toFixed(2)}% de la ${cotaLabel.toLowerCase()}`;
+
+    const tbody = document.getElementById("opt-plant-table-body");
+    tbody.innerHTML = plantCards.map((card) => `
+      <tr>
+        <td class="px-4 py-4 font-medium text-neutral-100">${card.label}</td>
+        <td class="px-4 py-4 text-right font-medium text-neutral-100">${formatCurrencyHome(card.costo_total)}</td>
+        <td class="px-4 py-4 text-right font-medium text-neutral-100">${formatCurrencyHome(card.costo_envio)}</td>
+        <td class="px-4 py-4 text-right font-medium text-neutral-100">${formatCurrencyHome(card.costo_packaging)}</td>
+        <td class="px-4 py-4 text-right font-medium text-neutral-100">${Number(card.util_mean_pct || 0).toFixed(1)}%</td>
+      </tr>
+    `).join("");
+
+    if (state.costChart) {
+      state.costChart.destroy();
+      state.costChart = null;
+    }
+    const costChartEl = document.getElementById("opt-cost-analysis-chart");
+    state.costChart = new ApexCharts(costChartEl, {
+      ...baseChartOptions,
+      chart: {
+        ...baseChartOptions.chart,
+        type: "rangeBar",
+        height: 320,
+        width: "100%",
+      },
+      colors: [totalBarColor, colors.secondary, colors.secondary],
+      legend: { show: false },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "62%",
+          distributed: true,
+          rangeBarGroupRows: false,
+        },
+      },
+      dataLabels: { enabled: false },
+      xaxis: {
+        categories: costCategories,
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        labels: { style: categoryStyle },
+      },
+      yaxis: {
+        show: true,
+        min: costMin,
+        max: yAxisMax,
+        forceNiceScale: true,
+        tickAmount: 5,
+        labels: {
+          formatter: (value) => formatAxisMillions(value),
+          style: axisStyle,
+        },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+      },
+      grid: {
+        ...baseChartOptions.grid,
+        padding: { top: 28, left: 12, right: 12 },
+        xaxis: { lines: { show: false } },
+        yaxis: { lines: { show: true } },
+      },
+      annotations: {
+        yaxis: [
+          {
+            y: cpsatQuota,
+            borderColor: colors.cpsat,
+            strokeDashArray: 6,
+            label: {
+              borderColor: "transparent",
+              text: `${cotaLabel}: ${formatCurrencyHome(cpsatQuota)}`,
+              position: "right",
+              offsetX: -4,
+              offsetY: -6,
+              style: {
+                color: colors.cpsat,
+                background: dark.card || "#131617",
+                fontFamily: chartFont,
+                fontSize: "11px",
+                fontWeight: 500,
+                padding: { left: 6, right: 6, top: 2, bottom: 2 },
+              },
+            },
+          },
+        ],
+      },
+      tooltip: {
+        theme: "dark",
+        custom: ({ dataPointIndex }) => {
+          const label = costCategories[dataPointIndex];
+          const value = costLabelAmounts[dataPointIndex] ?? 0;
+          return `<div class="apexcharts-tooltip-title" style="font-family:${chartFont}">${label}</div>
+            <div class="apexcharts-tooltip-series-group active" style="display:flex;padding:4px 10px 6px">
+              <span class="apexcharts-tooltip-text" style="font-family:${chartFont}">${formatCurrencyHome(value)}</span>
+            </div>`;
+        },
+      },
+      series: [
+        {
+          name: "Costo",
+          data: [
+            { x: costCategories[0], y: [0, total] },
+            { x: costCategories[1], y: [0, envio] },
+            { x: costCategories[2], y: [0, cajas] },
+          ],
+        },
+      ],
+    });
+    await state.costChart.render();
+
+    const plantMetricTitle = document.getElementById("opt-plant-metric-title");
+    const plantMetricSubtitle = document.getElementById("opt-plant-metric-subtitle");
+    const plantMetricSelect = document.getElementById("opt-plant-metric-select");
+    const plantMetricEl = document.getElementById("opt-plant-metric-chart");
+
+    const plantMetricModes = {
+      demanda: {
+        title: "Demanda por planta",
+        subtitle: "Volumen anual por planta.",
+        options: {
+          ...baseChartOptions,
+          chart: { ...baseChartOptions.chart, type: "bar", height: 320, width: "100%" },
+          colors: [colors.primary],
+          legend: { show: false },
+          plotOptions: { bar: { horizontal: true, borderRadius: 0, barHeight: "58%" } },
+          dataLabels: {
+            enabled: true,
+            offsetX: 24,
+            style: { fontFamily: chartFont, fontWeight: 500, colors: [dark.dataLabel || "#f5f5f5"] },
+            formatter: (value) => formatVolume(value),
+          },
+          xaxis: { labels: { formatter: (value) => formatVolume(value), style: axisStyle } },
+          yaxis: { labels: { style: categoryStyle } },
+          tooltip: {
+            theme: "dark",
+            y: {
+              formatter: (value, { dataPointIndex }) => {
+                const plant = plantCards[dataPointIndex];
+                const p = plant ? Number(plant.volumen_pct) || 0 : 0;
+                return `${formatVolume(value)} uds/año (${p.toFixed(1)}%)`;
+              },
+            },
+          },
+          series: [{
+            name: "Volumen",
+            data: plantCards.map((card) => ({ x: card.label, y: card.volumen })),
+          }],
+        },
+      },
+      costo: {
+        title: "Costo por planta",
+        subtitle: "Costo total de la solución optimizada.",
+        options: {
+          ...baseChartOptions,
+          chart: { ...baseChartOptions.chart, type: "bar", height: 320, width: "100%" },
+          colors: [colors.primary],
+          legend: { show: false },
+          plotOptions: { bar: { horizontal: true, borderRadius: 0, barHeight: "58%" } },
+          dataLabels: {
+            enabled: true,
+            offsetX: 24,
+            style: { fontFamily: chartFont, fontWeight: 500, colors: [dark.dataLabel || "#f5f5f5"] },
+            formatter: (value) => formatCurrencyHome(value),
+          },
+          xaxis: { labels: { formatter: (value) => formatAxisMillions(value), style: axisStyle } },
+          yaxis: { labels: { style: categoryStyle } },
+          tooltip: { theme: "dark", y: { formatter: (value) => formatCurrencyHome(value) } },
+          series: [{
+            name: "Costo total",
+            data: plantCards.map((card) => ({ x: card.label, y: card.costo_total })),
+          }],
+        },
+      },
+    };
+
+    async function renderPlantMetricChart(mode) {
+      const config = plantMetricModes[mode] || plantMetricModes.costo;
+      if (plantMetricTitle) plantMetricTitle.textContent = config.title;
+      if (plantMetricSubtitle) plantMetricSubtitle.textContent = config.subtitle;
+      if (!plantMetricEl) return;
+      if (state.plantChart) {
+        state.plantChart.destroy();
+        state.plantChart = null;
+      }
+      state.plantChart = new ApexCharts(plantMetricEl, config.options);
+      await state.plantChart.render();
+    }
+
+    // Evitar listeners duplicados al re-renderizar
+    const freshSelect = plantMetricSelect.cloneNode(true);
+    plantMetricSelect.parentNode.replaceChild(freshSelect, plantMetricSelect);
+    freshSelect.addEventListener("change", () => renderPlantMetricChart(freshSelect.value));
+    await renderPlantMetricChart(freshSelect.value || "costo");
+  }
+
+  async function loadAnalysisIfNeeded(job) {
+    if (job.status !== "done" || !state.jobId) return;
+    if (state.analysisLoadedFor === state.jobId) return;
+    state.analysisLoadedFor = state.jobId;
+    try {
+      const res = await fetch(`/api/optimize/jobs/${state.jobId}/analysis`);
+      const data = await res.json();
+      if (!data.ok) {
+        state.analysisLoadedFor = null;
+        return;
+      }
+      await renderAnalysisCharts(data);
+    } catch (_err) {
+      state.analysisLoadedFor = null;
+    }
+  }
+
+  function renderJob(job) {
+    const running = job.status === "running" || job.status === "queued";
+    els.bg.classList.toggle("hidden", !running);
+    els.scorePanel.classList.toggle("is-live", running);
+
+    const modelLabel = job.model_label || (job.model === "mark17" ? "Protocolo" : "Demanda conocida");
+    const geomLabel = job.allow_transform === false ? "rígido" : "volumen";
+    document.getElementById("j-status").textContent =
+      `${job.status} · ${job.phase || ""} · ${modelLabel} · ${geomLabel}`;
+    document.getElementById("j-message").textContent = job.message || "";
+    const chartCaption = document.getElementById("opt-chart-caption");
+    if (chartCaption) {
+      chartCaption.textContent = job.model === "mark17"
+        ? "Línea = ahorro diagnóstico (objetivo del solver es surrogate, sin demanda)"
+        : "Línea sólida = ahorro logrado · punteada = cota CP-SAT (techo)";
+    }
+    document.getElementById("j-progress").textContent = `${Math.round(job.progress_pct || 0)}%`;
+    document.getElementById("j-progress-bar").style.width = `${Math.min(100, job.progress_pct || 0)}%`;
+    document.getElementById("j-cost").textContent = money(job.best_cost);
+    document.getElementById("j-ahorro").textContent = money(job.ahorro);
+    const elapsedShow = Math.round(Number(job.elapsed_s) || 0);
+    const limitShow = Math.round(Number(job.time_limit) || 0);
+    document.getElementById("j-elapsed").textContent = `${elapsedShow}s / ${limitShow}s`;
+
+    let score = job.score;
+    if ((score == null || Number.isNaN(score)) && job.ahorro != null && job.baseline) {
+      score = 100.0 * Number(job.ahorro) / Number(job.baseline);
+    }
+    if ((score == null || Number.isNaN(score)) && job.history && job.history.length) {
+      const last = job.history[job.history.length - 1];
+      score = last.score != null ? last.score : (
+        last.baseline ? 100.0 * Number(last.ahorro) / Number(last.baseline) : null
+      );
+    }
+    animateScore(score);
+
+    const pctEl = document.getElementById("j-ahorro-pct");
+    pctEl.textContent = score == null ? "—" : pct(score, 5);
+    applyScoreColor(pctEl, score);
+    pctEl.title = "Ahorro % sobre baseline";
+
+    const chart = ensureChart();
+    const points = sanitizeSeries(
+      (job.history || []).map((p) => ({
+        x: Number(p.t || 0),
+        y: Number(p.ahorro || 0),
+      }))
+    );
+    const boundPts = buildBoundSeries(job.bound_history, points);
+    state.chartAhorro = points;
+    state.chartBound = boundPts;
+    if (job.baseline != null) state.baseline = Number(job.baseline);
+    else if (points.length && job.history && job.history.length && job.history[0].baseline) {
+      state.baseline = Number(job.history[0].baseline);
+    }
+    const xMax = Math.max(
+      points.length ? points[points.length - 1].x : 0,
+      boundPts.length ? boundPts[boundPts.length - 1].x : 0,
+      1
+    );
+    chart.updateOptions({
+      xaxis: { min: 0, max: xMax },
+    }, false, false);
+    chart.updateSeries([
+      { name: "Ahorro logrado", type: "area", data: points },
+      { name: "Cota CP-SAT", type: "line", data: boundPts },
+    ], false);
+
+    const saveBtn = document.getElementById("opt-save");
+    if (job.status === "done") {
+      saveBtn.classList.remove("hidden");
+      stopPoll();
+      loadAnalysisIfNeeded(job);
+    } else if (job.status === "failed") {
+      saveBtn.classList.add("hidden");
+      destroyAnalysisCharts();
+      stopPoll();
+    } else {
+      destroyAnalysisCharts();
+    }
+  }
+
+  async function pollOnce() {
+    if (!state.jobId) return;
+    const res = await fetch(`/api/optimize/jobs/${state.jobId}`);
+    const data = await res.json();
+    if (!data.ok) {
+      localStorage.removeItem("optimizeJobId");
+      state.jobId = null;
+      stopPoll();
+      return;
+    }
+    renderJob(data.job);
+  }
+
+  function startPoll() {
+    stopPoll();
+    pollOnce();
+    state.pollTimer = setInterval(pollOnce, 1200);
+  }
+
+  function stopPoll() {
+    if (state.pollTimer) {
+      clearInterval(state.pollTimer);
+      state.pollTimer = null;
+    }
+  }
+
+  document.getElementById("opt-start").addEventListener("click", async () => {
+    els.err2.classList.add("hidden");
+    if (!state.uploadId) {
+      els.err2.textContent = "Falta la solución de partida.";
+      els.err2.classList.remove("hidden");
+      return;
+    }
+    if (!syncPalletFromInputs()) {
+      els.err2.textContent = "Revisá las dimensiones del pallet.";
+      els.err2.classList.remove("hidden");
+      return;
+    }
+    const res = await fetch("{{ url_for('api_optimize_start') }}", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        upload_id: state.uploadId,
+        model: state.model,
+        allow_transform: state.allowTransform,
+        effort: state.effort,
+        grosores: Array.from(state.grosores),
+        pallet: state.pallet,
+      }),
+    });
+    const data = await res.json();
+    if (!data.ok) {
+      els.err2.textContent = data.error || "No se pudo iniciar";
+      els.err2.classList.remove("hidden");
+      return;
+    }
+    state.jobId = data.job_id;
+    state.displayedScore = null;
+    destroyAnalysisCharts();
+    localStorage.setItem("optimizeJobId", state.jobId);
+    setStep(3);
+    if (state.chart) {
+      state.chart.destroy();
+      state.chart = null;
+    }
+    document.getElementById("opt-save").classList.add("hidden");
+    document.getElementById("opt-save-msg").classList.add("hidden");
+    document.getElementById("j-score").textContent = "—";
+    document.getElementById("j-ahorro-pct").textContent = "—";
+    startPoll();
+  });
+
+  document.getElementById("opt-restart").addEventListener("click", () => {
+    stopPoll();
+    localStorage.removeItem("optimizeJobId");
+    state.jobId = null;
+    state.uploadId = null;
+    state.displayedScore = null;
+    destroyAnalysisCharts();
+    els.bg.classList.add("hidden");
+    els.scorePanel.classList.remove("is-live");
+    els.metrics.classList.add("hidden");
+    if (els.sourcePanel) els.sourcePanel.classList.remove("hidden");
+    if (els.file) els.file.value = "";
+    els.err1.classList.add("hidden");
+    syncSourceUI();
+    setStep(1);
+  });
+
+  document.getElementById("opt-save").addEventListener("click", async () => {
+    if (!state.jobId) return;
+    const res = await fetch(`/api/optimize/save/${state.jobId}`, { method: "POST" });
+    const data = await res.json();
+    const msg = document.getElementById("opt-save-msg");
+    if (!data.ok) {
+      msg.textContent = data.error || "Error al guardar";
+      msg.classList.remove("hidden", "text-brand");
+      msg.classList.add("text-red-400");
+      return;
+    }
+    msg.textContent = `Guardado como ${data.filename} (solución activa).`;
+    msg.classList.remove("hidden", "text-red-400");
+    msg.classList.add("text-brand");
+  });
+
+  if (state.jobId) {
+    setStep(3);
+    startPoll();
+  }
+
+  if (window.feather) window.feather.replace();
+})();
+</script>
+{% endblock %}

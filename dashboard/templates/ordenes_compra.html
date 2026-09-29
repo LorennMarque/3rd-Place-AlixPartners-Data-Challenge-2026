@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+
+{% block title %}Ordenes de compra — Dashboard{% endblock %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{% endblock %}
+
+{% block body %}
+<div class="dashboard-shell">
+  {% set active_item = 'ordenes_compra' %}
+  {% include '_sidebar.html' %}
+
+  <main class="dashboard-main">
+    {% include "_dashboard_wrap_start.html" %}
+
+      <div class="mb-6 sm:mb-8">
+        <h1 class="text-2xl font-medium">Ordenes de compra</h1>
+        <p class="mt-1 text-sm text-neutral-500">
+          Documentos de compra de cajas e instrucciones de asignación por planta.
+          {% if ordenes and selected_solution %}
+          · Solución: {{ selected_solution }}
+          {% endif %}
+        </p>
+      </div>
+
+      {% if ordenes %}
+      {% set host = "ordenes-charts" %}
+      {% include "_skel_chart_start.html" %}
+      <section class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+        <article class="dashboard-chart-bare">
+          <h2 class="text-sm font-medium text-neutral-900">Productos por categoría</h2>
+          <p class="mt-1 text-xs text-neutral-500">SKUs requeridos en la solución activa</p>
+          <div id="category-chart" class="mt-4 min-h-[320px] w-full"></div>
+        </article>
+
+        <article class="dashboard-chart-bare">
+          <h2 class="text-sm font-medium text-neutral-900">Productos por planta</h2>
+          <p class="mt-1 text-xs text-neutral-500">SKUs con demanda en cada planta</p>
+          <div id="plant-chart" class="mt-4 min-h-[320px] w-full"></div>
+        </article>
+      </section>
+      {% include "_skel_chart_end.html" %}
+
+      <section class="mt-6 border border-neutral-200 bg-white">
+        <div class="border-b border-neutral-200 px-5 py-4">
+          <h2 class="text-sm font-medium text-neutral-900">Documentos por planta</h2>
+          <p class="mt-1 text-xs text-neutral-500">
+            {{ ordenes.summary.n_plantas }} plantas ·
+            {{ ordenes.summary.n_cajas }} tipos de caja ·
+            {{ ordenes.summary.n_productos }} productos
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-neutral-50 text-left text-xs uppercase tracking-wide text-neutral-500">
+              <tr>
+                <th class="px-4 py-3 font-medium">Planta</th>
+                <th class="px-4 py-3 font-medium text-right">Cajas</th>
+                <th class="px-4 py-3 font-medium text-right">SKUs</th>
+                <th class="px-4 py-3 font-medium text-right">Volumen</th>
+                <th class="px-4 py-3 font-medium">Documentos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-100">
+              <tr class="bg-brand-light">
+                <td class="px-4 py-3">
+                  <span class="font-medium text-neutral-900">Todas</span>
+                  <span class="mt-0.5 block text-xs text-neutral-500">
+                    Consolidado de {{ ordenes.summary.n_plantas }} plantas
+                  </span>
+                </td>
+                <td class="px-4 py-3 text-right tabular-nums text-neutral-700">
+                  {{ ordenes.summary.n_cajas }}
+                </td>
+                <td class="px-4 py-3 text-right tabular-nums text-neutral-700">
+                  {{ ordenes.summary.n_productos }}
+                </td>
+                <td class="px-4 py-3 text-right tabular-nums text-neutral-700">
+                  {{ "{:,.0f}".format(ordenes.plants | sum(attribute='volumen_total')) }}
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
+                    <a
+                      class="font-medium text-brand-dark hover:underline"
+                      href="{{ url_for('ordenes_compra_proveedor', download=1) }}"
+                    >
+                      Orden de compra
+                    </a>
+                    <a
+                      class="text-neutral-500 hover:text-neutral-900 hover:underline"
+                      href="{{ url_for('ordenes_compra_asignacion', download=1) }}"
+                    >
+                      Instrucciones
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              {% for plant in ordenes.plants %}
+              <tr class="hover:bg-neutral-50/60">
+                <td class="px-4 py-3 font-medium text-neutral-900">{{ plant.label }}</td>
+                <td class="px-4 py-3 text-right tabular-nums text-neutral-700">{{ plant.n_cajas }}</td>
+                <td class="px-4 py-3 text-right tabular-nums text-neutral-700">{{ plant.n_productos }}</td>
+                <td class="px-4 py-3 text-right tabular-nums text-neutral-700">
+                  {{ "{:,.0f}".format(plant.volumen_total) }}
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
+                    <a
+                      class="font-medium text-brand-dark hover:underline"
+                      href="{{ url_for('ordenes_compra_proveedor', plant_id=plant.id, download=1) }}"
+                    >
+                      Orden de compra
+                    </a>
+                    <a
+                      class="text-neutral-500 hover:text-neutral-900 hover:underline"
+                      href="{{ url_for('ordenes_compra_asignacion', plant_id=plant.id, download=1) }}"
+                    >
+                      Instrucciones
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <script id="ordenes-chart-data" type="application/json">
+        {{ {"category_chart": ordenes.category_chart, "plant_chart": ordenes.plant_chart} | tojson }}
+      </script>
+      {% else %}
+      <section class="border border-neutral-200 bg-white p-8 text-center">
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-500">
+          <i data-feather="shopping-cart" class="h-6 w-6"></i>
+        </div>
+        <p class="mt-4 text-sm text-neutral-600">
+          Seleccioná o cargá una solución para ver las órdenes de compra.
+        </p>
+        {% if selected_solution %}
+        <p class="mt-2 text-xs text-neutral-400">La solución activa no tiene datos disponibles.</p>
+        {% endif %}
+      </section>
+      {% endif %}
+    {% include "_dashboard_wrap_end.html" %}
+  </main>
+</div>
+
+<div
+  id="upload-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/20 p-6"
+  aria-hidden="true"
+>
+  <div class="dashboard-modal-panel w-full max-w-md border p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-medium">Cargar solucion</h2>
+        <p class="mt-1 text-sm text-neutral-500">
+          Se valida el CSV antes de guardarlo en `dashboard/soluciones/`.
+        </p>
+      </div>
+      <button
+        type="button"
+        id="close-upload-modal"
+        class="text-neutral-500 hover:text-neutral-900"
+        aria-label="Cerrar modal"
+      >
+        ×
+      </button>
+    </div>
+
+    <form action="{{ url_for('upload_solution') }}" method="post" enctype="multipart/form-data" class="mt-6 space-y-4">
+      <input
+        type="file"
+        name="solution_file"
+        accept=".csv"
+        class="w-full border border-neutral-300 px-3 py-2 text-sm text-neutral-700"
+        required
+      />
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          id="cancel-upload-modal"
+          class="border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 px-4 py-2 text-sm text-white"
+        >
+          Subir solucion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const uploadModal = document.getElementById("upload-modal");
+    const closeUpload = document.getElementById("close-upload-modal");
+    const cancelUpload = document.getElementById("cancel-upload-modal");
+
+    function openUploadModal() {
+      uploadModal.classList.remove("hidden");
+      uploadModal.classList.add("flex");
+      uploadModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeUploadModal() {
+      uploadModal.classList.add("hidden");
+      uploadModal.classList.remove("flex");
+      uploadModal.setAttribute("aria-hidden", "true");
+    }
+
+    window.addEventListener("dashboard:open-upload", openUploadModal);
+    closeUpload?.addEventListener("click", closeUploadModal);
+    cancelUpload?.addEventListener("click", closeUploadModal);
+    uploadModal?.addEventListener("click", (event) => {
+      if (event.target === uploadModal) closeUploadModal();
+    });
+  })();
+
+  window.dashboardPageInit = async function dashboardPageInit() {
+    window.dashboardDestroyCharts?.();
+
+    const dataNode = document.getElementById("ordenes-chart-data");
+    if (!dataNode || !window.ApexCharts) {
+      window.dashboardRevealHost?.("ordenes-charts");
+      return;
+    }
+
+    const theme = window.DASHBOARD_THEME;
+    const dark = theme.dark;
+    const chartData = JSON.parse(dataNode.textContent);
+    const categoryStyle = {
+      fontSize: "11px",
+      fontFamily: "Noto Sans, sans-serif",
+      colors: dark.chartLabel,
+    };
+
+    const categoryLabels = chartData.category_chart.map((item) => item.label);
+    const categoryValues = chartData.category_chart.map((item) => item.n_productos);
+    const plantLabels = chartData.plant_chart.map((item) => item.label);
+    const plantValues = chartData.plant_chart.map((item) => item.n_productos);
+
+    const baseBarOptions = {
+      chart: {
+        type: "bar",
+        height: 320,
+        toolbar: { show: false },
+        fontFamily: "Noto Sans, sans-serif",
+        background: "transparent",
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 2,
+          columnWidth: "58%",
+        },
+      },
+      dataLabels: { enabled: false },
+      grid: {
+        borderColor: dark.chartGrid,
+        strokeDashArray: 4,
+      },
+      colors: [theme.primary],
+      xaxis: {
+        labels: {
+          style: categoryStyle,
+          rotate: -35,
+          rotateAlways: categoryLabels.length > 4,
+          trim: true,
+        },
+      },
+      yaxis: {
+        labels: { style: categoryStyle },
+        title: {
+          text: "SKUs",
+          style: { ...categoryStyle, fontWeight: 500 },
+        },
+      },
+      tooltip: {
+        theme: "light",
+        y: {
+          formatter: (value) => `${value} productos`,
+        },
+      },
+    };
+
+    const categoryChart = new ApexCharts(document.querySelector("#category-chart"), {
+      ...baseBarOptions,
+      series: [{ name: "Productos", data: categoryValues }],
+      xaxis: {
+        ...baseBarOptions.xaxis,
+        categories: categoryLabels,
+        labels: {
+          ...baseBarOptions.xaxis.labels,
+          rotateAlways: categoryLabels.length > 4,
+        },
+      },
+    });
+    window.dashboardCharts.push(categoryChart);
+
+    const plantChart = new ApexCharts(document.querySelector("#plant-chart"), {
+      ...baseBarOptions,
+      series: [{ name: "Productos", data: plantValues }],
+      xaxis: {
+        ...baseBarOptions.xaxis,
+        categories: plantLabels,
+        labels: {
+          ...baseBarOptions.xaxis.labels,
+          rotate: 0,
+          rotateAlways: false,
+        },
+      },
+    });
+    window.dashboardCharts.push(plantChart);
+
+    await Promise.all([categoryChart.render(), plantChart.render()]);
+    window.dashboardRevealHost?.("ordenes-charts");
+  };
+
+  window.dashboardCharts = window.dashboardCharts || [];
+  window.dashboardDestroyCharts =
+    window.dashboardDestroyCharts ||
+    function dashboardDestroyCharts() {
+      window.dashboardCharts.forEach((chart) => chart?.destroy?.());
+      window.dashboardCharts = [];
+    };
+
+  window.dashboardPageInit();
+</script>
+{% endblock %}

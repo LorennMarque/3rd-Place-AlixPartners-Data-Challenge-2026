@@ -1,0 +1,428 @@
+codigo_producto,es_caja_nueva,box_id_original,box_id_asignado,mismo_box_id,n_usuarios_caja_original,caja_era_exclusiva,categoria,subcategoria,tipo_proyecto,ingrediente_forma,tamaño_corte
+BR0001,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0002,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0003,False,3.0x400.0x300.0x179.4,3.0x400.0x277.27x180.0,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0004,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0005,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0006,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0007,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0008,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0009,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0010,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0011,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0012,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0013,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0014,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x244.29,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0015,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x244.29,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0016,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x244.29,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0017,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0018,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0019,False,3.0x399.0x261.0x276.0,3.0x400.0x277.27x256.0,False,4,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0020,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0021,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0022,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0023,False,3.0x400.0x240.0x196.42,3.0x400.0x240.0x196.42,True,4,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0024,False,3.0x400.0x277.27x256.0,3.0x400.0x266.63x256.0,False,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0025,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Medio
+BR0026,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Medio
+BR0027,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Medio
+BR0028,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Medio
+BR0029,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Grueso
+BR0030,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Bastones clasicos,Bastones clasicos - Mayordomo,Forma estable,Gajos de brocoli,Forma
+BR0031,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Medio
+BR0032,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Grueso
+BR0033,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Medio
+BR0034,False,3.0x400.0x240.0x196.42,3.0x400.0x240.0x196.42,True,4,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0035,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Mayordomo,Estacional,Bastones rectos de brocoli,Corte steak
+BR0036,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0037,False,3.0x400.0x277.27x256.0,3.0x400.0x266.63x256.0,False,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0038,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0039,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0040,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0041,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0042,False,3.0x400.0x277.27x200.0,3.0x400.0x267.7x199.61,False,12,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0043,False,3.0x400.0x240.0x159.19,3.0x400.0x240.0x159.19,True,6,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Tortitas de brocoli,Forma
+BR0044,False,3.0x400.0x240.0x159.19,3.0x400.0x240.0x159.19,True,6,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Tortitas de brocoli,Forma
+BR0045,False,3.0x400.0x199.61x142.81,3.0x400.0x199.61x142.81,True,2,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Rosti de brocoli,Forma
+BR0046,False,3.0x400.0x240.0x159.19,3.0x400.0x240.0x159.19,True,6,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Rosti de brocoli,Forma
+BR0047,False,3.0x400.0x240.0x159.19,3.0x400.0x240.0x159.19,True,6,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Rosti de brocoli,Forma
+BR0048,False,3.0x400.0x274.08x225.0,3.0x400.0x240.0x254.93,False,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0049,False,3.0x400.0x240.0x265.57,3.0x400.0x240.0x265.57,True,5,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0050,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Rodajas de brocoli,Forma
+BR0051,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x244.29,False,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Rodajas de brocoli,Forma
+BR0052,False,3.0x400.0x240.0x254.93,3.0x400.0x240.0x254.93,True,5,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Forma estable,Brocoli zigzag,Forma
+BR0053,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0054,False,3.0x400.0x240.0x265.57,3.0x400.0x240.0x265.57,True,5,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0055,False,3.0x400.0x240.0x254.93,3.0x400.0x240.0x254.93,True,5,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0056,False,3.0x400.0x240.0x254.93,3.0x400.0x240.0x254.93,True,5,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0057,False,3.0x400.0x274.08x225.0,3.0x400.0x240.0x244.29,False,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0058,False,3.0x400.0x199.61x142.81,3.0x400.0x199.61x142.81,True,2,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Croquetas de brocoli,Forma
+BR0059,False,3.0x400.0x240.0x265.57,3.0x400.0x240.0x265.57,True,5,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Croquetas de brocoli,Forma
+BR0060,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x244.29,False,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Forma estable,Brocoli zigzag,Forma
+BR0061,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x244.29,False,12,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0062,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x244.29,False,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0063,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x244.29,False,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0064,False,3.0x400.0x240.0x265.57,3.0x400.0x240.0x265.57,True,5,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Croquetas de brocoli,Forma
+BR0065,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0066,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0067,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0068,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x212.38,False,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0069,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0070,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0071,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0072,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0073,False,3.0x400.0x300.0x179.4,3.0x400.0x277.27x180.0,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0074,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0075,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0076,False,3.0x400.0x277.27x163.63,3.0x400.0x277.27x163.63,True,6,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso crema,Forma
+BR0077,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0078,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0079,False,3.0x400.0x277.27x256.0,3.0x400.0x277.27x256.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0080,False,3.0x399.0x261.0x276.0,3.0x399.0x261.0x276.0,True,4,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0081,False,3.0x400.0x277.27x298.55,3.0x400.0x277.27x298.55,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0082,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0083,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0084,False,3.0x400.0x277.27x256.0,3.0x400.0x277.27x256.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0085,False,3.0x399.0x261.0x276.0,3.0x399.0x261.0x276.0,True,4,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0086,False,3.0x400.0x240.0x244.29,3.0x400.0x240.0x244.29,True,5,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0087,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0088,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0089,False,3.0x400.0x266.63x256.0,3.0x400.0x240.0x254.93,False,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Corte rustico de brocoli,Forma
+BR0090,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0091,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0092,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0092XL,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0093,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0094,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0095,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0096,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0097,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0098,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Corte steak
+BR0099,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Corte steak
+BR0100,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0101,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0102,False,3.0x394.0x294.0x195.0,3.0x394.0x294.0x195.0,True,3,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0103,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0104,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0105,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0106,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones extra crocantes,Bastones extra crocantes - Atelier Frites,Estacional,Bastones rectos de brocoli,Grueso
+BR0107,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0108,False,3.0x397.0x298.0x322.0,3.0x397.0x298.0x322.0,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Brocoli en rejilla,Forma
+BR0109,False,3.0x397.0x298.0x322.0,3.0x397.0x298.0x322.0,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0110,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0111,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0112,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Corte steak
+BR0113,False,3.0x400.0x300.0x300.0,3.0x400.0x277.27x298.55,False,26,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Grueso
+BR0114,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Tortitas de brocoli,Forma
+BR0115,False,3.0x400.0x277.27x298.55,3.0x400.0x277.27x298.55,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0116,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0117,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0118,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0119,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0120,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x212.38,False,32,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Rosti de brocoli,Forma
+BR0121,False,3.0x400.0x300.0x342.17,3.0x400.0x300.0x342.17,True,2,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0122,False,3.0x400.0x300.0x376.21,3.0x400.0x300.0x376.21,True,2,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0123,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x271.95,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0124,False,3.0x400.0x300.0x376.21,3.0x400.0x300.0x376.21,True,2,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0125,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0126,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x244.29,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0127,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0128,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Corte steak
+BR0129,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0130,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0131,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0132,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x248.55,True,12,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Croquetas de brocoli,Forma
+BR0133,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x248.55,True,12,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Croquetas de brocoli,Forma
+BR0134,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0135,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0136,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x271.95,False,26,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0136XL,False,3.0x400.0x300.0x300.0,3.0x400.0x277.27x298.55,False,26,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0137,False,3.0x400.0x277.27x298.55,3.0x400.0x277.27x298.55,True,7,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0138,False,3.0x400.0x240.0x159.19,3.0x400.0x240.0x159.19,True,6,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Rosti de brocoli,Forma
+BR0139,False,3.0x400.0x300.0x288.97,3.0x400.0x300.0x288.97,True,4,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Rodajas de brocoli,Forma
+BR0140,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x234.72,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0141,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x234.72,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0142,False,3.0x400.0x300.0x342.17,3.0x400.0x269.82x344.29,False,2,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0143,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0144,False,3.0x400.0x300.0x234.72,3.0x400.0x274.08x225.0,False,10,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0145,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0146,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Corte steak
+BR0147,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0148,False,3.0x400.0x300.0x200.0,3.0x394.0x294.0x195.0,False,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0149,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0150,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x190.04,False,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0151,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0152,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0153,False,3.0x400.0x300.0x244.29,3.0x400.0x300.0x234.72,False,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0154,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0155,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Corte rustico de brocoli,Forma
+BR0156,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0157,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0158,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0159,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0160,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0161,False,3.0x400.0x300.0x200.0,3.0x394.0x294.0x195.0,False,25,False,Brocoli especial,Brocoli especial - Bastones Especiales,Estacional,Bastones rectos de brocoli,Corte steak
+BR0162,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Tortitas de brocoli,Forma
+BR0163,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x212.38,False,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0164,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0165,False,3.0x400.0x300.0x200.0,3.0x394.0x294.0x195.0,False,25,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Mini tortitas de brocoli,Forma
+BR0166,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con mozzarella,Forma
+BR0167,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso cheddar,Forma
+BR0168,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0169,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Rosti de brocoli,Forma
+BR0170,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso cheddar,Forma
+BR0171,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0172,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0173,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0174,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0175,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0176,False,3.0x400.0x277.27x163.63,3.0x400.0x277.27x163.63,True,6,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso cheddar,Forma
+BR0177,False,3.0x400.0x277.27x163.63,3.0x400.0x277.27x163.63,True,6,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con mozzarella,Forma
+BR0178,False,3.0x400.0x271.95x163.63,3.0x400.0x271.95x163.63,True,2,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso cheddar,Forma
+BR0179,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso suizo,Forma
+BR0180,False,3.0x400.0x277.27x163.63,3.0x400.0x277.27x163.63,True,6,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso crema,Forma
+BR0181,False,3.0x400.0x277.27x163.63,3.0x400.0x277.27x163.63,True,6,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con queso cheddar,Forma
+BR0182,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Brocoli especial,Brocoli especial - Bastones Especiales,Estacional,Bastones rectos de brocoli,Corte steak
+BR0183,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Corte steak
+BR0184,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Cielo,Estacional,Bastones rectos de brocoli,Medio
+BR0185,False,3.0x400.0x277.27x298.55,3.0x400.0x269.82x300.0,False,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0186,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Mix crujiente de brocoli,Forma
+BR0187,False,3.0x400.0x269.82x300.0,3.0x400.0x269.82x300.0,True,6,False,Bastones clasicos,Bastones clasicos - Cielo,Estacional,Bastones rectos de brocoli,Medio
+BR0188,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Brocoli especial,Brocoli especial - Bastones Especiales,Estacional,Bastones rectos de brocoli,Corte steak
+BR0189,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Corte rustico de brocoli,Forma
+BR0190,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Corte rustico de brocoli,Forma
+BR0191,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0192,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0193,False,3.0x400.0x269.82x300.0,3.0x400.0x269.82x300.0,True,6,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0194,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Brocoli especial,Brocoli especial - Bastones Especiales,Estacional,Bastones rectos de brocoli,Fino
+BR0195,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0196,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0197,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0198,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0199,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0200,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0201,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0202,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0203,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Estacional,Bastones rectos de brocoli,Medio
+BR0204,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Estacional,Bastones rectos de brocoli,Fino
+BR0205,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Estacional,Bastones rectos de brocoli,Fino
+BR0206,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Estacional,Bastones rectos de brocoli,Medio
+BR0207,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Estacional,Bastones rectos de brocoli,Medio
+BR0208,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Estacional,Bastones rectos de brocoli,Medio
+BR0209,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Grueso
+BR0209XL,False,3.0x400.0x300.0x200.0,3.0x400.0x277.27x200.0,False,25,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Grueso
+BR0210,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Grueso
+BR0211,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Grueso
+BR0212,False,3.0x400.0x291.1x360.0,3.0x400.0x291.1x360.0,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0213,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0214,False,3.0x394.0x294.0x195.0,3.0x394.0x294.0x195.0,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Forma
+BR0215,False,3.0x394.0x294.0x195.0,3.0x394.0x294.0x195.0,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0216,False,3.0x400.0x277.27x163.63,3.0x400.0x277.27x163.63,True,6,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0217,False,3.0x400.0x300.0x174.08,3.0x400.0x300.0x174.08,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0218,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Grueso
+BR0219,False,3.0x400.0x300.0x174.08,3.0x400.0x300.0x174.08,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Tiras para dip de brocoli,Forma
+BR0220,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Espirales de brocoli,Forma
+BR0221,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0222,False,3.0x400.0x277.27x200.0,3.0x400.0x267.7x199.61,False,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0223,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0224,False,3.0x400.0x269.82x150.0,3.0x400.0x269.82x150.0,True,2,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0225,False,3.0x400.0x269.82x150.0,3.0x400.0x269.82x150.0,True,2,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Corte rustico de brocoli,Forma
+BR0226,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0227,False,3.0x400.0x240.0x196.42,3.0x400.0x240.0x196.42,True,4,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0228,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0229,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0230,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0231,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0232,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0233,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0234,False,3.0x400.0x277.27x180.0,3.0x400.0x277.27x180.0,True,8,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0235,False,3.0x400.0x277.27x256.0,3.0x400.0x277.27x256.0,True,8,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Tortitas de brocoli,Forma
+BR0236,False,3.0x400.0x277.27x256.0,3.0x400.0x277.27x256.0,True,8,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Rosti de brocoli,Forma
+BR0237,False,3.0x400.0x300.0x244.29,3.0x400.0x300.0x234.72,False,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli ondulado,Forma
+BR0238,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0239,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0240,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0241,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x244.29,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0242,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Rodajas de brocoli,Forma
+BR0243,False,3.0x400.0x277.27x298.55,3.0x400.0x277.27x298.55,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0244,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0245,False,3.0x400.0x240.0x254.93,3.0x400.0x240.0x244.29,False,5,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Rosti de brocoli,Forma
+BR0246,False,3.0x400.0x240.0x254.93,3.0x400.0x240.0x254.93,True,5,False,Snacks y aperitivos,Snacks y aperitivos - Base Brocoli,Forma estable,Bocaditos inflados de brocoli,Forma
+BR0247,False,3.0x400.0x277.27x298.55,3.0x400.0x277.27x298.55,True,7,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0248,False,3.0x400.0x269.82x344.29,3.0x400.0x269.82x344.29,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0249,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0250,False,3.0x400.0x300.0x288.97,3.0x400.0x300.0x288.97,True,4,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0251,False,3.0x400.0x277.27x315.57,3.0x400.0x277.27x315.57,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0252,False,3.0x400.0x277.27x315.57,3.0x400.0x277.27x315.57,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0253,False,3.0x400.0x269.82x344.29,3.0x400.0x269.82x344.29,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0254,False,3.0x400.0x269.82x344.29,3.0x400.0x269.82x344.29,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0255,False,3.0x400.0x291.1x360.0,3.0x400.0x291.1x360.0,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0256,False,3.0x400.0x291.1x360.0,3.0x400.0x291.1x360.0,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0257,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0258,False,3.0x400.0x300.0x288.97,3.0x400.0x300.0x288.97,True,4,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0259,False,3.0x400.0x266.63x256.0,3.0x400.0x240.0x265.57,False,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Corte rustico de brocoli,Forma
+BR0260,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Estacional,Bastones rectos de brocoli,Medio
+BR0261,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0262,False,3.0x400.0x277.27x200.0,3.0x400.0x267.7x199.61,False,12,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0263,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0264,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0265,False,3.0x400.0x240.0x196.42,3.0x400.0x240.0x196.42,True,4,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0266,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0267,False,3.0x400.0x277.27x298.55,3.0x400.0x277.27x298.55,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0268,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0269,False,3.0x400.0x300.0x200.0,3.0x400.0x277.27x200.0,False,25,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0270,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0271,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0272,False,3.0x400.0x300.0x257.14,3.0x400.0x277.27x256.0,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0273,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0274,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0275,False,3.0x400.0x300.0x174.08,3.0x400.0x277.27x180.0,False,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0276,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0277,False,3.0x400.0x300.0x300.0,3.0x400.0x277.27x298.55,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0278,False,3.0x400.0x300.0x300.0,3.0x400.0x277.27x298.55,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0279,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0280,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0281,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Tortitas de brocoli,Forma
+BR0282,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0283,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0284,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0285,False,3.0x400.0x300.0x179.4,3.0x400.0x277.27x180.0,False,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0286,False,3.0x400.0x300.0x179.4,3.0x400.0x267.7x199.61,False,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0287,False,3.0x400.0x300.0x300.0,3.0x400.0x277.27x298.55,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0288,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Guarniciones,Guarniciones - Pure,Co-produccion,Pure de brocoli,Forma
+BR0289,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0290,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Brocoli en rejilla,Forma
+BR0291,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0292,False,3.0x400.0x300.0x288.97,3.0x400.0x300.0x288.97,True,4,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0293,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0294,False,3.0x400.0x300.0x190.04,3.0x400.0x300.0x190.04,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0295,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0296,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0297,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0298,False,3.0x400.0x300.0x150.0,3.0x400.0x300.0x150.0,True,7,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0299,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0300,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0301,False,3.0x400.0x266.63x256.0,3.0x400.0x240.0x265.57,False,31,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0302,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0303,False,3.0x400.0x240.0x159.19,3.0x400.0x240.0x159.19,True,6,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Rosti de brocoli,Forma
+BR0304,False,3.0x400.0x271.95x163.63,3.0x400.0x271.95x163.63,True,2,False,Snacks y aperitivos,Snacks y aperitivos - Queso,Co-produccion,Bocados de brocoli con mozzarella,Forma
+BR0305,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0306,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0307,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0308,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Fino
+BR0309,False,3.0x400.0x300.0x179.4,3.0x400.0x277.27x180.0,False,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0310,False,3.0x400.0x269.82x300.0,3.0x400.0x269.82x300.0,True,6,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0310XL,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0311,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0312,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0313,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Co-produccion,Aros de brocoli,Forma
+BR0314,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0314XL,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0315,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0316,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0317,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0318,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0319,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Grueso
+BR0320,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0321,False,3.0x400.0x266.63x256.0,3.0x400.0x240.0x265.57,False,31,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0322,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0323,False,3.0x400.0x300.0x244.29,3.0x400.0x300.0x244.29,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0324,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0325,False,3.0x400.0x277.27x256.0,3.0x400.0x277.27x256.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0326,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0327,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0328,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0329,False,3.0x400.0x240.0x244.29,3.0x400.0x240.0x244.29,True,5,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0330,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0331,False,3.0x400.0x240.0x244.29,3.0x400.0x240.0x244.29,True,5,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0332,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0333,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0334,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0335,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0336,False,3.0x400.0x300.0x200.0,3.0x400.0x277.27x200.0,False,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0337,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0338,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0339,False,3.0x400.0x266.63x256.0,3.0x400.0x240.0x265.57,False,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0340,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0340XL,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0341,False,3.0x400.0x240.0x233.65,3.0x400.0x240.0x233.65,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0342,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0343,False,3.0x400.0x277.27x315.57,3.0x400.0x277.27x315.57,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0344,False,3.0x400.0x269.82x300.0,3.0x400.0x269.82x300.0,True,6,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0345,False,3.0x397.0x298.0x322.0,3.0x397.0x298.0x322.0,True,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0346,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x234.72,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0347,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x234.72,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0348,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0349,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0350,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Tortitas de brocoli,Forma
+BR0351,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Guarniciones,Guarniciones - Tortitas,Forma estable,Tortitas de brocoli,Forma
+BR0352,False,3.0x400.0x269.82x300.0,3.0x400.0x269.82x300.0,True,6,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0353,False,3.0x400.0x240.0x265.57,3.0x400.0x240.0x265.57,True,5,False,Guarniciones,Guarniciones - Legumes Croquetas,Forma estable,Croquetas de brocoli,Forma
+BR0354,False,3.0x399.0x261.0x276.0,3.0x399.0x261.0x276.0,True,4,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0355,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0356,False,3.0x400.0x277.27x256.0,3.0x400.0x277.27x256.0,True,8,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0357,False,3.0x400.0x240.0x244.29,3.0x400.0x240.0x244.29,True,5,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0358,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0359,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x244.29,False,12,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Forma estable,Brocoli zigzag,Forma
+BR0360,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0361,False,3.0x400.0x300.0x163.44,3.0x400.0x300.0x163.44,True,15,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0362,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0363,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0364,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0365,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Grueso
+BR0366,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0367,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0368,False,3.0x400.0x300.0x190.04,3.0x400.0x277.27x200.0,False,3,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0369,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Espirales de brocoli,Forma
+BR0370,False,3.0x400.0x300.0x234.72,3.0x400.0x300.0x234.72,True,10,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0371,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0372,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0373,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0374,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Grueso
+BR0375,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Corte steak
+BR0376,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0377,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli zigzag,Forma
+BR0378,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Fino
+BR0379,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Fino
+BR0380,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Fino
+BR0381,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0382,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0383,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0384,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0385,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0386,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Fino
+BR0387,False,3.0x400.0x300.0x200.0,3.0x400.0x300.0x200.0,True,25,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0388,False,3.0x400.0x240.0x244.29,3.0x400.0x240.0x244.29,True,5,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0389,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Grado B,Estacional,Bastones rectos de brocoli,Medio
+BR0390,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0391,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0392,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0393,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0394,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Forma estable,Gajos de brocoli,Forma
+BR0395,False,3.0x400.0x267.7x199.61,3.0x400.0x267.7x199.61,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0396,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x212.38,False,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0397,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0398,False,3.0x400.0x300.0x225.0,3.0x400.0x274.08x225.0,False,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0399,False,3.0x400.0x300.0x300.0,3.0x400.0x277.27x315.57,False,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0400,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x288.97,False,26,False,Bastones clasicos,Bastones clasicos - Legumes Frites,Estacional,Bastones rectos de brocoli,Medio
+BR0401,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0402,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x174.08,False,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Gajos de brocoli,Forma
+BR0403,False,3.0x400.0x269.82x300.0,3.0x400.0x269.82x300.0,True,6,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Fino
+BR0404,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x248.55,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0405,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Guarniciones,Guarniciones - Otros,Estacional,Bastones rectos de brocoli,Medio
+BR0406,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0407,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x257.14,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Espirales de brocoli,Forma
+BR0408,False,3.0x400.0x300.0x300.0,3.0x400.0x300.0x300.0,True,26,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0409,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x248.55,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Estacional,Bastones rectos de brocoli,Medio
+BR0410,False,3.0x400.0x300.0x271.95,3.0x400.0x300.0x271.95,True,18,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Brocoli en rejilla,Forma
+BR0411,False,3.0x400.0x300.0x212.38,3.0x400.0x300.0x212.38,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Mix crujiente de brocoli,Forma
+BR0412,False,3.0x400.0x300.0x225.0,3.0x400.0x300.0x225.0,True,32,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0413,False,3.0x400.0x300.0x257.14,3.0x400.0x300.0x234.72,False,36,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Fino
+BR0414,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0415,False,3.0x400.0x266.63x256.0,3.0x400.0x266.63x256.0,True,31,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Dippers de brocoli,Forma
+BR0416,False,3.0x400.0x300.0x179.4,3.0x400.0x300.0x179.4,True,36,False,Guarniciones,Guarniciones - Cubos,Forma estable,Cubos de brocoli,Forma
+BR0417,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x248.55,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Mix crujiente de brocoli,Forma
+BR0418,False,3.0x400.0x240.0x248.55,3.0x400.0x240.0x248.55,True,12,False,Bastones clasicos,Bastones clasicos - Sigilo,Forma estable,Mix crujiente de brocoli,Forma
+BR0419,False,3.0x400.0x300.0x190.04,3.0x400.0x300.0x190.04,True,3,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Corte steak
+BR0420,False,3.0x400.0x277.27x200.0,3.0x400.0x277.27x200.0,True,12,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio
+BR0421,False,3.0x400.0x274.08x225.0,3.0x400.0x274.08x225.0,True,27,False,Bastones clasicos,Bastones clasicos - Reserva Privada,Estacional,Bastones rectos de brocoli,Medio

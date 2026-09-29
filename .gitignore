@@ -1,0 +1,40 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# OS / secrets
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Run logs and scratch
+*.log
+*.out
+pd
+notebooks/*_files/
+
+# Project-specific
+_archive/
+dashboard/soluciones/.optimize_uploads/
+
+# Legacy experiment paths (may still exist outside _archive)
+cantidadtos_mark2/*
+mark7_candidatos/
+mark8_candidatos/
+prometeo_v2_candidatos/
+prometeo_tests/
+outputs/mark89_sweep/
+outputs/caos_candidates/
+outputs/mark9_caos_runs/
+outputs/mark13_benchmark/
+outputs/mark13_precision/
+outputs/mark13_reduction/
+outputs/mark14/
+outputs/mark14_smoke/
+outputs/mark14_support/

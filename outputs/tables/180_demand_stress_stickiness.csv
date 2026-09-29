@@ -1,0 +1,855 @@
+codigo_producto,caja_tipo,keep_pct,volumen_producto_total,categoria,subcategoria,ingrediente_forma,solucion
+BR0421,BOX_0032,0.0,145803,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0419,BOX_0055,0.0,43300,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0023,BOX_0015,0.0,13807,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0394,BOX_0053,0.0,27637,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0368,BOX_0050,0.0,100784,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0370,BOX_0010,0.0,101561,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0378,BOX_0019,0.0,8811,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0350,BOX_0016,0.0,3786,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Óptima
+BR0351,BOX_0016,0.0,71579,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Óptima
+BR0352,BOX_0030,0.0,30713,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0347,BOX_0010,0.0,381716,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0332,BOX_0019,0.0,739501,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0308,BOX_0016,0.0,32017,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0333,BOX_0018,0.0,58078,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0314XL,BOX_0027,0.0,438153,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0309,BOX_0044,0.0,77493,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0284,BOX_0016,0.0,57430,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0273,BOX_0018,0.0,26831,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0315,BOX_0027,0.0,76559,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0037,BOX_0019,0.0,66140,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0048,BOX_0014,0.0,222,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0289,BOX_0042,0.0,46462,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0296,BOX_0010,0.0,42128,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0272,BOX_0028,0.0,39097,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0259,BOX_0019,0.0,38639,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Óptima
+BR0287,BOX_0030,0.0,110857,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0277,BOX_0030,0.0,79676,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0278,BOX_0030,0.0,68416,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0260,BOX_0032,0.0,16557,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Bastones rectos de brocoli,Distribución Óptima
+BR0244,BOX_0028,0.0,547895,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0243,BOX_0006,0.0,881020,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0269,BOX_0012,0.0,91498,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0187,BOX_0041,0.0,614,Bastones clasicos,Bastones clasicos - Cielo,Bastones rectos de brocoli,Distribución Óptima
+BR0189,BOX_0019,0.0,560602,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Óptima
+BR0192,BOX_0042,0.0,93784,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0245,BOX_0026,0.0,20724,Guarniciones,Guarniciones - Tortitas,Rosti de brocoli,Distribución Óptima
+BR0248,BOX_0047,0.0,576148,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0249,BOX_0006,0.0,282539,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0253,BOX_0048,0.0,1913149,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0254,BOX_0048,0.0,39317,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0051,BOX_0014,0.0,225,Bastones clasicos,Bastones clasicos - Sigilo,Rodajas de brocoli,Distribución Óptima
+BR0056,BOX_0025,0.0,15355,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0065,BOX_0027,0.0,96294,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0237,BOX_0028,0.0,16763,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli ondulado,Distribución Óptima
+BR0216,BOX_0015,0.0,39557,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0196,BOX_0029,0.0,31013,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0185,BOX_0030,0.0,47249,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0186,BOX_0016,0.0,79871,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Óptima
+BR0164,BOX_0008,0.0,8847,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0169,BOX_0016,0.0,20923,Guarniciones,Guarniciones - Tortitas,Rosti de brocoli,Distribución Óptima
+BR0171,BOX_0015,0.0,54930,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0068,BOX_0016,0.0,40139,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0076,BOX_0015,0.0,34665,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso crema,Distribución Óptima
+BR0077,BOX_0028,0.0,882124,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0081,BOX_0030,0.0,4121,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0163,BOX_0018,0.0,55634,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0152,BOX_0016,0.0,118353,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0153,BOX_0019,0.0,173204,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0154,BOX_0018,0.0,182630,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0173,BOX_0018,0.0,329481,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0155,BOX_0016,0.0,54010,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Óptima
+BR0135,BOX_0006,0.0,46669,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0134,BOX_0006,0.0,915606,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0156,BOX_0027,0.0,15948,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0411,BOX_0016,0.0,3001,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Óptima
+BR0410,BOX_0006,0.0,4903,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0409,BOX_0019,0.0,220,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0136,BOX_0006,0.0,175962,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0136XL,BOX_0006,0.0,188630,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0144,BOX_0014,0.0,145199,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0095,BOX_0032,0.0,660917,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0128,BOX_0032,0.0,5523,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0015,BOX_0010,0.0,30911,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0103,BOX_0016,0.0,61923,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0107,BOX_0019,0.0,81566,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0110,BOX_0032,0.0,126269,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0016,BOX_0010,0.0,30466,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0006,BOX_0006,0.0,6901,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0404,BOX_0019,0.0,215,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0398,BOX_0016,0.0,71218,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0301,BOX_0022,5.3,84080,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0142,BOX_0037,9.5,29780,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0108,BOX_0034,91.2,11355,Bastones clasicos,Bastones clasicos - Reserva Privada,Brocoli en rejilla,Distribución Óptima
+BR0327,BOX_0052,91.8,58364,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0326,BOX_0051,98.9,65147,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0412,BOX_0018,100.0,2347,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0408,BOX_0001,100.0,219,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0407,BOX_0005,100.0,1944,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0406,BOX_0001,100.0,217,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0405,BOX_0003,100.0,216,Guarniciones,Guarniciones - Otros,Bastones rectos de brocoli,Distribución Óptima
+BR0403,BOX_0054,100.0,214,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0402,BOX_0003,100.0,16214,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0401,BOX_0009,100.0,21160,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0400,BOX_0001,100.0,17214,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0399,BOX_0001,100.0,26149,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0397,BOX_0018,100.0,484351,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0018,BOX_0001,100.0,181571,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0017,BOX_0004,100.0,131799,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0014,BOX_0005,100.0,56319,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0013,BOX_0004,100.0,153252,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0012,BOX_0009,100.0,281875,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0011,BOX_0001,100.0,13433,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0010,BOX_0008,100.0,24339,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0009,BOX_0003,100.0,18019,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0008,BOX_0007,100.0,14639,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0007,BOX_0001,100.0,46847,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0005,BOX_0005,100.0,7586,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0004,BOX_0004,100.0,271715,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0413,BOX_0005,100.0,2014,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0113,BOX_0001,100.0,7783,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0112,BOX_0014,100.0,23107,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0111,BOX_0012,100.0,214237,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0109,BOX_0034,100.0,17891,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0106,BOX_0014,100.0,12592,Bastones extra crocantes,Bastones extra crocantes - Atelier Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0105,BOX_0003,100.0,1004197,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0104,BOX_0007,100.0,147015,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0102,BOX_0033,100.0,26836,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0101,BOX_0003,100.0,22584,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0100,BOX_0003,100.0,78594,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0099,BOX_0013,100.0,64345,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0098,BOX_0014,100.0,342718,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0129,BOX_0014,100.0,2589,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0127,BOX_0007,100.0,67606,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0126,BOX_0005,100.0,58942,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0125,BOX_0007,100.0,16473,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0124,BOX_0036,100.0,12307,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0123,BOX_0001,100.0,9196,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0122,BOX_0036,100.0,14021,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0121,BOX_0035,100.0,12373,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0120,BOX_0016,100.0,439,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Óptima
+BR0119,BOX_0007,100.0,35599,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0118,BOX_0004,100.0,16633,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0117,BOX_0005,100.0,28815,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0116,BOX_0008,100.0,6730,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0115,BOX_0001,100.0,51630,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0114,BOX_0002,100.0,9070,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Óptima
+BR0097,BOX_0013,100.0,137695,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0096,BOX_0012,100.0,425529,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0094,BOX_0014,100.0,2592909,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0093,BOX_0011,100.0,1345630,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0092XL,BOX_0004,100.0,976109,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0092,BOX_0011,100.0,995319,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0091,BOX_0031,100.0,35060,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0090,BOX_0023,100.0,53180,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0089,BOX_0025,100.0,33240,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Óptima
+BR0088,BOX_0011,100.0,10654,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0087,BOX_0023,100.0,16019,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0086,BOX_0026,100.0,32651,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0085,BOX_0029,100.0,17199,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0084,BOX_0011,100.0,24454,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0083,BOX_0002,100.0,70617,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0143,BOX_0005,100.0,280409,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0141,BOX_0005,100.0,57749,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0140,BOX_0005,100.0,16510,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0139,BOX_0006,100.0,71748,Bastones clasicos,Bastones clasicos - Reserva Privada,Rodajas de brocoli,Distribución Óptima
+BR0138,BOX_0020,100.0,1754,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Óptima
+BR0137,BOX_0030,100.0,372701,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0133,BOX_0024,100.0,17366,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Óptima
+BR0132,BOX_0024,100.0,44079,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Óptima
+BR0131,BOX_0002,100.0,49927,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0130,BOX_0002,100.0,116047,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0160,BOX_0008,100.0,160367,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0159,BOX_0008,100.0,327232,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0158,BOX_0003,100.0,18452,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0157,BOX_0005,100.0,457363,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0151,BOX_0018,100.0,95425,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0150,BOX_0007,100.0,134280,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0149,BOX_0003,100.0,36155,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0148,BOX_0007,100.0,324788,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0147,BOX_0016,100.0,854892,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0146,BOX_0003,100.0,73335,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0145,BOX_0003,100.0,82540,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0176,BOX_0039,100.0,18642,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Óptima
+BR0175,BOX_0001,100.0,18028,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0174,BOX_0008,100.0,49557,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0172,BOX_0018,100.0,39018,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0170,BOX_0038,100.0,7370,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Óptima
+BR0168,BOX_0007,100.0,49781,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0167,BOX_0008,100.0,3705,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Óptima
+BR0166,BOX_0038,100.0,29944,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con mozzarella,Distribución Óptima
+BR0165,BOX_0007,100.0,12486,Guarniciones,Guarniciones - Tortitas,Mini tortitas de brocoli,Distribución Óptima
+BR0162,BOX_0016,100.0,110959,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Óptima
+BR0161,BOX_0007,100.0,23617,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Óptima
+BR0082,BOX_0001,100.0,39328,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0080,BOX_0029,100.0,25092,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0079,BOX_0011,100.0,34751,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0078,BOX_0002,100.0,1153925,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0075,BOX_0002,100.0,21503,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0074,BOX_0005,100.0,26579,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0073,BOX_0003,100.0,28834,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0072,BOX_0014,100.0,41795,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0071,BOX_0014,100.0,38905,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0070,BOX_0012,100.0,34374,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0069,BOX_0014,100.0,50453,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0067,BOX_0011,100.0,17211,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0191,BOX_0014,100.0,88246,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0190,BOX_0011,100.0,17369,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Óptima
+BR0188,BOX_0007,100.0,170713,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Óptima
+BR0184,BOX_0007,100.0,5895,Bastones clasicos,Bastones clasicos - Cielo,Bastones rectos de brocoli,Distribución Óptima
+BR0183,BOX_0014,100.0,38855,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0182,BOX_0005,100.0,338761,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Óptima
+BR0181,BOX_0039,100.0,32410,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Óptima
+BR0180,BOX_0039,100.0,34641,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso crema,Distribución Óptima
+BR0179,BOX_0038,100.0,26499,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso suizo,Distribución Óptima
+BR0178,BOX_0040,100.0,75216,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Óptima
+BR0177,BOX_0039,100.0,2754,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con mozzarella,Distribución Óptima
+BR0208,BOX_0011,100.0,8399,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Óptima
+BR0207,BOX_0007,100.0,738947,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Óptima
+BR0206,BOX_0007,100.0,540468,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Óptima
+BR0205,BOX_0018,100.0,322395,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Óptima
+BR0204,BOX_0014,100.0,76437,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Bastones rectos de brocoli,Distribución Óptima
+BR0203,BOX_0014,100.0,319106,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Bastones rectos de brocoli,Distribución Óptima
+BR0202,BOX_0003,100.0,81074,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0201,BOX_0018,100.0,18969,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0200,BOX_0003,100.0,70691,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0199,BOX_0016,100.0,43003,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0198,BOX_0007,100.0,216760,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0197,BOX_0007,100.0,61138,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0195,BOX_0001,100.0,315717,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0194,BOX_0001,100.0,48228,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Óptima
+BR0193,BOX_0029,100.0,352706,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0223,BOX_0044,100.0,55345,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0222,BOX_0012,100.0,59044,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0221,BOX_0015,100.0,234214,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0220,BOX_0044,100.0,34704,Bastones clasicos,Bastones clasicos - Reserva Privada,Espirales de brocoli,Distribución Óptima
+BR0219,BOX_0043,100.0,50402,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0218,BOX_0003,100.0,1962,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0217,BOX_0003,100.0,28667,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0215,BOX_0033,100.0,3685,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0214,BOX_0033,100.0,30969,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0213,BOX_0009,100.0,48018,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0212,BOX_0035,100.0,41492,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0211,BOX_0003,100.0,47588,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0210,BOX_0003,100.0,61059,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0209XL,BOX_0007,100.0,20283,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0209,BOX_0003,100.0,18727,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0239,BOX_0046,100.0,1535191,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0238,BOX_0005,100.0,38285,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0236,BOX_0011,100.0,86330,Guarniciones,Guarniciones - Tortitas,Rosti de brocoli,Distribución Óptima
+BR0235,BOX_0011,100.0,11326,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Óptima
+BR0234,BOX_0044,100.0,62226,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0233,BOX_0001,100.0,443344,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0232,BOX_0005,100.0,11594,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0231,BOX_0003,100.0,1903,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0230,BOX_0038,100.0,2226,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0229,BOX_0012,100.0,163735,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0228,BOX_0044,100.0,35941,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0227,BOX_0017,100.0,65067,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0226,BOX_0044,100.0,21489,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0225,BOX_0045,100.0,76037,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Óptima
+BR0224,BOX_0045,100.0,36919,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0066,BOX_0008,100.0,59101,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0064,BOX_0022,100.0,14837,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Óptima
+BR0063,BOX_0026,100.0,11555,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0062,BOX_0026,100.0,6025,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0061,BOX_0026,100.0,4504,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0060,BOX_0026,100.0,28971,Bastones clasicos,Bastones clasicos - Legumes Frites,Brocoli zigzag,Distribución Óptima
+BR0059,BOX_0022,100.0,4286,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Óptima
+BR0058,BOX_0021,100.0,7710,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Óptima
+BR0057,BOX_0026,100.0,23499,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0055,BOX_0024,100.0,74368,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0054,BOX_0022,100.0,42687,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0053,BOX_0023,100.0,2320,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0052,BOX_0024,100.0,68844,Bastones clasicos,Bastones clasicos - Legumes Frites,Brocoli zigzag,Distribución Óptima
+BR0255,BOX_0035,100.0,707459,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0252,BOX_0037,100.0,1170624,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0251,BOX_0037,100.0,120133,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0250,BOX_0001,100.0,13200,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0247,BOX_0030,100.0,660788,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0246,BOX_0025,100.0,153351,Snacks y aperitivos,Snacks y aperitivos - Base Brocoli,Bocaditos inflados de brocoli,Distribución Óptima
+BR0242,BOX_0005,100.0,102787,Bastones clasicos,Bastones clasicos - Reserva Privada,Rodajas de brocoli,Distribución Óptima
+BR0241,BOX_0005,100.0,21329,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0240,BOX_0046,100.0,146138,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0271,BOX_0007,100.0,51599,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0270,BOX_0007,100.0,50204,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0268,BOX_0003,100.0,327106,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0267,BOX_0030,100.0,161176,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0266,BOX_0002,100.0,32727,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0265,BOX_0017,100.0,68585,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0264,BOX_0013,100.0,163709,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0263,BOX_0049,100.0,47162,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0262,BOX_0012,100.0,9883,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0261,BOX_0012,100.0,28626,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0258,BOX_0001,100.0,128636,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0257,BOX_0001,100.0,115702,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0256,BOX_0035,100.0,408317,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0286,BOX_0003,100.0,2671,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0285,BOX_0003,100.0,8419,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0283,BOX_0018,100.0,25144,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0282,BOX_0002,100.0,19984,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0281,BOX_0016,100.0,19900,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Óptima
+BR0280,BOX_0005,100.0,87449,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0279,BOX_0005,100.0,90724,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0276,BOX_0008,100.0,66448,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0275,BOX_0003,100.0,61369,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0274,BOX_0005,100.0,19222,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0303,BOX_0020,100.0,9612,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Óptima
+BR0302,BOX_0013,100.0,743209,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0300,BOX_0031,100.0,537174,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0299,BOX_0016,100.0,10947,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0298,BOX_0038,100.0,28852,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0297,BOX_0038,100.0,112903,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0295,BOX_0004,100.0,27938,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0294,BOX_0050,100.0,8197,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0293,BOX_0016,100.0,65498,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0292,BOX_0006,100.0,61797,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0291,BOX_0007,100.0,53472,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0290,BOX_0001,100.0,34241,Bastones clasicos,Bastones clasicos - Reserva Privada,Brocoli en rejilla,Distribución Óptima
+BR0288,BOX_0023,100.0,127450,Guarniciones,Guarniciones - Pure,Pure de brocoli,Distribución Óptima
+BR0050,BOX_0023,100.0,9242,Bastones clasicos,Bastones clasicos - Sigilo,Rodajas de brocoli,Distribución Óptima
+BR0049,BOX_0022,100.0,4328,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0047,BOX_0020,100.0,2166,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Óptima
+BR0046,BOX_0020,100.0,8665,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Óptima
+BR0045,BOX_0021,100.0,13225,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Óptima
+BR0044,BOX_0020,100.0,2256,Guarniciones,Guarniciones - Legumes Croquetas,Tortitas de brocoli,Distribución Óptima
+BR0043,BOX_0020,100.0,11771,Guarniciones,Guarniciones - Legumes Croquetas,Tortitas de brocoli,Distribución Óptima
+BR0042,BOX_0012,100.0,31809,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0041,BOX_0011,100.0,43428,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0040,BOX_0011,100.0,12725,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0039,BOX_0011,100.0,23523,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0038,BOX_0011,100.0,31584,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Óptima
+BR0036,BOX_0008,100.0,27685,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0035,BOX_0018,100.0,15862,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0317,BOX_0008,100.0,58373,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0316,BOX_0008,100.0,57896,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0314,BOX_0003,100.0,449345,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0313,BOX_0016,100.0,99361,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0312,BOX_0016,100.0,56648,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0311,BOX_0016,100.0,56338,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0310XL,BOX_0002,100.0,93171,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0310,BOX_0029,100.0,84202,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Óptima
+BR0307,BOX_0005,100.0,36192,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0306,BOX_0005,100.0,890712,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0305,BOX_0005,100.0,28870,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0304,BOX_0040,100.0,151589,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con mozzarella,Distribución Óptima
+BR0331,BOX_0026,100.0,28544,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0330,BOX_0023,100.0,36080,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0329,BOX_0026,100.0,33395,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0328,BOX_0023,100.0,36180,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0325,BOX_0011,100.0,51347,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0324,BOX_0015,100.0,142401,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0323,BOX_0028,100.0,12817,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0322,BOX_0018,100.0,466351,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0321,BOX_0022,100.0,279675,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0320,BOX_0016,100.0,10948,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0319,BOX_0008,100.0,24396,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0318,BOX_0007,100.0,23876,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0348,BOX_0001,100.0,142662,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0346,BOX_0005,100.0,400618,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0345,BOX_0034,100.0,525685,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0344,BOX_0029,100.0,312633,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0343,BOX_0037,100.0,286173,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0342,BOX_0011,100.0,40711,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0341,BOX_0023,100.0,522056,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0340XL,BOX_0011,100.0,1587481,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0340,BOX_0014,100.0,1728407,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0339,BOX_0046,100.0,661836,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0338,BOX_0003,100.0,36958,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0337,BOX_0031,100.0,20630,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0336,BOX_0007,100.0,30101,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0335,BOX_0011,100.0,31652,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0334,BOX_0011,100.0,794245,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0364,BOX_0004,100.0,80636,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0363,BOX_0002,100.0,93363,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0362,BOX_0002,100.0,22649,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0361,BOX_0008,100.0,114948,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0360,BOX_0007,100.0,100212,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0359,BOX_0026,100.0,19687,Bastones clasicos,Bastones clasicos - Legumes Frites,Brocoli zigzag,Distribución Óptima
+BR0358,BOX_0005,100.0,8728,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0357,BOX_0026,100.0,23014,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0356,BOX_0011,100.0,37946,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0355,BOX_0012,100.0,23972,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0354,BOX_0029,100.0,50094,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0353,BOX_0022,100.0,21335,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Óptima
+BR0349,BOX_0005,100.0,92361,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0380,BOX_0011,100.0,122770,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0379,BOX_0011,100.0,67894,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0377,BOX_0005,100.0,31227,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0376,BOX_0005,100.0,71871,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Óptima
+BR0375,BOX_0005,100.0,240998,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0374,BOX_0005,100.0,15996,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0373,BOX_0001,100.0,49137,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Óptima
+BR0372,BOX_0002,100.0,181556,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0371,BOX_0005,100.0,141590,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0369,BOX_0002,100.0,44106,Bastones clasicos,Bastones clasicos - Reserva Privada,Espirales de brocoli,Distribución Óptima
+BR0367,BOX_0007,100.0,51022,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0366,BOX_0018,100.0,14653,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0365,BOX_0003,100.0,107201,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0396,BOX_0009,100.0,535950,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0395,BOX_0015,100.0,225289,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0393,BOX_0012,100.0,19231,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0392,BOX_0003,100.0,37740,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0391,BOX_0012,100.0,1491119,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0390,BOX_0011,100.0,3517,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0389,BOX_0014,100.0,2295,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0388,BOX_0026,100.0,62840,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0387,BOX_0007,100.0,5144,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0386,BOX_0018,100.0,223,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0385,BOX_0014,100.0,222,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0384,BOX_0014,100.0,20471,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0383,BOX_0014,100.0,16437,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0382,BOX_0014,100.0,71190,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0381,BOX_0014,100.0,30911,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Óptima
+BR0034,BOX_0017,100.0,730326,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Óptima
+BR0033,BOX_0007,100.0,64963,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0032,BOX_0008,100.0,14194,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0031,BOX_0003,100.0,13965,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0030,BOX_0003,100.0,29133,Bastones clasicos,Bastones clasicos - Mayordomo,Gajos de brocoli,Distribución Óptima
+BR0029,BOX_0003,100.0,86631,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0028,BOX_0016,100.0,3136,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0027,BOX_0003,100.0,82289,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0026,BOX_0016,100.0,109226,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0025,BOX_0003,100.0,139891,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Óptima
+BR0024,BOX_0011,100.0,3004,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Óptima
+BR0022,BOX_0014,100.0,14747,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0021,BOX_0013,100.0,40184,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0020,BOX_0012,100.0,91699,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Óptima
+BR0019,BOX_0011,100.0,1447,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0414,BOX_0003,100.0,225,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0415,BOX_0046,100.0,226,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Óptima
+BR0416,BOX_0003,100.0,214,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Óptima
+BR0417,BOX_0024,100.0,2761,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Óptima
+BR0418,BOX_0024,100.0,3942,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Óptima
+BR0003,BOX_0003,100.0,172506,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Óptima
+BR0420,BOX_0012,100.0,205852,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0002,BOX_0002,100.0,139211,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Óptima
+BR0001,BOX_0001,100.0,1546613,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Óptima
+BR0419,BOX_0042,0.0,43300,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0413,BOX_0005,0.0,2014,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0019,BOX_0009,0.0,1447,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0024,BOX_0014,0.0,3004,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0033,BOX_0010,0.0,64963,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0391,BOX_0011,0.0,1491119,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0393,BOX_0011,0.0,19231,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0396,BOX_0030,0.0,535950,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0368,BOX_0041,0.0,100784,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0357,BOX_0024,0.0,23014,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0339,BOX_0015,0.0,661836,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0343,BOX_0040,0.0,286173,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0346,BOX_0005,0.0,400618,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0347,BOX_0005,0.0,381716,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0320,BOX_0030,0.0,10948,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0321,BOX_0015,0.0,279675,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0333,BOX_0012,0.0,58078,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0308,BOX_0012,0.0,32017,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0310,BOX_0035,0.0,84202,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0037,BOX_0014,0.0,66140,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0048,BOX_0012,0.0,222,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0301,BOX_0015,0.0,84080,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0272,BOX_0031,0.0,39097,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0273,BOX_0030,0.0,26831,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0259,BOX_0015,0.0,38639,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Independiente
+BR0275,BOX_0032,0.0,61369,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0277,BOX_0023,0.0,79676,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0284,BOX_0030,0.0,57430,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0251,BOX_0040,0.0,120133,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0261,BOX_0011,0.0,28626,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0252,BOX_0040,0.0,1170624,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0229,BOX_0011,0.0,163735,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0107,BOX_0014,0.0,81566,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0237,BOX_0031,0.0,16763,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli ondulado,Distribución Independiente
+BR0057,BOX_0012,0.0,23499,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0217,BOX_0032,0.0,28667,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0193,BOX_0035,0.0,352706,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0198,BOX_0010,0.0,216760,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0208,BOX_0014,0.0,8399,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Independiente
+BR0187,BOX_0035,0.0,614,Bastones clasicos,Bastones clasicos - Cielo,Bastones rectos de brocoli,Distribución Independiente
+BR0163,BOX_0030,0.0,55634,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0169,BOX_0030,0.0,20923,Guarniciones,Guarniciones - Tortitas,Rosti de brocoli,Distribución Independiente
+BR0173,BOX_0012,0.0,329481,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0153,BOX_0031,0.0,173204,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0158,BOX_0032,0.0,18452,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0136,BOX_0002,0.0,175962,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0142,BOX_0026,0.0,29780,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0144,BOX_0004,0.0,145199,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0410,BOX_0002,0.0,4903,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0086,BOX_0024,0.0,32651,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0088,BOX_0014,0.0,10654,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0089,BOX_0015,0.0,33240,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Independiente
+BR0294,BOX_0041,80.3,8197,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0121,BOX_0027,82.3,12373,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0412,BOX_0008,100.0,2347,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0411,BOX_0030,100.0,3001,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Independiente
+BR0409,BOX_0020,100.0,220,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0408,BOX_0001,100.0,219,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0407,BOX_0005,100.0,1944,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0406,BOX_0001,100.0,217,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0405,BOX_0003,100.0,216,Guarniciones,Guarniciones - Otros,Bastones rectos de brocoli,Distribución Independiente
+BR0404,BOX_0020,100.0,215,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0403,BOX_0035,100.0,214,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0402,BOX_0003,100.0,16214,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0401,BOX_0030,100.0,21160,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0400,BOX_0001,100.0,17214,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0399,BOX_0001,100.0,26149,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0398,BOX_0008,100.0,71218,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0397,BOX_0008,100.0,484351,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0018,BOX_0001,100.0,181571,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0017,BOX_0004,100.0,131799,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0016,BOX_0005,100.0,30466,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0015,BOX_0005,100.0,30911,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0014,BOX_0005,100.0,56319,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0013,BOX_0004,100.0,153252,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0012,BOX_0008,100.0,281875,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0011,BOX_0001,100.0,13433,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0010,BOX_0007,100.0,24339,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0009,BOX_0003,100.0,18019,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0008,BOX_0006,100.0,14639,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0007,BOX_0001,100.0,46847,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0006,BOX_0001,100.0,6901,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0005,BOX_0005,100.0,7586,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0004,BOX_0004,100.0,271715,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0003,BOX_0003,100.0,172506,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0097,BOX_0011,100.0,137695,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0096,BOX_0010,100.0,425529,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0095,BOX_0012,100.0,660917,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0094,BOX_0012,100.0,2592909,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0093,BOX_0015,100.0,1345630,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0092XL,BOX_0004,100.0,976109,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0092,BOX_0015,100.0,995319,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0091,BOX_0011,100.0,35060,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0090,BOX_0019,100.0,53180,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0087,BOX_0019,100.0,16019,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0085,BOX_0009,100.0,17199,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0084,BOX_0014,100.0,24454,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0083,BOX_0002,100.0,70617,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0082,BOX_0001,100.0,39328,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0081,BOX_0023,100.0,4121,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0080,BOX_0009,100.0,25092,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0079,BOX_0014,100.0,34751,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0078,BOX_0002,100.0,1153925,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0077,BOX_0005,100.0,882124,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0076,BOX_0022,100.0,34665,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso crema,Distribución Independiente
+BR0075,BOX_0002,100.0,21503,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0074,BOX_0005,100.0,26579,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0073,BOX_0003,100.0,28834,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0072,BOX_0012,100.0,41795,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0071,BOX_0012,100.0,38905,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0070,BOX_0010,100.0,34374,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0069,BOX_0012,100.0,50453,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0068,BOX_0008,100.0,40139,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0067,BOX_0015,100.0,17211,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0113,BOX_0001,100.0,7783,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0112,BOX_0012,100.0,23107,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0111,BOX_0010,100.0,214237,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0110,BOX_0012,100.0,126269,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0109,BOX_0026,100.0,17891,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0108,BOX_0026,100.0,11355,Bastones clasicos,Bastones clasicos - Reserva Privada,Brocoli en rejilla,Distribución Independiente
+BR0106,BOX_0012,100.0,12592,Bastones extra crocantes,Bastones extra crocantes - Atelier Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0105,BOX_0003,100.0,1004197,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0104,BOX_0006,100.0,147015,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0103,BOX_0006,100.0,61923,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0102,BOX_0025,100.0,26836,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0101,BOX_0003,100.0,22584,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0100,BOX_0003,100.0,78594,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0099,BOX_0011,100.0,64345,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0098,BOX_0012,100.0,342718,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0129,BOX_0012,100.0,2589,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0128,BOX_0012,100.0,5523,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0127,BOX_0006,100.0,67606,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0126,BOX_0005,100.0,58942,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0125,BOX_0006,100.0,16473,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0124,BOX_0028,100.0,12307,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0123,BOX_0001,100.0,9196,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0122,BOX_0028,100.0,14021,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0120,BOX_0008,100.0,439,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Independiente
+BR0119,BOX_0006,100.0,35599,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0118,BOX_0004,100.0,16633,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0117,BOX_0005,100.0,28815,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0116,BOX_0007,100.0,6730,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0115,BOX_0001,100.0,51630,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0114,BOX_0002,100.0,9070,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Independiente
+BR0143,BOX_0005,100.0,280409,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0141,BOX_0004,100.0,57749,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0140,BOX_0004,100.0,16510,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0139,BOX_0029,100.0,71748,Bastones clasicos,Bastones clasicos - Reserva Privada,Rodajas de brocoli,Distribución Independiente
+BR0138,BOX_0016,100.0,1754,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Independiente
+BR0137,BOX_0023,100.0,372701,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0136XL,BOX_0001,100.0,188630,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0135,BOX_0002,100.0,46669,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0134,BOX_0002,100.0,915606,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0133,BOX_0020,100.0,17366,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Independiente
+BR0132,BOX_0020,100.0,44079,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Independiente
+BR0131,BOX_0002,100.0,49927,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0130,BOX_0002,100.0,116047,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0160,BOX_0007,100.0,160367,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0159,BOX_0007,100.0,327232,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0157,BOX_0005,100.0,457363,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0156,BOX_0003,100.0,15948,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0155,BOX_0030,100.0,54010,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Independiente
+BR0154,BOX_0008,100.0,182630,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0152,BOX_0030,100.0,118353,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0151,BOX_0008,100.0,95425,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0150,BOX_0006,100.0,134280,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0149,BOX_0003,100.0,36155,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0148,BOX_0006,100.0,324788,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0147,BOX_0008,100.0,854892,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0146,BOX_0003,100.0,73335,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0145,BOX_0003,100.0,82540,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0176,BOX_0022,100.0,18642,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Independiente
+BR0175,BOX_0001,100.0,18028,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0174,BOX_0007,100.0,49557,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0172,BOX_0008,100.0,39018,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0171,BOX_0007,100.0,54930,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0170,BOX_0033,100.0,7370,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Independiente
+BR0168,BOX_0006,100.0,49781,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0167,BOX_0007,100.0,3705,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Independiente
+BR0166,BOX_0033,100.0,29944,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con mozzarella,Distribución Independiente
+BR0165,BOX_0006,100.0,12486,Guarniciones,Guarniciones - Tortitas,Mini tortitas de brocoli,Distribución Independiente
+BR0164,BOX_0033,100.0,8847,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0162,BOX_0008,100.0,110959,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Independiente
+BR0161,BOX_0006,100.0,23617,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Independiente
+BR0192,BOX_0011,100.0,93784,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0191,BOX_0012,100.0,88246,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0190,BOX_0015,100.0,17369,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Independiente
+BR0189,BOX_0015,100.0,560602,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Independiente
+BR0188,BOX_0006,100.0,170713,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Independiente
+BR0186,BOX_0030,100.0,79871,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Independiente
+BR0185,BOX_0023,100.0,47249,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0184,BOX_0006,100.0,5895,Bastones clasicos,Bastones clasicos - Cielo,Bastones rectos de brocoli,Distribución Independiente
+BR0183,BOX_0012,100.0,38855,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0182,BOX_0005,100.0,338761,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Independiente
+BR0181,BOX_0022,100.0,32410,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Independiente
+BR0180,BOX_0022,100.0,34641,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso crema,Distribución Independiente
+BR0179,BOX_0033,100.0,26499,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso suizo,Distribución Independiente
+BR0178,BOX_0034,100.0,75216,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con queso cheddar,Distribución Independiente
+BR0177,BOX_0022,100.0,2754,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con mozzarella,Distribución Independiente
+BR0207,BOX_0006,100.0,738947,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Independiente
+BR0206,BOX_0006,100.0,540468,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Independiente
+BR0205,BOX_0008,100.0,322395,Bastones extra crocantes,Bastones extra crocantes - Muy Crocantes,Bastones rectos de brocoli,Distribución Independiente
+BR0204,BOX_0012,100.0,76437,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Bastones rectos de brocoli,Distribución Independiente
+BR0203,BOX_0012,100.0,319106,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Bastones rectos de brocoli,Distribución Independiente
+BR0202,BOX_0003,100.0,81074,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0201,BOX_0008,100.0,18969,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0200,BOX_0003,100.0,70691,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0199,BOX_0008,100.0,43003,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0197,BOX_0006,100.0,61138,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0196,BOX_0002,100.0,31013,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0195,BOX_0001,100.0,315717,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0194,BOX_0001,100.0,48228,Brocoli especial,Brocoli especial - Bastones Especiales,Bastones rectos de brocoli,Distribución Independiente
+BR0223,BOX_0037,100.0,55345,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0222,BOX_0010,100.0,59044,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0221,BOX_0037,100.0,234214,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0220,BOX_0037,100.0,34704,Bastones clasicos,Bastones clasicos - Reserva Privada,Espirales de brocoli,Distribución Independiente
+BR0219,BOX_0032,100.0,50402,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0218,BOX_0003,100.0,1962,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0216,BOX_0022,100.0,39557,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0215,BOX_0025,100.0,3685,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0214,BOX_0025,100.0,30969,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0213,BOX_0030,100.0,48018,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0212,BOX_0036,100.0,41492,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0211,BOX_0003,100.0,47588,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0210,BOX_0003,100.0,61059,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0209XL,BOX_0006,100.0,20283,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0209,BOX_0003,100.0,18727,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0066,BOX_0007,100.0,59101,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0065,BOX_0003,100.0,96294,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0064,BOX_0018,100.0,14837,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Independiente
+BR0063,BOX_0020,100.0,11555,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0062,BOX_0020,100.0,6025,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0061,BOX_0020,100.0,4504,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0060,BOX_0020,100.0,28971,Bastones clasicos,Bastones clasicos - Legumes Frites,Brocoli zigzag,Distribución Independiente
+BR0059,BOX_0018,100.0,4286,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Independiente
+BR0058,BOX_0017,100.0,7710,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Independiente
+BR0056,BOX_0021,100.0,15355,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0055,BOX_0021,100.0,74368,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0054,BOX_0018,100.0,42687,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0053,BOX_0019,100.0,2320,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0052,BOX_0021,100.0,68844,Bastones clasicos,Bastones clasicos - Legumes Frites,Brocoli zigzag,Distribución Independiente
+BR0051,BOX_0020,100.0,225,Bastones clasicos,Bastones clasicos - Sigilo,Rodajas de brocoli,Distribución Independiente
+BR0239,BOX_0015,100.0,1535191,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0238,BOX_0005,100.0,38285,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0236,BOX_0014,100.0,86330,Guarniciones,Guarniciones - Tortitas,Rosti de brocoli,Distribución Independiente
+BR0235,BOX_0014,100.0,11326,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Independiente
+BR0234,BOX_0037,100.0,62226,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0233,BOX_0001,100.0,443344,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0232,BOX_0005,100.0,11594,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0231,BOX_0003,100.0,1903,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0230,BOX_0033,100.0,2226,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0228,BOX_0037,100.0,35941,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0227,BOX_0013,100.0,65067,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0226,BOX_0037,100.0,21489,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0225,BOX_0038,100.0,76037,Bastones clasicos,Bastones clasicos - Sigilo,Corte rustico de brocoli,Distribución Independiente
+BR0224,BOX_0038,100.0,36919,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0255,BOX_0036,100.0,707459,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0254,BOX_0039,100.0,39317,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0253,BOX_0039,100.0,1913149,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0250,BOX_0001,100.0,13200,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0249,BOX_0001,100.0,282539,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0248,BOX_0039,100.0,576148,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0247,BOX_0023,100.0,660788,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0246,BOX_0021,100.0,153351,Snacks y aperitivos,Snacks y aperitivos - Base Brocoli,Bocaditos inflados de brocoli,Distribución Independiente
+BR0245,BOX_0020,100.0,20724,Guarniciones,Guarniciones - Tortitas,Rosti de brocoli,Distribución Independiente
+BR0244,BOX_0005,100.0,547895,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0243,BOX_0001,100.0,881020,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0242,BOX_0005,100.0,102787,Bastones clasicos,Bastones clasicos - Reserva Privada,Rodajas de brocoli,Distribución Independiente
+BR0241,BOX_0005,100.0,21329,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0240,BOX_0015,100.0,146138,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0271,BOX_0006,100.0,51599,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0270,BOX_0006,100.0,50204,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0269,BOX_0006,100.0,91498,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0268,BOX_0003,100.0,327106,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0267,BOX_0023,100.0,161176,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0266,BOX_0002,100.0,32727,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0265,BOX_0013,100.0,68585,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0264,BOX_0011,100.0,163709,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0263,BOX_0011,100.0,47162,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0262,BOX_0010,100.0,9883,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0260,BOX_0012,100.0,16557,Bastones clasicos,Bastones clasicos - Legumes Frites Salados,Bastones rectos de brocoli,Distribución Independiente
+BR0258,BOX_0001,100.0,128636,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0257,BOX_0001,100.0,115702,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0256,BOX_0036,100.0,408317,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0287,BOX_0001,100.0,110857,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0286,BOX_0003,100.0,2671,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0285,BOX_0003,100.0,8419,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0283,BOX_0008,100.0,25144,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0282,BOX_0002,100.0,19984,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0281,BOX_0008,100.0,19900,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Independiente
+BR0280,BOX_0005,100.0,87449,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0279,BOX_0005,100.0,90724,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0278,BOX_0001,100.0,68416,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0276,BOX_0007,100.0,66448,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0274,BOX_0005,100.0,19222,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0303,BOX_0016,100.0,9612,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Independiente
+BR0302,BOX_0011,100.0,743209,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0300,BOX_0011,100.0,537174,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0299,BOX_0008,100.0,10947,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0298,BOX_0033,100.0,28852,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0297,BOX_0033,100.0,112903,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0296,BOX_0004,100.0,42128,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0295,BOX_0004,100.0,27938,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0293,BOX_0008,100.0,65498,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0292,BOX_0029,100.0,61797,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0291,BOX_0006,100.0,53472,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0290,BOX_0001,100.0,34241,Bastones clasicos,Bastones clasicos - Reserva Privada,Brocoli en rejilla,Distribución Independiente
+BR0289,BOX_0011,100.0,46462,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0288,BOX_0019,100.0,127450,Guarniciones,Guarniciones - Pure,Pure de brocoli,Distribución Independiente
+BR0050,BOX_0019,100.0,9242,Bastones clasicos,Bastones clasicos - Sigilo,Rodajas de brocoli,Distribución Independiente
+BR0049,BOX_0018,100.0,4328,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0047,BOX_0016,100.0,2166,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Independiente
+BR0046,BOX_0016,100.0,8665,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Independiente
+BR0045,BOX_0017,100.0,13225,Guarniciones,Guarniciones - Legumes Croquetas,Rosti de brocoli,Distribución Independiente
+BR0044,BOX_0016,100.0,2256,Guarniciones,Guarniciones - Legumes Croquetas,Tortitas de brocoli,Distribución Independiente
+BR0043,BOX_0016,100.0,11771,Guarniciones,Guarniciones - Legumes Croquetas,Tortitas de brocoli,Distribución Independiente
+BR0042,BOX_0010,100.0,31809,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0041,BOX_0015,100.0,43428,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0040,BOX_0015,100.0,12725,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0039,BOX_0015,100.0,23523,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0038,BOX_0015,100.0,31584,Bastones clasicos,Bastones clasicos - Sigilo,Tiras para dip de brocoli,Distribución Independiente
+BR0036,BOX_0007,100.0,27685,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0035,BOX_0008,100.0,15862,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0317,BOX_0007,100.0,58373,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0316,BOX_0007,100.0,57896,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0315,BOX_0003,100.0,76559,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0314XL,BOX_0003,100.0,438153,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0314,BOX_0003,100.0,449345,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0313,BOX_0030,100.0,99361,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0312,BOX_0030,100.0,56648,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0311,BOX_0030,100.0,56338,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0310XL,BOX_0002,100.0,93171,Snacks y aperitivos,Snacks y aperitivos - Aros y Vegetales,Aros de brocoli,Distribución Independiente
+BR0309,BOX_0003,100.0,77493,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0307,BOX_0005,100.0,36192,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0306,BOX_0005,100.0,890712,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0305,BOX_0005,100.0,28870,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0304,BOX_0034,100.0,151589,Snacks y aperitivos,Snacks y aperitivos - Queso,Bocados de brocoli con mozzarella,Distribución Independiente
+BR0332,BOX_0015,100.0,739501,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0331,BOX_0024,100.0,28544,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0330,BOX_0019,100.0,36080,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0329,BOX_0024,100.0,33395,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0328,BOX_0019,100.0,36180,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0327,BOX_0015,100.0,58364,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0326,BOX_0015,100.0,65147,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0325,BOX_0014,100.0,51347,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0324,BOX_0011,100.0,142401,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0323,BOX_0031,100.0,12817,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0322,BOX_0008,100.0,466351,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0319,BOX_0007,100.0,24396,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0318,BOX_0006,100.0,23876,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0348,BOX_0001,100.0,142662,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0345,BOX_0027,100.0,525685,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0344,BOX_0023,100.0,312633,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0342,BOX_0015,100.0,40711,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0341,BOX_0019,100.0,522056,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0340XL,BOX_0015,100.0,1587481,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0340,BOX_0012,100.0,1728407,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0338,BOX_0003,100.0,36958,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0337,BOX_0011,100.0,20630,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0336,BOX_0006,100.0,30101,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0335,BOX_0015,100.0,31652,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0334,BOX_0015,100.0,794245,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0364,BOX_0004,100.0,80636,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0363,BOX_0002,100.0,93363,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0362,BOX_0002,100.0,22649,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0361,BOX_0007,100.0,114948,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0360,BOX_0006,100.0,100212,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0359,BOX_0020,100.0,19687,Bastones clasicos,Bastones clasicos - Legumes Frites,Brocoli zigzag,Distribución Independiente
+BR0358,BOX_0005,100.0,8728,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0356,BOX_0014,100.0,37946,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0355,BOX_0010,100.0,23972,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0354,BOX_0009,100.0,50094,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0353,BOX_0018,100.0,21335,Guarniciones,Guarniciones - Legumes Croquetas,Croquetas de brocoli,Distribución Independiente
+BR0352,BOX_0023,100.0,30713,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0351,BOX_0008,100.0,71579,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Independiente
+BR0350,BOX_0008,100.0,3786,Guarniciones,Guarniciones - Tortitas,Tortitas de brocoli,Distribución Independiente
+BR0349,BOX_0005,100.0,92361,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0380,BOX_0015,100.0,122770,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0379,BOX_0015,100.0,67894,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0378,BOX_0015,100.0,8811,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0377,BOX_0005,100.0,31227,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0376,BOX_0005,100.0,71871,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli zigzag,Distribución Independiente
+BR0375,BOX_0005,100.0,240998,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0374,BOX_0005,100.0,15996,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0373,BOX_0001,100.0,49137,Bastones clasicos,Bastones clasicos - Sigilo,Brocoli en rejilla,Distribución Independiente
+BR0372,BOX_0002,100.0,181556,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0371,BOX_0005,100.0,141590,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0370,BOX_0004,100.0,101561,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0369,BOX_0002,100.0,44106,Bastones clasicos,Bastones clasicos - Reserva Privada,Espirales de brocoli,Distribución Independiente
+BR0367,BOX_0006,100.0,51022,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0366,BOX_0008,100.0,14653,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0365,BOX_0003,100.0,107201,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0395,BOX_0011,100.0,225289,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0394,BOX_0011,100.0,27637,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0392,BOX_0003,100.0,37740,Bastones clasicos,Bastones clasicos - Sigilo,Gajos de brocoli,Distribución Independiente
+BR0390,BOX_0015,100.0,3517,Bastones clasicos,Bastones clasicos - Sigilo,Bastones rectos de brocoli,Distribución Independiente
+BR0389,BOX_0012,100.0,2295,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0388,BOX_0024,100.0,62840,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0387,BOX_0006,100.0,5144,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0386,BOX_0008,100.0,223,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0385,BOX_0012,100.0,222,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0384,BOX_0012,100.0,20471,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0383,BOX_0012,100.0,16437,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0382,BOX_0012,100.0,71190,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0381,BOX_0012,100.0,30911,Bastones clasicos,Bastones clasicos - Grado B,Bastones rectos de brocoli,Distribución Independiente
+BR0034,BOX_0013,100.0,730326,Bastones clasicos,Bastones clasicos - Reserva Privada,Gajos de brocoli,Distribución Independiente
+BR0032,BOX_0007,100.0,14194,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0031,BOX_0003,100.0,13965,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0030,BOX_0003,100.0,29133,Bastones clasicos,Bastones clasicos - Mayordomo,Gajos de brocoli,Distribución Independiente
+BR0029,BOX_0003,100.0,86631,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0028,BOX_0008,100.0,3136,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0027,BOX_0003,100.0,82289,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0026,BOX_0008,100.0,109226,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0025,BOX_0003,100.0,139891,Bastones clasicos,Bastones clasicos - Mayordomo,Bastones rectos de brocoli,Distribución Independiente
+BR0023,BOX_0013,100.0,13807,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0022,BOX_0012,100.0,14747,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0021,BOX_0011,100.0,40184,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0020,BOX_0010,100.0,91699,Bastones clasicos,Bastones clasicos - Legumes Frites,Bastones rectos de brocoli,Distribución Independiente
+BR0414,BOX_0003,100.0,225,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0415,BOX_0015,100.0,226,Bastones clasicos,Bastones clasicos - Sigilo,Dippers de brocoli,Distribución Independiente
+BR0416,BOX_0003,100.0,214,Guarniciones,Guarniciones - Cubos,Cubos de brocoli,Distribución Independiente
+BR0417,BOX_0020,100.0,2761,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Independiente
+BR0418,BOX_0020,100.0,3942,Bastones clasicos,Bastones clasicos - Sigilo,Mix crujiente de brocoli,Distribución Independiente
+BR0002,BOX_0002,100.0,139211,Bastones clasicos,Bastones clasicos - Sigilo,Espirales de brocoli,Distribución Independiente
+BR0420,BOX_0010,100.0,205852,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0421,BOX_0012,100.0,145803,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
+BR0001,BOX_0001,100.0,1546613,Bastones clasicos,Bastones clasicos - Reserva Privada,Bastones rectos de brocoli,Distribución Independiente
