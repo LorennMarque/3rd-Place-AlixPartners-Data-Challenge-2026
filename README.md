@@ -1,4 +1,4 @@
-# Packaging the broccoli
+# AlixPartners Data Challenge 2026
 
 Bonsai Corp ships frozen broccoli from five plants to five regions. It sells 427 products and buys 204 different cartons to do it. The annual bill is about **USD 209.2 million**. Freight is most of that bill: USD 150 per pallet inside a plant's home region, and USD 500 anywhere else.
 
